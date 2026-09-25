@@ -9,7 +9,7 @@ let weakSubjectsGlobal = [];
 let totalCompletedCount = 0;
 let totalExtraCount = 0;
 
-// ƒ^ƒCƒ}[—p•Ï”
+// ã‚¿ã‚¤ãƒãƒ¼ç”¨å¤‰æ•°
 let timerInterval = null;
 let timerSeconds = 25 * 60;
 let isTimerRunning = false;
@@ -35,10 +35,10 @@ window.onload = async function() {
     document.getElementById('test-date').value = getLocalDateString(today);
     updateWeakSubjectOptions();
 
-    // ‡@ local restore
+    // â‘  local restore
     loadData();
 
-    // ‡A if logged in, load GAS plan
+    // â‘¡ if logged in, load GAS plan
     const loginUserId = localStorage.getItem("loginUserId");
     const selectedGrade = localStorage.getItem("selectedGrade");
 
@@ -48,16 +48,16 @@ window.onload = async function() {
 
    if (loginUserId) {
 
-    // ‡@ ‚Ü‚¸GAS‚©‚çŒv‰æ•\‚ğ“Ç‚İ‚Ş
+    // â‘  ã¾ãšGASã‹ã‚‰è¨ˆç”»è¡¨ã‚’èª­ã¿è¾¼ã‚€
     await loadPlanFromGAS();
 
 
-    // ‡B ŠwK—š—ğ‚ª•Û‘¶‚³‚ê‚½‚ ‚Æ‚É
-    //    ƒXƒe[ƒ^ƒX‚Æ˜A‘±ŠwK“ú”‚ğ“Ç‚İ‚Ş
+    // â‘¢ å­¦ç¿’å±¥æ­´ãŒä¿å­˜ã•ã‚ŒãŸã‚ã¨ã«
+    //    ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¨é€£ç¶šå­¦ç¿’æ—¥æ•°ã‚’èª­ã¿è¾¼ã‚€
 await loadStatusFromGAS();
 await loadStreakFromGAS();
 
-    // ‡C ÅŒã‚Éƒ}ƒCƒy[ƒW‚ğ•\¦
+    // â‘£ æœ€å¾Œã«ãƒã‚¤ãƒšãƒ¼ã‚¸ã‚’è¡¨ç¤º
     renderMyPage();
 
 } else {
@@ -65,7 +65,7 @@ await loadStreakFromGAS();
     updatePlanTypeUI();
 };
 };
-/* --- ƒ[ƒJƒ‹ƒXƒgƒŒ[ƒW•Û‘¶ & •œŒ³ --- */
+/* --- ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ä¿å­˜ & å¾©å…ƒ --- */
 function loadData() {
     const savedStr = localStorage.getItem('studyPlanData');
     if (!savedStr) return false;
@@ -95,7 +95,7 @@ function loadData() {
 
         updateWeakSubjectOptions();
 
-        // ‹êèƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚Ì•œŒ³
+        // è‹¦æ‰‹ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã®å¾©å…ƒ
         const checkboxes = document.querySelectorAll('#weak-subjects-checkboxes input');
         checkboxes.forEach(cb => {
             if (weakSubjectsGlobal.includes(cb.value)) cb.checked = true;
@@ -103,24 +103,24 @@ function loadData() {
 
         renderMiniCalendarPicker();
         
-        // ‰æ–Ê•\¦
+        // ç”»é¢è¡¨ç¤º
         document.getElementById('result-layout').style.display = 'grid';
         document.getElementById('reset-plan-btn').style.display = 'block';
         
-        // •Û‘¶Ï‚İ‚Ì daysArrayiƒ^ƒXƒN‚Æƒ`ƒFƒbƒNó‘Ôj‚ğ‚»‚Ì‚Ü‚Ü•`‰æ
+        // ä¿å­˜æ¸ˆã¿ã® daysArrayï¼ˆã‚¿ã‚¹ã‚¯ã¨ãƒã‚§ãƒƒã‚¯çŠ¶æ…‹ï¼‰ã‚’ãã®ã¾ã¾æç”»
         renderCalendar();
         renderChecker();
         updateDashboard();
 
         return true;
     } catch (e) {
-        console.error("ƒf[ƒ^‚Ìƒ[ƒh‚É¸”s‚µ‚Ü‚µ‚½", e);
+        console.error("ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ", e);
         return false;
     }
 }
 
 // ===============================
-// ƒXƒe[ƒ^ƒX‚ğGAS‚©‚ç“Ç‚İ‚İ
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’GASã‹ã‚‰èª­ã¿è¾¼ã¿
 // ===============================
 async function loadStatusFromGAS() {
     const userId = localStorage.getItem("loginUserId");
@@ -144,18 +144,18 @@ const response = await fetch(
             totalExtraCount = Number(result.extraCount) || 0;
 
             console.log(
-                "ƒXƒe[ƒ^ƒX“Ç‚İ‚İŠ®—¹F",
+                "ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹èª­ã¿è¾¼ã¿å®Œäº†ï¼š",
                 totalCompletedCount,
                 totalExtraCount
             );
         }
 
     } catch (error) {
-        console.error("ƒXƒe[ƒ^ƒX“Ç‚İ‚İƒGƒ‰[F", error);
+        console.error("ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹èª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼ï¼š", error);
     }
 }
 // ===============================
-// ˜A‘±ŠwK“ú”‚ğGAS‚©‚ç“Ç‚İ‚İ
+// é€£ç¶šå­¦ç¿’æ—¥æ•°ã‚’GASã‹ã‚‰èª­ã¿è¾¼ã¿
 // ===============================
 async function loadStreakFromGAS() {
     const userId = localStorage.getItem("loginUserId");
@@ -176,17 +176,17 @@ async function loadStreakFromGAS() {
 
 		if (result.success) {
 			document.getElementById("dash-streak").textContent =
-				` ${result.streak}“ú`;
+				` ${result.streak}æ—¥`;
 
-			console.log("˜A‘±ŠwK“Ç‚İ‚İŠ®—¹F", result.streak);
+			console.log("é€£ç¶šå­¦ç¿’èª­ã¿è¾¼ã¿å®Œäº†ï¼š", result.streak);
 	}
 
     } catch (error) {
-        console.error("˜A‘±ŠwK“Ç‚İ‚İƒGƒ‰[F", error);
+        console.error("é€£ç¶šå­¦ç¿’èª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼ï¼š", error);
     }
 }
 // ===============================
-// GAS‚©‚ç•Û‘¶Ï‚İ‚ÌŒv‰æ•\‚ğ“Ç‚İ‚İ
+// GASã‹ã‚‰ä¿å­˜æ¸ˆã¿ã®è¨ˆç”»è¡¨ã‚’èª­ã¿è¾¼ã¿
 // ===============================
 async function loadPlanFromGAS() {
     const userId = localStorage.getItem("loginUserId");
@@ -203,17 +203,17 @@ async function loadPlanFromGAS() {
         const result = await response.json();
 
         if (!result.success) {
-            console.error("Œv‰æ•\‚Ì“Ç‚İ‚İ¸”sF", result.message);
+            console.error("è¨ˆç”»è¡¨ã®èª­ã¿è¾¼ã¿å¤±æ•—ï¼š", result.message);
             return false;
         }
 
-        // ‚Ü‚¾Œv‰æ•\‚ª•Û‘¶‚³‚ê‚Ä‚¢‚È‚¢ê‡
+        // ã¾ã è¨ˆç”»è¡¨ãŒä¿å­˜ã•ã‚Œã¦ã„ãªã„å ´åˆ
         if (!result.planJson) {
-            console.log("•Û‘¶Ï‚İ‚ÌŒv‰æ•\‚Í‚ ‚è‚Ü‚¹‚ñ");
+            console.log("ä¿å­˜æ¸ˆã¿ã®è¨ˆç”»è¡¨ã¯ã‚ã‚Šã¾ã›ã‚“");
             return false;
         }
 
-        // JSON‚ğJavaScript‚Ìƒf[ƒ^‚É–ß‚·
+        // JSONã‚’JavaScriptã®ãƒ‡ãƒ¼ã‚¿ã«æˆ»ã™
         const data = JSON.parse(result.planJson);
 
         daysArray = data.daysArray || [];
@@ -227,7 +227,7 @@ async function loadPlanFromGAS() {
         defaultDailyHours = data.defaultDailyHours || 2;
         selectedOffDays = data.selectedOffDays || [];
 
-        // “ü—Í—“‚à•œŒ³
+        // å…¥åŠ›æ¬„ã‚‚å¾©å…ƒ
         if (data.testDate) {
             document.getElementById("test-date").value = data.testDate;
         }
@@ -242,7 +242,7 @@ async function loadPlanFromGAS() {
                 data.defaultDailyHours;
         }
 
-        // ƒ‚[ƒh‚ğ•œŒ³
+        // ãƒ¢ãƒ¼ãƒ‰ã‚’å¾©å…ƒ
         if (data.planType) {
             const radio = document.querySelector(
                 `input[name="planType"][value="${data.planType}"]`
@@ -251,7 +251,7 @@ async function loadPlanFromGAS() {
             if (radio) radio.checked = true;
         }
 
-        // ‹êè‰È–Ú‚Ì”{—¦‚ğ•œŒ³
+        // è‹¦æ‰‹ç§‘ç›®ã®å€ç‡ã‚’å¾©å…ƒ
         if (data.weakRatio) {
             const radio = document.querySelector(
                 `input[name="weakRatio"][value="${data.weakRatio}"]`
@@ -262,7 +262,7 @@ async function loadPlanFromGAS() {
 
         updateWeakSubjectOptions();
 
-        // ‹êè‰È–Ú‚Ìƒ`ƒFƒbƒN‚ğ•œŒ³
+        // è‹¦æ‰‹ç§‘ç›®ã®ãƒã‚§ãƒƒã‚¯ã‚’å¾©å…ƒ
         const checkboxes = document.querySelectorAll(
             "#weak-subjects-checkboxes input"
         );
@@ -271,35 +271,35 @@ async function loadPlanFromGAS() {
             cb.checked = weakSubjectsGlobal.includes(cb.value);
         });
 
-       // ƒ}ƒCƒy[ƒW‚ğ•\¦’†‚È‚çAŒv‰æ‰æ–Ê‚ğŸè‚Éo‚³‚È‚¢
+       // ãƒã‚¤ãƒšãƒ¼ã‚¸ã‚’è¡¨ç¤ºä¸­ãªã‚‰ã€è¨ˆç”»ç”»é¢ã‚’å‹æ‰‹ã«å‡ºã•ãªã„
 const mypage = document.getElementById("mypage");
 
-// Œv‰æ‚ª•Û‘¶‚³‚ê‚Ä‚¢‚éê‡‚¾‚¯•\¦
+// è¨ˆç”»ãŒä¿å­˜ã•ã‚Œã¦ã„ã‚‹å ´åˆã ã‘è¡¨ç¤º
 if (daysArray.length > 0) {
     document.getElementById("result-layout")
         .style.setProperty("display", "grid", "important");
 
     document.getElementById("reset-plan-btn").style.display = "block";
 } else {
-    // Œv‰æ‚ª‚È‚¢ê‡‚Í”ñ•\¦
+    // è¨ˆç”»ãŒãªã„å ´åˆã¯éè¡¨ç¤º
     document.getElementById("result-layout")
         .style.setProperty("display", "none", "important");
 
     document.getElementById("reset-plan-btn").style.display = "none";
 }
-        // •Û‘¶Ï‚İ‚ÌŒv‰æ•\‚ğ•`‰æ
+        // ä¿å­˜æ¸ˆã¿ã®è¨ˆç”»è¡¨ã‚’æç”»
         renderMiniCalendarPicker();
         renderCalendar();
         renderChecker();
         updateDashboard();
-        // Å‰‚©‚çƒ`ƒFƒbƒNÏ‚İ‚ÌŠwK—š—ğ‚ğ•Û‘¶
+        // æœ€åˆã‹ã‚‰ãƒã‚§ãƒƒã‚¯æ¸ˆã¿ã®å­¦ç¿’å±¥æ­´ã‚’ä¿å­˜
 
-        console.log("GAS‚©‚çŒv‰æ•\‚ğ“Ç‚İ‚İ‚Ü‚µ‚½I");
+        console.log("GASã‹ã‚‰è¨ˆç”»è¡¨ã‚’èª­ã¿è¾¼ã¿ã¾ã—ãŸï¼");
 
         return true;
 
     } catch (error) {
-        console.error("GASŒv‰æ•\“Ç‚İ‚İƒGƒ‰[F", error);
+        console.error("GASè¨ˆç”»è¡¨èª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼ï¼š", error);
         return false;
     }
 }
@@ -319,39 +319,39 @@ async function saveAllLearningHistoryToGAS() {
 }
 
     // ===============================
-// ¡“ú‚Ì“ú•t‚É‡‚í‚¹‚ÄŒv‰æ‚ğXV
+// ä»Šæ—¥ã®æ—¥ä»˜ã«åˆã‚ã›ã¦è¨ˆç”»ã‚’æ›´æ–°
 // ===============================
 function updateTodayPlan() {
     if (daysArray.length === 0) return;
 
     const todayStr = getTodayStr();
 
-    // ¡“ú‚Ì“ú•t‚ÌŒv‰æ‚ğ’T‚·
+    // ä»Šæ—¥ã®æ—¥ä»˜ã®è¨ˆç”»ã‚’æ¢ã™
     const todayObj = daysArray.find(d => d.dateStr === todayStr);
 
     if (!todayObj) {
-        console.log("¡“ú‚ÌŒv‰æ‚Í‚ ‚è‚Ü‚¹‚ñ");
+        console.log("ä»Šæ—¥ã®è¨ˆç”»ã¯ã‚ã‚Šã¾ã›ã‚“");
         renderChecker();
         updateDashboard();
         return;
     }
 
-    // ¡“ú‚ÌŒv‰æ‚ğ•\¦
+    // ä»Šæ—¥ã®è¨ˆç”»ã‚’è¡¨ç¤º
     renderChecker();
     renderCalendar();
     updateDashboard();
 
-    console.log("¡“ú‚ÌŒv‰æ‚ÉXV‚µ‚Ü‚µ‚½I");
+    console.log("ä»Šæ—¥ã®è¨ˆç”»ã«æ›´æ–°ã—ã¾ã—ãŸï¼");
 }
 
 function resetSavedPlan() {
-    if (confirm("•Û‘¶‚³‚ê‚Ä‚¢‚éŒv‰æ‚Æi’»—š—ğ‚ğíœ‚µ‚Ä‚â‚è’¼‚µ‚Ü‚·‚©H")) {
+    if (confirm("ä¿å­˜ã•ã‚Œã¦ã„ã‚‹è¨ˆç”»ã¨é€²æ—å±¥æ­´ã‚’å‰Šé™¤ã—ã¦ã‚„ã‚Šç›´ã—ã¾ã™ã‹ï¼Ÿ")) {
         localStorage.removeItem('studyPlanData');
         location.reload();
     }
 }
 
-/* --- ƒ^ƒCƒ}[‹@”\ --- */
+/* --- ã‚¿ã‚¤ãƒãƒ¼æ©Ÿèƒ½ --- */
 function updateTimerDisplay() {
     const mins = Math.floor(timerSeconds / 60);
     const secs = timerSeconds % 60;
@@ -369,7 +369,7 @@ function startTimer() {
         } else {
             clearInterval(timerInterval);
             isTimerRunning = false;
-            alert("25•ªŠÔ‚ÌW’†ƒ^ƒCƒ€‚ªI—¹‚µ‚Ü‚µ‚½I‹xŒe‚µ‚Ü‚µ‚å‚¤B");
+            alert("25åˆ†é–“ã®é›†ä¸­ã‚¿ã‚¤ãƒ ãŒçµ‚äº†ã—ã¾ã—ãŸï¼ä¼‘æ†©ã—ã¾ã—ã‚‡ã†ã€‚");
         }
     }, 1000);
 }
@@ -385,7 +385,7 @@ function resetTimer() {
     updateTimerDisplay();
 }
 
-/* --- ƒKƒCƒh•\¦Ø‘Ö --- */
+/* --- ã‚¬ã‚¤ãƒ‰è¡¨ç¤ºåˆ‡æ›¿ --- */
 function toggleGuide() {
     const guide = document.getElementById('guide-box');
     guide.style.display = (guide.style.display === 'none' || guide.style.display === '') ? 'block' : 'none';
@@ -417,7 +417,7 @@ function updatePlanTypeUI() {
 }
 function updateWeakSubjectOptions() {
     const rawInput = document.getElementById('subject-input').value;
-    const subjects = rawInput.split(/[,A]/).map(s => s.trim()).filter(s => s.length > 0);
+    const subjects = rawInput.split(/[,ã€]/).map(s => s.trim()).filter(s => s.length > 0);
     const container = document.getElementById('weak-subjects-checkboxes');
     
     const checked = [];
@@ -461,13 +461,13 @@ function renderMiniCalendarPicker() {
 
         const monthHeader = document.createElement('div');
         monthHeader.className = 'mini-month-header';
-        monthHeader.innerText = `${year}”N ${month + 1}Œ`;
+        monthHeader.innerText = `${year}å¹´ ${month + 1}æœˆ`;
         container.appendChild(monthHeader);
 
         const grid = document.createElement('div');
         grid.className = 'mini-calendar-grid';
 
-        const weekDays = ['“ú', 'Œ', '‰Î', '…', '–Ø', '‹à', '“y'];
+        const weekDays = ['æ—¥', 'æœˆ', 'ç«', 'æ°´', 'æœ¨', 'é‡‘', 'åœŸ'];
         weekDays.forEach(wd => {
             const head = document.createElement('div');
             head.className = 'mini-header-day';
@@ -500,7 +500,7 @@ function renderMiniCalendarPicker() {
                 dayCell.classList.add('disabled');
             } else if (isTest) {
                 dayCell.classList.add('test-day');
-                dayCell.innerText += ' (ƒeƒXƒg)';
+                dayCell.innerText += ' (ãƒ†ã‚¹ãƒˆ)';
             } else {
                 if (isOff) dayCell.classList.add('off');
 
@@ -534,25 +534,25 @@ function updateDashboard() {
         const target = new Date(testDateVal);
         const diffTime = target - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        daysLeftElem.innerText = diffDays > 0 ? `${diffDays} “ú` : "–{“ú–{”ÔI";
+        daysLeftElem.innerText = diffDays > 0 ? `${diffDays} æ—¥` : "æœ¬æ—¥æœ¬ç•ªï¼";
     } else {
-        daysLeftElem.innerText = "-- “ú";
+        daysLeftElem.innerText = "-- æ—¥";
     }
     
 	const todayStr = getLocalDateString(new Date())
 	const todayObj = daysArray.find(d => d.dateStr === todayStr);
 
     if (todayObj && todayObj.tasks) {
-        todayTasksElem.innerText = `${todayObj.tasks.length} ƒRƒ}`;
+        todayTasksElem.innerText = `${todayObj.tasks.length} ã‚³ãƒ`;
     } else {
-        todayTasksElem.innerText = "0 ƒRƒ}";
+        todayTasksElem.innerText = "0 ã‚³ãƒ";
     }
 }
-/* --- Œv‰æ•\‚Ì©“®¶¬ƒ{ƒ^ƒ“ --- */
+/* --- è¨ˆç”»è¡¨ã®è‡ªå‹•ç”Ÿæˆãƒœã‚¿ãƒ³ --- */
 function generatePlan() {
     const testDateVal = document.getElementById('test-date').value;
     if (!testDateVal) {
-        alert("ƒeƒXƒg“ú‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+        alert("ãƒ†ã‚¹ãƒˆæ—¥ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
         return;
     }
 
@@ -561,15 +561,15 @@ function generatePlan() {
     today.setHours(0,0,0,0);
 
     if (testDateGlobal <= today) {
-        alert("ƒeƒXƒg“ú‚Í–¾“úˆÈ~‚Ì“ú•t‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢B");
+        alert("ãƒ†ã‚¹ãƒˆæ—¥ã¯æ˜æ—¥ä»¥é™ã®æ—¥ä»˜ã‚’è¨­å®šã—ã¦ãã ã•ã„ã€‚");
         return;
     }
 
     const rawSubjects = document.getElementById('subject-input').value;
-    baseSubjectsGlobal = rawSubjects.split(/[,A]/).map(s => s.trim()).filter(s => s.length > 0);
+    baseSubjectsGlobal = rawSubjects.split(/[,ã€]/).map(s => s.trim()).filter(s => s.length > 0);
     
     if (baseSubjectsGlobal.length === 0) {
-        alert("‹³‰È‚ğ1‚ÂˆÈã“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+        alert("æ•™ç§‘ã‚’1ã¤ä»¥ä¸Šå…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
         return;
     }
 
@@ -598,7 +598,7 @@ function generatePlan() {
         curr.setDate(curr.getDate() + 1);
     }
 
-    // ‰‰ñ¶¬‚Ì‚İV‹KƒVƒƒƒbƒtƒ‹
+    // åˆå›ç”Ÿæˆæ™‚ã®ã¿æ–°è¦ã‚·ãƒ£ãƒƒãƒ•ãƒ«
     reallocatePlan(true);
 
    document.getElementById('result-layout')
@@ -613,7 +613,7 @@ function generatePlan() {
     document.getElementById('result-layout').scrollIntoView({ behavior: 'smooth' });
 }
 
-/* --- Œv‰æ‚ÌŠ„‚è“–‚Äˆ— --- */
+/* --- è¨ˆç”»ã®å‰²ã‚Šå½“ã¦å‡¦ç† --- */
 function reallocatePlan(isNewPlan = false) {
     const planType = document.querySelector('input[name="planType"]:checked').value;
     
@@ -642,7 +642,7 @@ function reallocatePlan(isNewPlan = false) {
         }, 0);
     }
 
-    // V‹Kì¬iisNewPlan = truej‚Ü‚½‚Íƒv[ƒ‹–¢İ’è‚Éƒv[ƒ‹‚ğì¬‚µ‚ÄƒVƒƒƒbƒtƒ‹
+    // æ–°è¦ä½œæˆæ™‚ï¼ˆisNewPlan = trueï¼‰ã¾ãŸã¯ãƒ—ãƒ¼ãƒ«æœªè¨­å®šæ™‚ã«ãƒ—ãƒ¼ãƒ«ã‚’ä½œæˆã—ã¦ã‚·ãƒ£ãƒƒãƒ•ãƒ«
     if (isNewPlan || studyPool.length === 0) {
         let allocatedSlots = {};
         if (totalTargetSlots >= baseSubjectsGlobal.length) {
@@ -686,7 +686,7 @@ function reallocatePlan(isNewPlan = false) {
 
     daysArray.forEach(d => {
         if (d.isTestDay) {
-            d.tasks = [{ subject: 'š ƒeƒXƒg–{”ÔI', done: false, isTest: true }];
+            d.tasks = [{ subject: 'â˜… ãƒ†ã‚¹ãƒˆæœ¬ç•ªï¼', done: false, isTest: true }];
             return;
         }
 
@@ -709,7 +709,7 @@ function reallocatePlan(isNewPlan = false) {
             hours = d.customHours;
         }
 
-        // Šù‘¶ƒ^ƒXƒN‚Ìƒ`ƒFƒbƒNó‘Ôidonej‚Ì‚İ‹L‰¯
+        // æ—¢å­˜ã‚¿ã‚¹ã‚¯ã®ãƒã‚§ãƒƒã‚¯çŠ¶æ…‹ï¼ˆdoneï¼‰ã®ã¿è¨˜æ†¶
         const oldDoneMap = {};
         if (d.tasks) {
             d.tasks.forEach(t => { 
@@ -717,7 +717,7 @@ function reallocatePlan(isNewPlan = false) {
             });
         }
 
-        // ’Ç‰ÁE‘‰Á‚³‚ê‚é‹³‰È—p‚Ìƒ‰ƒ“ƒ_ƒ€ƒv[ƒ‹ì¬i‘ÎÛ‹³‰È‚©‚çƒVƒƒƒbƒtƒ‹‚µ‚Äæ“¾j
+        // è¿½åŠ ãƒ»å¢—åŠ ã•ã‚Œã‚‹æ•™ç§‘ç”¨ã®ãƒ©ãƒ³ãƒ€ãƒ ãƒ—ãƒ¼ãƒ«ä½œæˆï¼ˆå¯¾è±¡æ•™ç§‘ã‹ã‚‰ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã—ã¦å–å¾—ï¼‰
         let randomSubjects = shuffleArray([...baseSubjectsGlobal]);
 
         d.tasks = [];
@@ -728,7 +728,7 @@ function reallocatePlan(isNewPlan = false) {
                 sub = studyPool[poolIndex];
                 poolIndex++;
             } else {
-                // ƒv[ƒ‹‚ğ’´‚¦‚ÄŠÔ˜g‚ª‘‚¦‚½ê‡‚Íƒ‰ƒ“ƒ_ƒ€‚É‹³‰È‚ğ‘I‘ğ
+                // ãƒ—ãƒ¼ãƒ«ã‚’è¶…ãˆã¦æ™‚é–“æ ãŒå¢—ãˆãŸå ´åˆã¯ãƒ©ãƒ³ãƒ€ãƒ ã«æ•™ç§‘ã‚’é¸æŠ
                 sub = randomSubjects[h % randomSubjects.length];
             }
 
@@ -740,20 +740,20 @@ function reallocatePlan(isNewPlan = false) {
     });
 }
 
-/* --- ƒ`ƒFƒbƒJ[‚Ìƒ`ƒFƒbƒNØ‚è‘Ö‚¦ --- */
+/* --- ãƒã‚§ãƒƒã‚«ãƒ¼ã®ãƒã‚§ãƒƒã‚¯åˆ‡ã‚Šæ›¿ãˆ --- */
 async function toggleTaskDone(dateStr, taskIndex) {
     const dayObj = daysArray.find(d => d.dateStr === dateStr);
 
     if (dayObj && dayObj.tasks[taskIndex]) {
         const task = dayObj.tasks[taskIndex];
 
-        // ƒ`ƒFƒbƒN‘O‚Ìó‘Ô
+        // ãƒã‚§ãƒƒã‚¯å‰ã®çŠ¶æ…‹
         const wasDone = task.done;
 
-        // ƒ`ƒFƒbƒNó‘Ô‚ğ”½“]
+        // ãƒã‚§ãƒƒã‚¯çŠ¶æ…‹ã‚’åè»¢
         task.done = !task.done;
 
-        // –¢ƒ`ƒFƒbƒN ¨ ƒ`ƒFƒbƒN
+        // æœªãƒã‚§ãƒƒã‚¯ â†’ ãƒã‚§ãƒƒã‚¯
         if (!wasDone && task.done) {
             if (task.isExtra) {
                 totalExtraCount++;
@@ -762,7 +762,7 @@ async function toggleTaskDone(dateStr, taskIndex) {
             }
         }
 
-        // ƒ`ƒFƒbƒN ¨ –¢ƒ`ƒFƒbƒN
+        // ãƒã‚§ãƒƒã‚¯ â†’ æœªãƒã‚§ãƒƒã‚¯
         if (wasDone && !task.done) {
             if (task.isExtra) {
                 totalExtraCount--;
@@ -771,16 +771,16 @@ async function toggleTaskDone(dateStr, taskIndex) {
             }
         }
 
-        // ‰æ–ÊXV
+        // ç”»é¢æ›´æ–°
         renderChecker();
         renderCalendar();
         renderMyPage();
 
-        // •Û‘¶
+        // ä¿å­˜
         saveData();
         await saveStatusToGAS();
 
-        // ŠwK—š—ğ‚ğ•Û‘¶‚µ‚Ä‚©‚ç˜A‘±ŠwK‚ğÄŒvZ
+        // å­¦ç¿’å±¥æ­´ã‚’ä¿å­˜ã—ã¦ã‹ã‚‰é€£ç¶šå­¦ç¿’ã‚’å†è¨ˆç®—
         await saveLearningHistoryToGAS(dateStr);
         await loadStreakFromGAS();
     }
@@ -793,60 +793,60 @@ function addExtraStudy() {
     const todayStr = getLocalDateString(new Date());
     const todayObj = daysArray.find(d => d.dateStr === todayStr);
 
-    // ¡“ú‚ÌŒv‰æ‚ª‚È‚¢
+    // ä»Šæ—¥ã®è¨ˆç”»ãŒãªã„
     if (!todayObj) {
-        alert("¡“ú‚ÌŠwKŒv‰æ‚ª‚ ‚è‚Ü‚¹‚ñI");
+        alert("ä»Šæ—¥ã®å­¦ç¿’è¨ˆç”»ãŒã‚ã‚Šã¾ã›ã‚“ï¼");
         return;
     }
 
-    // ƒeƒXƒg“ú
+    // ãƒ†ã‚¹ãƒˆæ—¥
     if (todayObj.isTestDay) {
-        alert("¡“ú‚ÍƒeƒXƒg–{”Ô‚È‚Ì‚ÅA’Ç‰Á‚Ì•×‹­‚Í‚Å‚«‚Ü‚¹‚ñI");
+        alert("ä»Šæ—¥ã¯ãƒ†ã‚¹ãƒˆæœ¬ç•ªãªã®ã§ã€è¿½åŠ ã®å‹‰å¼·ã¯ã§ãã¾ã›ã‚“ï¼");
         return;
     }
 
-    // ‹x‚İ‚Ì“ú
+    // ä¼‘ã¿ã®æ—¥
     if (todayObj.isOffDay) {
-        alert("¡“ú‚Í‚¨‹x‚İ‚Ì“ú‚Å‚·I");
+        alert("ä»Šæ—¥ã¯ãŠä¼‘ã¿ã®æ—¥ã§ã™ï¼");
         return;
     }
 
-    // ¡“ú‚·‚Å‚É•×‹­‚·‚é‰È–Ú‚ğæ“¾
+    // ä»Šæ—¥ã™ã§ã«å‹‰å¼·ã™ã‚‹ç§‘ç›®ã‚’å–å¾—
     const todaySubjects = todayObj.tasks
         .filter(task => !task.isTest)
         .map(task => task.subject);
 
-    // ¡“ú‚Ü‚¾“ü‚Á‚Ä‚¢‚È‚¢‰È–Ú‚ğ—Dæ
+    // ä»Šæ—¥ã¾ã å…¥ã£ã¦ã„ãªã„ç§‘ç›®ã‚’å„ªå…ˆ
     let candidates = baseSubjectsGlobal.filter(
         subject => !todaySubjects.includes(subject)
     );
 
-    // ‘S‰È–Ú‚ª“ü‚Á‚Ä‚¢‚½‚çA‘S‰È–Ú‚©‚ç‘I‚Ô
+    // å…¨ç§‘ç›®ãŒå…¥ã£ã¦ã„ãŸã‚‰ã€å…¨ç§‘ç›®ã‹ã‚‰é¸ã¶
     if (candidates.length === 0) {
         candidates = [...baseSubjectsGlobal];
     }
 
-    // ƒ‰ƒ“ƒ_ƒ€‚É1‰È–Ú‘I‚Ô
+    // ãƒ©ãƒ³ãƒ€ãƒ ã«1ç§‘ç›®é¸ã¶
     const subject = candidates[
         Math.floor(Math.random() * candidates.length)
     ];
 
-    // ’Ç‰Áƒ^ƒXƒN‚ğ¡“ú‚¾‚¯‚É’Ç‰Á
+    // è¿½åŠ ã‚¿ã‚¹ã‚¯ã‚’ä»Šæ—¥ã ã‘ã«è¿½åŠ 
     todayObj.tasks.push({
         subject: subject,
         done: false,
         isExtra: true
     });
 
-    // ‰æ–ÊXV
+    // ç”»é¢æ›´æ–°
     renderChecker();
     renderCalendar();
     updateDashboard();
 
-    // •Û‘¶
+    // ä¿å­˜
     saveData();
 
-    alert(`${subject}‚ğ’Ç‰Á‚µ‚Ü‚µ‚½I`);
+    alert(`${subject}ã‚’è¿½åŠ ã—ã¾ã—ãŸï¼`);
 }
 function renderChecker() {
     const todayStr = getLocalDateString(new Date());
@@ -903,23 +903,23 @@ function renderChecker() {
     });
 
     if (todayBox.children.length === 0) {
-        todayBox.innerHTML = '<p class="empty-msg">¡“ú‚Ì•×‹­ƒ^ƒXƒN‚Í‚ ‚è‚Ü‚¹‚ñi‚¨‹x‚İ‚Ü‚½‚ÍƒeƒXƒg“új</p>';
+        todayBox.innerHTML = '<p class="empty-msg">ä»Šæ—¥ã®å‹‰å¼·ã‚¿ã‚¹ã‚¯ã¯ã‚ã‚Šã¾ã›ã‚“ï¼ˆãŠä¼‘ã¿ã¾ãŸã¯ãƒ†ã‚¹ãƒˆæ—¥ï¼‰</p>';
     }
 
     const percent = totalTasks > 0 ? Math.round((checkedTasks / totalTasks) * 100) : 0;
-    document.getElementById('percent-disp').innerText = `${checkedTasks} / ${totalTasks} ƒRƒ} (${percent}%)`;
+    document.getElementById('percent-disp').innerText = `${checkedTasks} / ${totalTasks} ã‚³ãƒ (${percent}%)`;
     document.getElementById('bar-fill-disp').style.width = `${percent}%`;
 
   const level = Math.floor(
     (totalCompletedCount + totalExtraCount) / 3
 ) + 1;
 
-    let title = "‚Ì‚Ñ‘¾‹‰";
-    if (level >= 15) title = "•×‹­_‹‰ ";
-    else if (level >= 10) title = "“VË‹‰ ";
-    else if (level >= 7) title = "GË‹‰ ";
-    else if (level >= 4) title = "“w—Í‰Æ‹‰ ";
-    else if (level >= 2) title = "Œ©K‚¢‹‰ ";
+    let title = "ã®ã³å¤ªç´š";
+    if (level >= 15) title = "å‹‰å¼·ç¥ç´š ";
+    else if (level >= 10) title = "å¤©æ‰ç´š ";
+    else if (level >= 7) title = "ç§€æ‰ç´š ";
+    else if (level >= 4) title = "åŠªåŠ›å®¶ç´š ";
+    else if (level >= 2) title = "è¦‹ç¿’ã„ç´š ";
 
     document.getElementById('title-disp').innerText = title;
 }
@@ -945,13 +945,13 @@ function renderCalendar() {
 
         const monthHeader = document.createElement('div');
         monthHeader.className = 'calendar-month-header';
-        monthHeader.innerText = `${year}”N ${month + 1}Œ`;
+        monthHeader.innerText = `${year}å¹´ ${month + 1}æœˆ`;
         container.appendChild(monthHeader);
 
         const grid = document.createElement('div');
         grid.className = 'calendar-grid';
 
-        const weekDays = ['“ú', 'Œ', '‰Î', '…', '–Ø', '‹à', '“y'];
+        const weekDays = ['æ—¥', 'æœˆ', 'ç«', 'æ°´', 'æœ¨', 'é‡‘', 'åœŸ'];
         weekDays.forEach(wd => {
             const head = document.createElement('div');
             head.className = 'calendar-header-day';
@@ -993,7 +993,7 @@ function renderCalendar() {
                         dayObj.isOffDay = false;
                         dayObj.customHours = nextHours;
 
-                        // 0ŠÔ‚©‚ç‘‚â‚·ê‡‚â’Ç‰Á˜g‚Ì‹³‰È‚ğƒ‰ƒ“ƒ_ƒ€‚É”z’u
+                        // 0æ™‚é–“ã‹ã‚‰å¢—ã‚„ã™å ´åˆã‚„è¿½åŠ æ ã®æ•™ç§‘ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«é…ç½®
                         let newSubjects = shuffleArray([...baseSubjectsGlobal]);
                         dayObj.tasks = [];
                         for (let h = 0; h < nextHours; h++) {
@@ -1018,14 +1018,14 @@ function renderCalendar() {
             if (cellDateStr === testDateStr) numLabel.classList.add('test-label');
 
             let labelText = `${day}`;
-            if (cellDateStr === todayStr) labelText += " (¡“ú)";
+            if (cellDateStr === todayStr) labelText += " (ä»Šæ—¥)";
             numLabel.innerText = labelText;
 
             if (dayObj && !dayObj.isOffDay && cellDateStr !== testDateStr) {
                 const hours = dayObj.tasks ? dayObj.tasks.length : defaultDailyHours;
                 const badge = document.createElement('span');
                 badge.className = 'hours-badge';
-                badge.innerText = `${hours}h˜g`;
+                badge.innerText = `${hours}hæ `;
                 numLabel.appendChild(badge);
             }
             dayCell.appendChild(numLabel);
@@ -1037,7 +1037,7 @@ function renderCalendar() {
                 if (dayObj.isOffDay) {
                     const el = document.createElement('div');
                     el.className = 'task-item no-study-day';
-                    el.innerText = "—p–i‚¨‹x‚İj";
+                    el.innerText = "ç”¨äº‹ï¼ˆãŠä¼‘ã¿ï¼‰";
                     taskContainer.appendChild(el);
                 } else {
                     dayObj.tasks.forEach(task => {
@@ -1050,7 +1050,7 @@ function renderCalendar() {
             } else if (cellDateStr === testDateStr) {
                 const el = document.createElement('div');
                 el.className = 'task-item test-day';
-                el.innerText = "š ƒeƒXƒg–{”ÔI";
+                el.innerText = "â˜… ãƒ†ã‚¹ãƒˆæœ¬ç•ªï¼";
                 taskContainer.appendChild(el);
             }
 
@@ -1062,7 +1062,7 @@ function renderCalendar() {
         current.setMonth(current.getMonth() + 1);
     }
 }
-/* ƒƒOƒCƒ“AV‹K“o˜^AƒpƒXƒ[ƒh•ÏXˆ— */
+/* ãƒ­ã‚°ã‚¤ãƒ³ã€æ–°è¦ç™»éŒ²ã€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å¤‰æ›´å‡¦ç† */
 window.addEventListener("DOMContentLoaded", function () {
 
     const loginUserId =
@@ -1074,26 +1074,26 @@ window.addEventListener("DOMContentLoaded", function () {
     const selectedGrade =
         localStorage.getItem("selectedGrade");
 
-    // ƒƒOƒCƒ“Ï‚İ { Šw”N‚à•Û‘¶‚³‚ê‚Ä‚¢‚é
+    // ãƒ­ã‚°ã‚¤ãƒ³æ¸ˆã¿ ï¼‹ å­¦å¹´ã‚‚ä¿å­˜ã•ã‚Œã¦ã„ã‚‹
     if (loginUserId && loginUserName && selectedGrade) {
 
-        // Šw”N‚É‘Î‰‚·‚éGAS‚ğİ’è
+        // å­¦å¹´ã«å¯¾å¿œã™ã‚‹GASã‚’è¨­å®š
         GAS_URL = GAS_URLS[selectedGrade];
 
-        // Šw”N‘I‘ğ‰æ–Ê‚ğ‰B‚·
+        // å­¦å¹´é¸æŠç”»é¢ã‚’éš ã™
         document.getElementById("grade-select-page").style.display = "none";
 
-        // ƒƒOƒCƒ“‰æ–Ê‚ğ‰B‚·
+        // ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢ã‚’éš ã™
         document.getElementById("login-page").style.display = "none";
 
-        // ƒƒCƒ“‰æ–Ê‚ğ•\¦
+        // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚’è¡¨ç¤º
         document.getElementById("main-page").style.display = "block";
 
         showLoginStatus();
 
     } else {
 
-        // ƒƒOƒCƒ“î•ñ‚ª‚È‚¢ê‡
+        // ãƒ­ã‚°ã‚¤ãƒ³æƒ…å ±ãŒãªã„å ´åˆ
         document.getElementById("grade-select-page").style.display = "flex";
 
         document.getElementById("login-page").style.display = "none";
@@ -1103,7 +1103,7 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 // ===============================
-// Šw”N‚²‚Æ‚ÌGAS URL
+// å­¦å¹´ã”ã¨ã®GAS URL
 // ===============================
 
 const GAS_URLS = {
@@ -1114,21 +1114,21 @@ const GAS_URLS = {
 
 let GAS_URL = "";
 // ===============================
-// Šw”N‚ğ‘I‘ğ
+// å­¦å¹´ã‚’é¸æŠ
 // ===============================
 
 function selectGrade(grade) {
 
-    // ‘I‚ñ‚¾Šw”N‚ğ•Û‘¶
+    // é¸ã‚“ã å­¦å¹´ã‚’ä¿å­˜
     localStorage.setItem("selectedGrade", grade);
 
-    // Šw”N‚É‘Î‰‚·‚éGAS‚ğ‘I‘ğ
+    // å­¦å¹´ã«å¯¾å¿œã™ã‚‹GASã‚’é¸æŠ
     GAS_URL = GAS_URLS[grade];
 
-    // Šw”N‘I‘ğ‰æ–Ê‚ğ‰B‚·
+    // å­¦å¹´é¸æŠç”»é¢ã‚’éš ã™
     document.getElementById("grade-select-page").style.display = "none";
 
-    // ƒƒOƒCƒ“‰æ–Ê‚ğ•\¦
+    // ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢ã‚’è¡¨ç¤º
     document.getElementById("login-page").style.display = "flex";
 }
 
@@ -1142,7 +1142,7 @@ async function login() {
 
     if (userId === "" || password === "") {
         errorMessage.textContent =
-            "ƒ†[ƒU[ID‚ÆƒpƒXƒ[ƒh‚ğ“ü—Í‚µ‚Ä‚ËB";
+            "ãƒ¦ãƒ¼ã‚¶ãƒ¼IDã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å…¥åŠ›ã—ã¦ã­ã€‚";
         return;
     }
 
@@ -1155,16 +1155,16 @@ async function login() {
         );
 
         const result = await response.json();
-		console.log("š GAS‚©‚çó‚¯æ‚Á‚½ƒXƒe[ƒ^ƒX:", result);
+		console.log("â˜… GASã‹ã‚‰å—ã‘å–ã£ãŸã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:", result);
         if (result.success) {
-            // ƒƒOƒCƒ“î•ñ‚ğ•Û‘¶
+            // ãƒ­ã‚°ã‚¤ãƒ³æƒ…å ±ã‚’ä¿å­˜
             localStorage.setItem("loginUserId", userId);
             localStorage.setItem("loginUserName", result.name);
 
-            // ƒƒOƒCƒ“‰æ–Ê‚ğ‰B‚·
+            // ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢ã‚’éš ã™
             document.getElementById("login-page").style.display = "none";
 
-            // ŠwKŒv‰æƒ[ƒJ[‚ğ•\¦
+            // å­¦ç¿’è¨ˆç”»ãƒ¡ãƒ¼ã‚«ãƒ¼ã‚’è¡¨ç¤º
             document.getElementById("main-page").style.display = "block";
 
 			showLoginStatus();
@@ -1176,14 +1176,14 @@ await loadStreakFromGAS();
 			
         } else {
             errorMessage.textContent =
-                "ƒ†[ƒU[ID‚Ü‚½‚ÍƒpƒXƒ[ƒh‚ªˆá‚¢‚Ü‚·B";
+                "ãƒ¦ãƒ¼ã‚¶ãƒ¼IDã¾ãŸã¯ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé•ã„ã¾ã™ã€‚";
         }
 
     } catch (error) {
         console.error(error);
 
         errorMessage.textContent =
-            "ƒƒOƒCƒ“‚É¸”s‚µ‚Ü‚µ‚½BGAS‚Ìİ’è‚ğŠm”F‚µ‚Ä‚ËB";
+            "ãƒ­ã‚°ã‚¤ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸã€‚GASã®è¨­å®šã‚’ç¢ºèªã—ã¦ã­ã€‚";
     }
 }
 function hideAllAuthPages() {
@@ -1220,7 +1220,7 @@ async function registerUser() {
 
     if (name === "" || userId === "" || password === "") {
         errorMessage.textContent =
-            "‚·‚×‚Ä‚Ì€–Ú‚ğ“ü—Í‚µ‚Ä‚ËB";
+            "ã™ã¹ã¦ã®é …ç›®ã‚’å…¥åŠ›ã—ã¦ã­ã€‚";
         return;
     }
 
@@ -1236,17 +1236,17 @@ async function registerUser() {
         const result = await response.json();
 
         if (result.success) {
-            // ƒƒOƒCƒ“î•ñ‚ğ•Û‘¶
+            // ãƒ­ã‚°ã‚¤ãƒ³æƒ…å ±ã‚’ä¿å­˜
             localStorage.setItem("loginUserId", userId);
             localStorage.setItem("loginUserName", result.name);
 
-            // V‹K“o˜^‰æ–Ê‚ğ‰B‚·
+            // æ–°è¦ç™»éŒ²ç”»é¢ã‚’éš ã™
             document.getElementById("register-page").style.display = "none";
 
-            // ŠwKŒv‰æƒ[ƒJ[‚ğ•\¦
+            // å­¦ç¿’è¨ˆç”»ãƒ¡ãƒ¼ã‚«ãƒ¼ã‚’è¡¨ç¤º
             document.getElementById("main-page").style.display = "block";
 
-            // ƒƒOƒCƒ“’†‚Ì•\¦
+            // ãƒ­ã‚°ã‚¤ãƒ³ä¸­ã®è¡¨ç¤º
           showLoginStatus();
 
 await loadPlanFromGAS();
@@ -1256,21 +1256,21 @@ await Promise.all([
     loadStatusFromGAS(),
     loadStreakFromGAS()
 ]);
-            // “ü—Í—“‚ğ‹ó‚É‚·‚é
+            // å…¥åŠ›æ¬„ã‚’ç©ºã«ã™ã‚‹
             document.getElementById("register-name").value = "";
             document.getElementById("register-id").value = "";
             document.getElementById("register-password").value = "";
 
         } else {
             errorMessage.textContent =
-                result.message || "“o˜^‚É¸”s‚µ‚Ü‚µ‚½B";
+                result.message || "ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸã€‚";
         }
 
     } catch (error) {
         console.error(error);
 
         errorMessage.textContent =
-            "“o˜^‚É¸”s‚µ‚Ü‚µ‚½BGAS‚Ìİ’è‚ğŠm”F‚µ‚Ä‚ËB";
+            "ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸã€‚GASã®è¨­å®šã‚’ç¢ºèªã—ã¦ã­ã€‚";
     }
 }
 function showLoginStatus() {
@@ -1279,42 +1279,42 @@ function showLoginStatus() {
     const status = document.getElementById("login-status");
 
     if (userName) {
-        status.textContent = `ƒƒOƒCƒ“’†F${userName}‚³‚ñ`;
+        status.textContent = `ãƒ­ã‚°ã‚¤ãƒ³ä¸­ï¼š${userName}ã•ã‚“`;
     } else {
-        status.textContent = "ƒƒOƒCƒ“’†";
+        status.textContent = "ãƒ­ã‚°ã‚¤ãƒ³ä¸­";
     }
 }
 
 function logout() {
 
-    // •Û‘¶‚µ‚Ä‚¢‚½ƒƒOƒCƒ“î•ñ‚ğíœ
+    // ä¿å­˜ã—ã¦ã„ãŸãƒ­ã‚°ã‚¤ãƒ³æƒ…å ±ã‚’å‰Šé™¤
     localStorage.removeItem("loginUserId");
     localStorage.removeItem("loginUserName");
 
-    // Šw”N‚àƒŠƒZƒbƒg
+    // å­¦å¹´ã‚‚ãƒªã‚»ãƒƒãƒˆ
     localStorage.removeItem("selectedGrade");
 
-    // GAS URL‚àƒŠƒZƒbƒg
+    // GAS URLã‚‚ãƒªã‚»ãƒƒãƒˆ
     GAS_URL = "";
 
-    // ŠwKŒv‰æƒ[ƒJ[‚ğ‰B‚·
+    // å­¦ç¿’è¨ˆç”»ãƒ¡ãƒ¼ã‚«ãƒ¼ã‚’éš ã™
     document.getElementById("main-page").style.display = "none";
 
-    // ƒƒOƒCƒ“‰æ–Ê‚ğ‰B‚·
+    // ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢ã‚’éš ã™
     document.getElementById("login-page").style.display = "none";
 
-    // Šw”N‘I‘ğ‰æ–Ê‚ğ•\¦
+    // å­¦å¹´é¸æŠç”»é¢ã‚’è¡¨ç¤º
     document.getElementById("grade-select-page").style.display = "flex";
 
-    // “ü—Í—“‚ğ‹ó‚É‚·‚é
+    // å…¥åŠ›æ¬„ã‚’ç©ºã«ã™ã‚‹
     document.getElementById("login-id").value = "";
     document.getElementById("login-password").value = "";
 
-    // ƒƒOƒCƒ“’†‚Ì•\¦‚ğÁ‚·
+    // ãƒ­ã‚°ã‚¤ãƒ³ä¸­ã®è¡¨ç¤ºã‚’æ¶ˆã™
     document.getElementById("login-status").textContent = "";
 }
 // ===============================
-// ƒXƒe[ƒ^ƒX‚ğGAS‚É•Û‘¶
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’GASã«ä¿å­˜
 // ===============================
 async function saveStatusToGAS() {
     const userId = localStorage.getItem("loginUserId");
@@ -1336,18 +1336,18 @@ async function saveStatusToGAS() {
         const result = await response.json();
 
         if (result.success) {
-            console.log("ƒXƒe[ƒ^ƒX‚ğ•Û‘¶‚µ‚Ü‚µ‚½I");
+            console.log("ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ä¿å­˜ã—ã¾ã—ãŸï¼");
         } else {
-            console.error("ƒXƒe[ƒ^ƒX•Û‘¶¸”sF", result.message);
+            console.error("ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ä¿å­˜å¤±æ•—ï¼š", result.message);
         }
 
     } catch (error) {
-        console.error("ƒXƒe[ƒ^ƒX•Û‘¶ƒGƒ‰[F", error);
+        console.error("ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ä¿å­˜ã‚¨ãƒ©ãƒ¼ï¼š", error);
     }
 }
 
 // ===============================
-// w’è‚µ‚½“ú‚ÌŠwKƒRƒ}”‚ğæ“¾
+// æŒ‡å®šã—ãŸæ—¥ã®å­¦ç¿’ã‚³ãƒæ•°ã‚’å–å¾—
 // ===============================
 function getLearningCountsForDate(dateStr) {
     const dayObj = daysArray.find(d => d.dateStr === dateStr);
@@ -1363,7 +1363,7 @@ function getLearningCountsForDate(dateStr) {
     let extraCount = 0;
 
     dayObj.tasks.forEach(task => {
-        // –¢ƒ`ƒFƒbƒNEƒeƒXƒg–{”Ô‚Í”‚¦‚È‚¢
+        // æœªãƒã‚§ãƒƒã‚¯ãƒ»ãƒ†ã‚¹ãƒˆæœ¬ç•ªã¯æ•°ãˆãªã„
         if (!task.done || task.isTest) return;
 
         if (task.isExtra) {
@@ -1380,7 +1380,7 @@ function getLearningCountsForDate(dateStr) {
 }
 
 // ===============================
-// ¡“ú‚ÌŠwKƒRƒ}”‚ğæ“¾
+// ä»Šæ—¥ã®å­¦ç¿’ã‚³ãƒæ•°ã‚’å–å¾—
 // ===============================
 function getTodayLearningCounts() {
 
@@ -1390,7 +1390,7 @@ function getTodayLearningCounts() {
 }
 
 // ===============================
-// ŠwK—š—ğ‚ğGAS‚É•Û‘¶
+// å­¦ç¿’å±¥æ­´ã‚’GASã«ä¿å­˜
 // ===============================
 async function saveLearningHistoryToGAS(dateStr) {
     const userId = localStorage.getItem("loginUserId");
@@ -1416,29 +1416,29 @@ async function saveLearningHistoryToGAS(dateStr) {
 
         if (result.success) {
             console.log(
-                `${dateStr}‚ÌŠwK—š—ğ‚ğ•Û‘¶‚µ‚Ü‚µ‚½I`
+                `${dateStr}ã®å­¦ç¿’å±¥æ­´ã‚’ä¿å­˜ã—ã¾ã—ãŸï¼`
             );
         } else {
             console.error(
-                "ŠwK—š—ğ•Û‘¶¸”sF",
+                "å­¦ç¿’å±¥æ­´ä¿å­˜å¤±æ•—ï¼š",
                 result.message
             );
         }
 
     } catch (error) {
         console.error(
-            "ŠwK—š—ğ•Û‘¶ƒGƒ‰[F",
+            "å­¦ç¿’å±¥æ­´ä¿å­˜ã‚¨ãƒ©ãƒ¼ï¼š",
             error
         );
     }
 }
 // ===============================
-// ŠwKŒv‰æ‚ğ•Û‘¶
+// å­¦ç¿’è¨ˆç”»ã‚’ä¿å­˜
 // ===============================
-/* --- •Û‘¶ & •œŒ³ --- */
+/* --- ä¿å­˜ & å¾©å…ƒ --- */
 async function saveData() {
 
-    // ‡@ ‚Ü‚¸¡‚Ü‚Å‚Ç‚¨‚èƒuƒ‰ƒEƒU‚É‚à•Û‘¶
+    // â‘  ã¾ãšä»Šã¾ã§ã©ãŠã‚Šãƒ–ãƒ©ã‚¦ã‚¶ã«ã‚‚ä¿å­˜
     if (daysArray.length === 0) return;
 
     const dataToSave = {
@@ -1456,11 +1456,11 @@ async function saveData() {
     localStorage.setItem('studyPlanData', JSON.stringify(dataToSave));
 
 
-    // ‡A GoogleƒXƒvƒŒƒbƒhƒV[ƒg‚É‚à•Û‘¶
+    // â‘¡ Googleã‚¹ãƒ—ãƒ¬ãƒƒãƒ‰ã‚·ãƒ¼ãƒˆã«ã‚‚ä¿å­˜
     const userId = localStorage.getItem("loginUserId");
 
     if (!userId) {
-        console.log("ƒƒOƒCƒ“‚µ‚Ä‚¢‚È‚¢‚½‚ßAGAS•Û‘¶‚ğƒXƒLƒbƒv");
+        console.log("ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ãªã„ãŸã‚ã€GASä¿å­˜ã‚’ã‚¹ã‚­ãƒƒãƒ—");
         return;
     }
 
@@ -1479,8 +1479,8 @@ async function saveData() {
     planJson: JSON.stringify(dataToSave)
 });
 
-console.log("Šî–{•×‹­ŠÔ:", defaultDailyHours);
-console.log("‘—Mƒf[ƒ^:", params.toString());
+console.log("åŸºæœ¬å‹‰å¼·æ™‚é–“:", defaultDailyHours);
+console.log("é€ä¿¡ãƒ‡ãƒ¼ã‚¿:", params.toString());
     try {
 
         const response = await fetch(
@@ -1490,14 +1490,14 @@ console.log("‘—Mƒf[ƒ^:", params.toString());
         const result = await response.json();
 
         if (result.success) {
-            console.log("GoogleƒXƒvƒŒƒbƒhƒV[ƒg‚É•Û‘¶‚µ‚Ü‚µ‚½I");
+            console.log("Googleã‚¹ãƒ—ãƒ¬ãƒƒãƒ‰ã‚·ãƒ¼ãƒˆã«ä¿å­˜ã—ã¾ã—ãŸï¼");
         } else {
-            console.error("GAS•Û‘¶¸”sF", result.message);
+            console.error("GASä¿å­˜å¤±æ•—ï¼š", result.message);
         }
 
     } catch (error) {
 
-        console.error("GAS•Û‘¶ƒGƒ‰[F", error);
+        console.error("GASä¿å­˜ã‚¨ãƒ©ãƒ¼ï¼š", error);
 
     }
 
@@ -1505,19 +1505,19 @@ console.log("‘—Mƒf[ƒ^:", params.toString());
 
 function renderMyPage() {
 
-    console.log("=== ƒ}ƒCƒy[ƒW ===");
-    console.log("’Êí:", totalCompletedCount);
-    console.log("’Ç‰Á:", totalExtraCount);
+    console.log("=== ãƒã‚¤ãƒšãƒ¼ã‚¸ ===");
+    console.log("é€šå¸¸:", totalCompletedCount);
+    console.log("è¿½åŠ :", totalExtraCount);
 
-    // ƒƒOƒCƒ“’†‚Ì–¼‘O‚ğ•\¦
-    const userName = localStorage.getItem("loginUserName") || "ƒQƒXƒg";
+    // ãƒ­ã‚°ã‚¤ãƒ³ä¸­ã®åå‰ã‚’è¡¨ç¤º
+    const userName = localStorage.getItem("loginUserName") || "ã‚²ã‚¹ãƒˆ";
     document.getElementById("mypage-name").textContent = userName;
 
 document.getElementById("stat-completed").textContent =
-    `${totalCompletedCount} ƒRƒ}`;
+    `${totalCompletedCount} ã‚³ãƒ`;
 
 document.getElementById("stat-extra").textContent =
-    `${totalExtraCount} ƒRƒ}`;
+    `${totalExtraCount} ã‚³ãƒ`;
     
     const totalStudyMinutes =
     (totalCompletedCount + totalExtraCount) * 60;
@@ -1527,11 +1527,11 @@ const totalStudyMinutesRest = totalStudyMinutes % 60;
 
 document.getElementById("stat-study-time").textContent =
     totalStudyMinutesRest === 0
-        ? `${totalStudyHours}ŠÔ`
-        : `${totalStudyHours}ŠÔ${totalStudyMinutesRest}•ª`;
+        ? `${totalStudyHours}æ™‚é–“`
+        : `${totalStudyHours}æ™‚é–“${totalStudyMinutesRest}åˆ†`;
         
     // =========================
-    // ‚â‚è‚İƒXƒe[ƒ^ƒX
+    // ã‚„ã‚Šè¾¼ã¿ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
     // =========================
 
     const totalCount =
@@ -1543,24 +1543,24 @@ document.getElementById("stat-study-time").textContent =
     document.getElementById("mypage-level-disp").textContent =
         `Lv.${level}`;
 
-    let title = "‚Ì‚Ñ‘¾‹‰";
+    let title = "ã®ã³å¤ªç´š";
 
     if (level >= 15) {
-        title = "•×‹­_‹‰";
+        title = "å‹‰å¼·ç¥ç´š";
     } else if (level >= 10) {
-        title = "“VË‹‰";
+        title = "å¤©æ‰ç´š";
     } else if (level >= 7) {
-        title = "GË‹‰";
+        title = "ç§€æ‰ç´š";
     } else if (level >= 4) {
-        title = "“w—Í‰Æ‹‰";
+        title = "åŠªåŠ›å®¶ç´š";
     } else if (level >= 2) {
-        title = "Œ©K‚¢‹‰";
+        title = "è¦‹ç¿’ã„ç´š";
     }
 
     document.getElementById("mypage-title-disp").textContent =
         title;
 
-    // i’»ƒo[
+    // é€²æ—ãƒãƒ¼
     const currentLevelCount = totalCount % 3;
     const percent =
         Math.round((currentLevelCount / 3) * 100);
@@ -1569,12 +1569,12 @@ document.getElementById("stat-study-time").textContent =
         `${percent}%`;
 
     document.getElementById("mypage-percent-disp").textContent =
-        `${totalCount} ƒRƒ}`;
+        `${totalCount} ã‚³ãƒ`;
         renderLearningHistory();
 }
 
         // ===============================
-// ƒ}ƒCƒy[ƒWFŠwK‹L˜^‚ğ•\¦
+// ãƒã‚¤ãƒšãƒ¼ã‚¸ï¼šå­¦ç¿’è¨˜éŒ²ã‚’è¡¨ç¤º
 // ===============================
 function renderLearningHistory() {
     const container = document.getElementById("learning-history-list");
@@ -1585,19 +1585,19 @@ function renderLearningHistory() {
 
     const records = [];
 
-    // “ú•t‚²‚Æ‚É’²‚×‚é
+    // æ—¥ä»˜ã”ã¨ã«èª¿ã¹ã‚‹
     daysArray.forEach(day => {
 
         if (!day.tasks || day.tasks.length === 0) return;
 
-        // ÀÛ‚É•×‹­Ï‚İ‚Ìƒ^ƒXƒN‚¾‚¯
+        // å®Ÿéš›ã«å‹‰å¼·æ¸ˆã¿ã®ã‚¿ã‚¹ã‚¯ã ã‘
         const completedTasks = day.tasks.filter(task =>
             task.done && !task.isTest
         );
 
         if (completedTasks.length === 0) return;
 
-        // ‰È–Ú‚²‚Æ‚ÉWŒv
+        // ç§‘ç›®ã”ã¨ã«é›†è¨ˆ
         const subjectCounts = {};
 
         completedTasks.forEach(task => {
@@ -1625,35 +1625,35 @@ records.push({
 });
     });
 
-    // V‚µ‚¢“ú•t‚ğã‚É‚·‚é
+    // æ–°ã—ã„æ—¥ä»˜ã‚’ä¸Šã«ã™ã‚‹
     records.sort((a, b) =>
         b.date.localeCompare(a.date)
     );
 
-    // ‚Ü‚¾•×‹­‚µ‚Ä‚¢‚È‚¢ê‡
+    // ã¾ã å‹‰å¼·ã—ã¦ã„ãªã„å ´åˆ
     if (records.length === 0) {
         container.innerHTML =
-            '<p class="empty-msg">‚Ü‚¾ŠwK‹L˜^‚ª‚ ‚è‚Ü‚¹‚ñB</p>';
+            '<p class="empty-msg">ã¾ã å­¦ç¿’è¨˜éŒ²ãŒã‚ã‚Šã¾ã›ã‚“ã€‚</p>';
         return;
     }
 
-    // “ú•t‚²‚Æ‚É•\¦
+    // æ—¥ä»˜ã”ã¨ã«è¡¨ç¤º
     records.forEach(record => {
 
         const dateBox = document.createElement("div");
         dateBox.className = "learning-history-item";
 
-        // “ú•t
+        // æ—¥ä»˜
         const dateTitle = document.createElement("h4");
 
         const dateParts = record.date.split("-");
 
         dateTitle.textContent =
-            `${Number(dateParts[1])}Œ${Number(dateParts[2])}“ú`;
+            `${Number(dateParts[1])}æœˆ${Number(dateParts[2])}æ—¥`;
 
         dateBox.appendChild(dateTitle);
 
-        // ‰È–Ú
+        // ç§‘ç›®
         Object.entries(record.subjects).forEach(
             ([subject, counts]) => {
 
@@ -1664,11 +1664,11 @@ records.push({
                     "learning-history-subject";
 
                 let text =
-                    `${subject}@${counts.normal + counts.extra}ƒRƒ}`;
+                    `${subject}ã€€${counts.normal + counts.extra}ã‚³ãƒ`;
 
-                // ’Ç‰Á•×‹­‚ª‚ ‚éê‡
+                // è¿½åŠ å‹‰å¼·ãŒã‚ã‚‹å ´åˆ
                 if (counts.extra > 0) {
-                    text += `i’Ç‰Á ${counts.extra}ƒRƒ}j`;
+                    text += `ï¼ˆè¿½åŠ  ${counts.extra}ã‚³ãƒï¼‰`;
                 }
 
                 row.textContent = text;
@@ -1678,7 +1678,7 @@ records.push({
         );
 
         container.appendChild(dateBox);
-        // ‚»‚Ì“ú‚Ì‘•×‹­ŠÔ
+        // ãã®æ—¥ã®ç·å‹‰å¼·æ™‚é–“
 const dailyMinutes = record.totalCount * 60;
 const dailyHours = Math.floor(dailyMinutes / 60);
 const dailyMinutesRest = dailyMinutes % 60;
@@ -1687,10 +1687,10 @@ const timeRow = document.createElement("div");
 timeRow.className = "learning-history-total";
 
 if (dailyMinutesRest === 0) {
-    timeRow.textContent = `•×‹­ŠÔF${dailyHours}ŠÔ`;
+    timeRow.textContent = `å‹‰å¼·æ™‚é–“ï¼š${dailyHours}æ™‚é–“`;
 } else {
     timeRow.textContent =
-        `•×‹­ŠÔF${dailyHours}ŠÔ${dailyMinutesRest}•ª`;
+        `å‹‰å¼·æ™‚é–“ï¼š${dailyHours}æ™‚é–“${dailyMinutesRest}åˆ†`;
 }
 
 dateBox.appendChild(timeRow);
@@ -1698,7 +1698,7 @@ dateBox.appendChild(timeRow);
 }
 function showMyPage() {
 	  document.getElementById("practice-page").style.display = "none";
-    // ŠwKŒv‰æ‘¤‚ğ‘S•”‰B‚·
+    // å­¦ç¿’è¨ˆç”»å´ã‚’å…¨éƒ¨éš ã™
     document.querySelector(".main-title").style.display = "none";
     document.querySelector(".nav-menu").style.display = "none";
     document.getElementById("hero").style.display = "none";
@@ -1708,10 +1708,10 @@ function showMyPage() {
     document.getElementById("form-section").style.display = "none";
    document.getElementById("result-layout").style.setProperty("display", "none", "important");
 
-    // ƒ}ƒCƒy[ƒW‚¾‚¯•\¦
+    // ãƒã‚¤ãƒšãƒ¼ã‚¸ã ã‘è¡¨ç¤º
     document.getElementById("mypage").style.display = "block";
 
-    // ƒ}ƒCƒy[ƒW‚Ì“à—e‚ğXV
+    // ãƒã‚¤ãƒšãƒ¼ã‚¸ã®å†…å®¹ã‚’æ›´æ–°
     renderMyPage();
 
     window.scrollTo({
@@ -1721,13 +1721,13 @@ function showMyPage() {
 }
 
 function showStudyPage() {
-	// —ûK–â‘è‚ğ‰B‚·
+	// ç·´ç¿’å•é¡Œã‚’éš ã™
     document.getElementById("practice-page").style.display = "none";
 	
-    // ƒ}ƒCƒy[ƒW‚ğ‰B‚·
+    // ãƒã‚¤ãƒšãƒ¼ã‚¸ã‚’éš ã™
     document.getElementById("mypage").style.display = "none";
 
-    // ŠwKŒv‰æ‘¤‚ğ•\¦
+    // å­¦ç¿’è¨ˆç”»å´ã‚’è¡¨ç¤º
     document.querySelector(".main-title").style.display = "block";
     document.querySelector(".nav-menu").style.display = "flex";
     document.getElementById("hero").style.display = "block";
@@ -1735,7 +1735,7 @@ function showStudyPage() {
     document.getElementById("plan-type-section").style.display = "block";
     document.getElementById("form-section").style.display = "block";
 
-    // Œv‰æ‚ª‚ ‚éê‡‚¾‚¯Œ‹‰Ê‚ğ•\¦
+    // è¨ˆç”»ãŒã‚ã‚‹å ´åˆã ã‘çµæœã‚’è¡¨ç¤º
 if (daysArray.length > 0) {
     document.getElementById("result-layout")
         .style.setProperty("display", "grid", "important");
@@ -1748,13 +1748,13 @@ if (daysArray.length > 0) {
 }
 
 // ==========================================
-// —ûK–â‘è
+// ç·´ç¿’å•é¡Œ
 // ==========================================
 let selectedSubject = "";
 let selectedQuestionCount = 0;
 
 
-// ‹³‰È‚ğ‘I‘ğ
+// æ•™ç§‘ã‚’é¸æŠ
 function selectSubject(subject) {
 
     selectedSubject = subject;
@@ -1763,7 +1763,7 @@ function selectSubject(subject) {
 }
 
 
-// –â‘è”‚ğ‘I‘ğ
+// å•é¡Œæ•°ã‚’é¸æŠ
 function selectQuestionCount(count) {
 
     selectedQuestionCount = count;
@@ -1772,7 +1772,7 @@ function selectQuestionCount(count) {
 }
 
 
-// ‘I‘ğó‘Ô‚ğXV
+// é¸æŠçŠ¶æ…‹ã‚’æ›´æ–°
 function updatePracticeSetting() {
 
     const status =
@@ -1785,8 +1785,8 @@ function updatePracticeSetting() {
     if (selectedSubject && selectedQuestionCount) {
 
         status.textContent =
-            selectedSubject + "E" +
-            selectedQuestionCount + "–â";
+            selectedSubject + "ãƒ»" +
+            selectedQuestionCount + "å•";
 
         startButton.disabled = false;
 
@@ -1794,25 +1794,25 @@ function updatePracticeSetting() {
 
         status.textContent =
             selectedSubject +
-            "‚ğ‘I‘ğ’†B–â‘è”‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢";
+            "ã‚’é¸æŠä¸­ã€‚å•é¡Œæ•°ã‚’é¸æŠã—ã¦ãã ã•ã„";
 
     } else if (selectedQuestionCount) {
 
         status.textContent =
-            "–â‘è” " +
+            "å•é¡Œæ•° " +
             selectedQuestionCount +
-            "–â‚ğ‘I‘ğ’†B‹³‰È‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢";
+            "å•ã‚’é¸æŠä¸­ã€‚æ•™ç§‘ã‚’é¸æŠã—ã¦ãã ã•ã„";
 
     } else {
 
         status.textContent =
-            "‹³‰È‚Æ–â‘è”‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢";
+            "æ•™ç§‘ã¨å•é¡Œæ•°ã‚’é¸æŠã—ã¦ãã ã•ã„";
     }
 }
 
 
 
-// —ûK–â‘è‚ğŠJn
+// ç·´ç¿’å•é¡Œã‚’é–‹å§‹
 function startSelectedPractice() {
 
     if (!selectedSubject || !selectedQuestionCount) {
@@ -1822,7 +1822,7 @@ function startSelectedPractice() {
     const questionData = practiceQuestionData[selectedSubject];
 
     if (!questionData || questionData.length === 0) {
-        alert(`${selectedSubject}‚Ì–â‘è‚Í‚Ü‚¾€”õ’†‚Å‚·I`);
+        alert(`${selectedSubject}ã®å•é¡Œã¯ã¾ã æº–å‚™ä¸­ã§ã™ï¼`);
         return;
     }
 
@@ -1833,587 +1833,587 @@ function startSelectedPractice() {
 
     startPractice();
 }
-// —ûK–â‘èƒf[ƒ^
+// ç·´ç¿’å•é¡Œãƒ‡ãƒ¼ã‚¿
 
 const practiceQuestions = [ 
     {
-        question: "‘‰¤‚ğˆŒY‚µ‚Äê§ŒNå§‚ğ”p‚µA‹¤˜a§‚ğ‘Å‚¿—§‚Ä‚½Šv–½‚Í‰½‚Æ‚¢‚¤‚©H",
-        answer: "ƒsƒ…[ƒŠƒ^ƒ“Šv–½",
+        question: "å›½ç‹ã‚’å‡¦åˆ‘ã—ã¦å°‚åˆ¶å›ä¸»åˆ¶ã‚’å»ƒã—ã€å…±å’Œåˆ¶ã‚’æ‰“ã¡ç«‹ã¦ãŸé©å‘½ã¯ä½•ã¨ã„ã†ã‹ï¼Ÿ",
+        answer: "ãƒ”ãƒ¥ãƒ¼ãƒªã‚¿ãƒ³é©å‘½",
         choices: [
-            "ƒsƒ…[ƒŠƒ^ƒ“Šv–½",
-            "–¼—_Šv–½",
-            "µŒŠv–½",
-            "“ñŒŠv–½"
+            "ãƒ”ãƒ¥ãƒ¼ãƒªã‚¿ãƒ³é©å‘½",
+            "åèª‰é©å‘½",
+            "ä¸ƒæœˆé©å‘½",
+            "äºŒæœˆé©å‘½"
         ]
     },
 
     {
-        question: "1688`89”N‚ÉƒCƒMƒŠƒX‚Å‹N‚±‚Á‚½Šv–½‚ğ‰½‚Æ‚¢‚¤H",
-        answer: "–¼—_Šv–½",
+        question: "1688ï½89å¹´ã«ã‚¤ã‚®ãƒªã‚¹ã§èµ·ã“ã£ãŸé©å‘½ã‚’ä½•ã¨ã„ã†ï¼Ÿ",
+        answer: "åèª‰é©å‘½",
         choices: [
-            "ƒsƒ…[ƒŠƒ^ƒ“Šv–½",
-            "–¼—_Šv–½",
-            "ƒtƒ‰ƒ“ƒXŠv–½",
-            "Y‹ÆŠv–½"
+            "ãƒ”ãƒ¥ãƒ¼ãƒªã‚¿ãƒ³é©å‘½",
+            "åèª‰é©å‘½",
+            "ãƒ•ãƒ©ãƒ³ã‚¹é©å‘½",
+            "ç”£æ¥­é©å‘½"
         ]
     },
 
     {
-        question: "–¼—_Šv–½‚ÌÛA‹c‰ï‚ª§’è‚µ‚½‚à‚Ì‚ÍH",
-        answer: "Œ —˜‚ÌÍ“T",
+        question: "åèª‰é©å‘½ã®éš›ã€è­°ä¼šãŒåˆ¶å®šã—ãŸã‚‚ã®ã¯ï¼Ÿ",
+        answer: "æ¨©åˆ©ã®ç« å…¸",
         choices: [
-            "lŒ éŒ¾",
-            "“Æ—§éŒ¾",
-            "Œ —˜‚ÌÍ“T",
-            "‡O‘Œ›–@"
+            "äººæ¨©å®£è¨€",
+            "ç‹¬ç«‹å®£è¨€",
+            "æ¨©åˆ©ã®ç« å…¸",
+            "åˆè¡†å›½æ†²æ³•"
         ],
 
-        // æ¶w’è‚Ì•K{–â‘è
+        // å…ˆç”ŸæŒ‡å®šã®å¿…é ˆå•é¡Œ
         required: true
     },
 
     {
-        question: "Œ —˜‚ÌÍ“T‚É‚æ‚Á‚ÄŠm—§‚µ‚½­¡‘Ì§‚ÍH",
-        answer: "—§Œ›ŒNå­",
+        question: "æ¨©åˆ©ã®ç« å…¸ã«ã‚ˆã£ã¦ç¢ºç«‹ã—ãŸæ”¿æ²»ä½“åˆ¶ã¯ï¼Ÿ",
+        answer: "ç«‹æ†²å›ä¸»æ”¿",
         choices: [
-            "‹¤˜a­",
-            "â‘Î‰¤­",
-            "—§Œ›ŒNå­",
-            "’é­"
+            "å…±å’Œæ”¿",
+            "çµ¶å¯¾ç‹æ”¿",
+            "ç«‹æ†²å›ä¸»æ”¿",
+            "å¸æ”¿"
         ]
     },
 
     {
-        question: "ƒCƒMƒŠƒX‚ª–kƒAƒƒŠƒJ“ŒŠCŠİ‚ÉŒšİ‚µ‚½A–¯’n‚Ì–¼‘O‚ÍH",
-        answer: "13A–¯’n",
+        question: "ã‚¤ã‚®ãƒªã‚¹ãŒåŒ—ã‚¢ãƒ¡ãƒªã‚«æ±æµ·å²¸ã«å»ºè¨­ã—ãŸæ¤æ°‘åœ°ã®åå‰ã¯ï¼Ÿ",
+        answer: "13æ¤æ°‘åœ°",
         choices: [
-            "13A–¯’n",
-            "¼ƒCƒ“ƒhA–¯’n",
-            "ƒtƒ‰ƒ“ƒXA–¯’n",
-            "ƒjƒ…[ƒCƒ“ƒOƒ‰ƒ“ƒh‹¤˜a‘"
+            "13æ¤æ°‘åœ°",
+            "è¥¿ã‚¤ãƒ³ãƒ‰æ¤æ°‘åœ°",
+            "ãƒ•ãƒ©ãƒ³ã‚¹æ¤æ°‘åœ°",
+            "ãƒ‹ãƒ¥ãƒ¼ã‚¤ãƒ³ã‚°ãƒ©ãƒ³ãƒ‰å…±å’Œå›½"
         ]
     },
 
     {
-        question: "ƒtƒ‰ƒ“ƒX‚ÆƒCƒMƒŠƒX‚ªA–¯’n‚ğ‚ß‚®‚Á‚Ä‘ˆ‚Á‚½í‘ˆ‚ğ‰½‚Æ‚¢‚¤H",
-        answer: "µ”Ní‘ˆ",
+        question: "ãƒ•ãƒ©ãƒ³ã‚¹ã¨ã‚¤ã‚®ãƒªã‚¹ãŒæ¤æ°‘åœ°ã‚’ã‚ãã£ã¦äº‰ã£ãŸæˆ¦äº‰ã‚’ä½•ã¨ã„ã†ï¼Ÿ",
+        answer: "ä¸ƒå¹´æˆ¦äº‰",
         choices: [
-            "•S”Ní‘ˆ",
-            "µ”Ní‘ˆ",
-            "••§í‘ˆ",
-            "O\”Ní‘ˆ"
+            "ç™¾å¹´æˆ¦äº‰",
+            "ä¸ƒå¹´æˆ¦äº‰",
+            "æ™®ä»æˆ¦äº‰",
+            "ä¸‰åå¹´æˆ¦äº‰"
         ]
     },
 
     {
-        question: "1773”NAƒCƒMƒŠƒX‹c‰ï‚ª§’è‚µ‚½’ƒ–@‚É”½‘Î‚µ‚Ä‹N‚±‚Á‚½–Œ‚ÍH",
-        answer: "ƒ{ƒXƒgƒ“’ƒ‰ï–Œ",
+        question: "1773å¹´ã€ã‚¤ã‚®ãƒªã‚¹è­°ä¼šãŒåˆ¶å®šã—ãŸèŒ¶æ³•ã«åå¯¾ã—ã¦èµ·ã“ã£ãŸäº‹ä»¶ã¯ï¼Ÿ",
+        answer: "ãƒœã‚¹ãƒˆãƒ³èŒ¶ä¼šäº‹ä»¶",
         choices: [
-            "ƒ{ƒXƒgƒ“‹sE–Œ",
-            "ƒ{ƒXƒgƒ“’ƒ‰ï–Œ",
-            "ƒƒVƒ“ƒgƒ“–Œ",
-            "“Æ—§–Œ"
+            "ãƒœã‚¹ãƒˆãƒ³è™æ®ºäº‹ä»¶",
+            "ãƒœã‚¹ãƒˆãƒ³èŒ¶ä¼šäº‹ä»¶",
+            "ãƒ¯ã‚·ãƒ³ãƒˆãƒ³äº‹ä»¶",
+            "ç‹¬ç«‹äº‹ä»¶"
         ]
     },
 
     {
-        question: "ƒAƒƒŠƒJ“Æ—§í‘ˆ‚ÅA1776”N‚É”­•\‚³‚ê‚½•¶‘‚ÍH",
-        answer: "“Æ—§éŒ¾",
+        question: "ã‚¢ãƒ¡ãƒªã‚«ç‹¬ç«‹æˆ¦äº‰ã§ã€1776å¹´ã«ç™ºè¡¨ã•ã‚ŒãŸæ–‡æ›¸ã¯ï¼Ÿ",
+        answer: "ç‹¬ç«‹å®£è¨€",
         choices: [
-            "lŒ éŒ¾",
-            "“Æ—§éŒ¾",
-            "Œ —˜‚ÌÍ“T",
-            "‡O‘Œ›–@"
+            "äººæ¨©å®£è¨€",
+            "ç‹¬ç«‹å®£è¨€",
+            "æ¨©åˆ©ã®ç« å…¸",
+            "åˆè¡†å›½æ†²æ³•"
         ]
     },
 
     {
-        question: "ƒAƒƒŠƒJ“Æ—§éŒ¾‚Ì‹N‘‚Ì’†S‚Æ‚È‚Á‚½l•¨‚ÍH",
-        answer: "ƒWƒFƒtƒ@ƒ\ƒ“",
+        question: "ã‚¢ãƒ¡ãƒªã‚«ç‹¬ç«‹å®£è¨€ã®èµ·è‰ã®ä¸­å¿ƒã¨ãªã£ãŸäººç‰©ã¯ï¼Ÿ",
+        answer: "ã‚¸ã‚§ãƒ•ã‚¡ã‚½ãƒ³",
         choices: [
-            "ƒƒVƒ“ƒgƒ“",
-            "ƒWƒFƒtƒ@ƒ\ƒ“",
-            "ƒƒbƒN",
-            "ƒ‚ƒ“ƒeƒXƒLƒ…["
+            "ãƒ¯ã‚·ãƒ³ãƒˆãƒ³",
+            "ã‚¸ã‚§ãƒ•ã‚¡ã‚½ãƒ³",
+            "ãƒ­ãƒƒã‚¯",
+            "ãƒ¢ãƒ³ãƒ†ã‚¹ã‚­ãƒ¥ãƒ¼"
         ]
     },
 
     {
-        question: "1787”N‚É§’è‚³‚ê‚½ƒAƒƒŠƒJ‡O‘‚ÌŒ›–@‚ÍH",
-        answer: "‡O‘Œ›–@",
+        question: "1787å¹´ã«åˆ¶å®šã•ã‚ŒãŸã‚¢ãƒ¡ãƒªã‚«åˆè¡†å›½ã®æ†²æ³•ã¯ï¼Ÿ",
+        answer: "åˆè¡†å›½æ†²æ³•",
         choices: [
-            "“Æ—§éŒ¾",
-            "‡O‘Œ›–@",
-            "lŒ éŒ¾",
-            "Œ —˜‚ÌÍ“T"
+            "ç‹¬ç«‹å®£è¨€",
+            "åˆè¡†å›½æ†²æ³•",
+            "äººæ¨©å®£è¨€",
+            "æ¨©åˆ©ã®ç« å…¸"
         ]
     },
 
     {
-        question: "ƒAƒƒŠƒJ‚Ì‰‘ã‘å“—Ì‚ÍH",
-        answer: "ƒƒVƒ“ƒgƒ“",
+        question: "ã‚¢ãƒ¡ãƒªã‚«ã®åˆä»£å¤§çµ±é ˜ã¯ï¼Ÿ",
+        answer: "ãƒ¯ã‚·ãƒ³ãƒˆãƒ³",
         choices: [
-            "ƒWƒFƒtƒ@ƒ\ƒ“",
-            "ƒƒVƒ“ƒgƒ“",
-            "ƒŠƒ“ƒJƒ“",
-            "ƒtƒ‰ƒ“ƒNƒŠƒ“"
+            "ã‚¸ã‚§ãƒ•ã‚¡ã‚½ãƒ³",
+            "ãƒ¯ã‚·ãƒ³ãƒˆãƒ³",
+            "ãƒªãƒ³ã‚«ãƒ³",
+            "ãƒ•ãƒ©ãƒ³ã‚¯ãƒªãƒ³"
         ]
     },
 
     {
-        question: "—§–@Ai–@As­‚Ì3‚Â‚ÌŒ —Í‚ğ•ª‚¯‚é‚½‚ß‚Ì§“x‚ğ‰½‚Æ‚¢‚¤H",
-        answer: "OŒ •ª—§§",
+        question: "ç«‹æ³•ã€å¸æ³•ã€è¡Œæ”¿ã®3ã¤ã®æ¨©åŠ›ã‚’åˆ†ã‘ã‚‹ãŸã‚ã®åˆ¶åº¦ã‚’ä½•ã¨ã„ã†ï¼Ÿ",
+        answer: "ä¸‰æ¨©åˆ†ç«‹åˆ¶",
         choices: [
-            "‹c‰@“àŠt§",
-            "OŒ •ª—§§",
-            "’¼Ú–¯å§",
-            "˜A–M§"
+            "è­°é™¢å†…é–£åˆ¶",
+            "ä¸‰æ¨©åˆ†ç«‹åˆ¶",
+            "ç›´æ¥æ°‘ä¸»åˆ¶",
+            "é€£é‚¦åˆ¶"
         ]
     },
 
     {
-        question: "17`18¢‹I‚Éƒˆ[ƒƒbƒp‚ÅL‚Ü‚Á‚½V‚µ‚¢Ğ‰ïv‘z‚ğ‰½‚Æ‚¢‚¤H",
-        answer: "Œ[–Öv‘z",
+        question: "17ï½18ä¸–ç´€ã«ãƒ¨ãƒ¼ãƒ­ãƒƒãƒ‘ã§åºƒã¾ã£ãŸæ–°ã—ã„ç¤¾ä¼šæ€æƒ³ã‚’ä½•ã¨ã„ã†ï¼Ÿ",
+        answer: "å•“è’™æ€æƒ³",
         choices: [
-            "Ğ‰ïå‹`",
-            "Œ[–Öv‘z",
-            "ƒiƒVƒ‡ƒiƒŠƒYƒ€",
-            "ƒƒ}ƒ“å‹`"
+            "ç¤¾ä¼šä¸»ç¾©",
+            "å•“è’™æ€æƒ³",
+            "ãƒŠã‚·ãƒ§ãƒŠãƒªã‚ºãƒ ",
+            "ãƒ­ãƒãƒ³ä¸»ç¾©"
         ]
     },
 
     {
-        question: "Ğ‰ïŒ_–ñà‚ÉŠî‚Ã‚«As–¯‚Í­•{‚É‘Î‚·‚é’ïRŒ ‚ğ‚à‚Â‚Æå’£‚µ‚½v‘z‰Æ‚ÍH",
-        answer: "ƒƒbƒN",
+        question: "ç¤¾ä¼šå¥‘ç´„èª¬ã«åŸºã¥ãã€å¸‚æ°‘ã¯æ”¿åºœã«å¯¾ã™ã‚‹æŠµæŠ—æ¨©ã‚’ã‚‚ã¤ã¨ä¸»å¼µã—ãŸæ€æƒ³å®¶ã¯ï¼Ÿ",
+        answer: "ãƒ­ãƒƒã‚¯",
         choices: [
-            "ƒ‹ƒ\[",
-            "ƒ‚ƒ“ƒeƒXƒLƒ…[",
-            "ƒƒbƒN",
-            "ƒiƒ|ƒŒƒIƒ“Eƒ{ƒiƒpƒ‹ƒg"
+            "ãƒ«ã‚½ãƒ¼",
+            "ãƒ¢ãƒ³ãƒ†ã‚¹ã‚­ãƒ¥ãƒ¼",
+            "ãƒ­ãƒƒã‚¯",
+            "ãƒŠãƒãƒ¬ã‚ªãƒ³ãƒ»ãƒœãƒŠãƒ‘ãƒ«ãƒˆ"
         ]
     },
 
     {
-        question: "Œ —Í‚ÌW’†‚ğ–h‚®‚½‚ßAOŒ •ª—§‚ğà‚¢‚½v‘z‰Æ‚ÍH",
-        answer: "ƒ‚ƒ“ƒeƒXƒLƒ…[",
+        question: "æ¨©åŠ›ã®é›†ä¸­ã‚’é˜²ããŸã‚ã€ä¸‰æ¨©åˆ†ç«‹ã‚’èª¬ã„ãŸæ€æƒ³å®¶ã¯ï¼Ÿ",
+        answer: "ãƒ¢ãƒ³ãƒ†ã‚¹ã‚­ãƒ¥ãƒ¼",
         choices: [
-            "ƒƒbƒN",
-            "ƒ‹ƒ\[",
-            "ƒ‚ƒ“ƒeƒXƒLƒ…[",
-            "ƒWƒFƒtƒ@ƒ\ƒ“"
+            "ãƒ­ãƒƒã‚¯",
+            "ãƒ«ã‚½ãƒ¼",
+            "ãƒ¢ãƒ³ãƒ†ã‚¹ã‚­ãƒ¥ãƒ¼",
+            "ã‚¸ã‚§ãƒ•ã‚¡ã‚½ãƒ³"
         ]
     },
 
     {
-        question: "l–¯åŒ ‚ÆĞ‰ïŒ_–ñ‚ÉŠî‚Ã‚­’¼Ú–¯å­‚ğà‚¢‚½v‘z‰Æ‚ÍH",
-        answer: "ƒ‹ƒ\[",
+        question: "äººæ°‘ä¸»æ¨©ã¨ç¤¾ä¼šå¥‘ç´„ã«åŸºã¥ãç›´æ¥æ°‘ä¸»æ”¿ã‚’èª¬ã„ãŸæ€æƒ³å®¶ã¯ï¼Ÿ",
+        answer: "ãƒ«ã‚½ãƒ¼",
         choices: [
-            "ƒƒbƒN",
-            "ƒ‹ƒ\[",
-            "ƒ‚ƒ“ƒeƒXƒLƒ…[",
-            "ƒƒVƒ“ƒgƒ“"
+            "ãƒ­ãƒƒã‚¯",
+            "ãƒ«ã‚½ãƒ¼",
+            "ãƒ¢ãƒ³ãƒ†ã‚¹ã‚­ãƒ¥ãƒ¼",
+            "ãƒ¯ã‚·ãƒ³ãƒˆãƒ³"
         ]
     },
 
     {
-        question: "ƒtƒ‰ƒ“ƒXŠv–½‘O‚Ìg•ª§Ğ‰ï‚ÅA“ÁŒ ‚ğ‚à‚Á‚Ä‚¢‚½‘æˆêg•ª‚ÍH",
-        answer: "¹EÒ",
+        question: "ãƒ•ãƒ©ãƒ³ã‚¹é©å‘½å‰ã®èº«åˆ†åˆ¶ç¤¾ä¼šã§ã€ç‰¹æ¨©ã‚’ã‚‚ã£ã¦ã„ãŸç¬¬ä¸€èº«åˆ†ã¯ï¼Ÿ",
+        answer: "è–è·è€…",
         choices: [
-            "•½–¯",
-            "‹M‘°",
-            "¹EÒ",
-            "¤H‹ÆÒ"
+            "å¹³æ°‘",
+            "è²´æ—",
+            "è–è·è€…",
+            "å•†å·¥æ¥­è€…"
         ]
     },
 
     {
-        question: "ƒtƒ‰ƒ“ƒXŠv–½‘O‚Ì‘æ“ñg•ª‚ÍH",
-        answer: "‹M‘°",
+        question: "ãƒ•ãƒ©ãƒ³ã‚¹é©å‘½å‰ã®ç¬¬äºŒèº«åˆ†ã¯ï¼Ÿ",
+        answer: "è²´æ—",
         choices: [
-            "¹EÒ",
-            "‹M‘°",
-            "•½–¯",
-            "˜J“­Ò"
+            "è–è·è€…",
+            "è²´æ—",
+            "å¹³æ°‘",
+            "åŠ´åƒè€…"
         ]
     },
 
     {
-        question: "‘æOg•ª‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚½‚Ì‚Í‚Ç‚Ì‚æ‚¤‚ÈlXH",
-        answer: "•½–¯",
+        question: "ç¬¬ä¸‰èº«åˆ†ã«å«ã¾ã‚Œã¦ã„ãŸã®ã¯ã©ã®ã‚ˆã†ãªäººã€…ï¼Ÿ",
+        answer: "å¹³æ°‘",
         choices: [
-            "¹EÒ",
-            "‹M‘°",
-            "•½–¯",
-            "‘‰¤"
+            "è–è·è€…",
+            "è²´æ—",
+            "å¹³æ°‘",
+            "å›½ç‹"
         ]
     },
 
     {
-        question: "‘æOg•ª‚Ì‹cˆõ‚ğ’†S‚ÉŒ‹¬‚³‚ê‚½‹c‰ï‚ÍH",
-        answer: "‘–¯‹c‰ï",
+        question: "ç¬¬ä¸‰èº«åˆ†ã®è­°å“¡ã‚’ä¸­å¿ƒã«çµæˆã•ã‚ŒãŸè­°ä¼šã¯ï¼Ÿ",
+        answer: "å›½æ°‘è­°ä¼š",
         choices: [
-            "—§–@‹c‰ï",
-            "‘–¯Œö‰ï",
-            "‘–¯‹c‰ï",
-            "ƒtƒ‰ƒ“ƒNƒtƒ‹ƒg‘–¯‹c‰ï"
+            "ç«‹æ³•è­°ä¼š",
+            "å›½æ°‘å…¬ä¼š",
+            "å›½æ°‘è­°ä¼š",
+            "ãƒ•ãƒ©ãƒ³ã‚¯ãƒ•ãƒ«ãƒˆå›½æ°‘è­°ä¼š"
         ]
     },
 
     {
-        question: "1789”NA–¯O‚ªPŒ‚‚µ‚½ƒtƒ‰ƒ“ƒXŠv–½ŠJn‚ÌÛ’¥‚Æ‚È‚Á‚½êŠ‚ÍH",
-        answer: "ƒoƒXƒeƒB[ƒ†ŠÄ–",
+        question: "1789å¹´ã€æ°‘è¡†ãŒè¥²æ’ƒã—ãŸãƒ•ãƒ©ãƒ³ã‚¹é©å‘½é–‹å§‹ã®è±¡å¾´ã¨ãªã£ãŸå ´æ‰€ã¯ï¼Ÿ",
+        answer: "ãƒã‚¹ãƒ†ã‚£ãƒ¼ãƒ¦ç›£ç„",
         choices: [
-            "ƒxƒ‹ƒTƒCƒ†‹{“a",
-            "ƒoƒXƒeƒB[ƒ†ŠÄ–",
-            "ƒ‹[ƒuƒ‹‹{“a",
-            "‘‰ï‹c–“°"
+            "ãƒ™ãƒ«ã‚µã‚¤ãƒ¦å®®æ®¿",
+            "ãƒã‚¹ãƒ†ã‚£ãƒ¼ãƒ¦ç›£ç„",
+            "ãƒ«ãƒ¼ãƒ–ãƒ«å®®æ®¿",
+            "å›½ä¼šè­°äº‹å ‚"
         ]
     },
 
     {
-        question: "1789”N‚ÉÌ‘ğ‚³‚ê‚½AlŠÔ‚Ì•½“™A‘–¯åŒ ‚ğ‚¤‚½‚¤•¶‘‚ÍH",
-        answer: "lŒ éŒ¾",
+        question: "1789å¹´ã«æ¡æŠã•ã‚ŒãŸã€äººé–“ã®å¹³ç­‰ã€å›½æ°‘ä¸»æ¨©ã‚’ã†ãŸã†æ–‡æ›¸ã¯ï¼Ÿ",
+        answer: "äººæ¨©å®£è¨€",
         choices: [
-            "“Æ—§éŒ¾",
-            "Œ —˜‚ÌÍ“T",
-            "lŒ éŒ¾",
-            "‡O‘Œ›–@"
+            "ç‹¬ç«‹å®£è¨€",
+            "æ¨©åˆ©ã®ç« å…¸",
+            "äººæ¨©å®£è¨€",
+            "åˆè¡†å›½æ†²æ³•"
         ]
     },
 
     {
-        question: "1791”N‚É¬—§‚µ‚½A§ŒÀ‘I‹“‚É‚æ‚é‹c‰ï‚ÍH",
-        answer: "—§–@‹c‰ï",
+        question: "1791å¹´ã«æˆç«‹ã—ãŸã€åˆ¶é™é¸æŒ™ã«ã‚ˆã‚‹è­°ä¼šã¯ï¼Ÿ",
+        answer: "ç«‹æ³•è­°ä¼š",
         choices: [
-            "‘–¯‹c‰ï",
-            "—§–@‹c‰ï",
-            "‘–¯Œö‰ï",
-            "‘Ù­•{"
+            "å›½æ°‘è­°ä¼š",
+            "ç«‹æ³•è­°ä¼š",
+            "å›½æ°‘å…¬ä¼š",
+            "ç·è£æ”¿åºœ"
         ]
     },
 
     {
-        question: "1792”NA’jq•’Ê‘I‹“‚É‚æ‚Á‚Ä¬—§‚µ‚½‹c‰ï‚ÍH",
-        answer: "‘–¯Œö‰ï",
+        question: "1792å¹´ã€ç”·å­æ™®é€šé¸æŒ™ã«ã‚ˆã£ã¦æˆç«‹ã—ãŸè­°ä¼šã¯ï¼Ÿ",
+        answer: "å›½æ°‘å…¬ä¼š",
         choices: [
-            "‘–¯‹c‰ï",
-            "—§–@‹c‰ï",
-            "‘–¯Œö‰ï",
-            "‘Ù­•{"
+            "å›½æ°‘è­°ä¼š",
+            "ç«‹æ³•è­°ä¼š",
+            "å›½æ°‘å…¬ä¼š",
+            "ç·è£æ”¿åºœ"
         ]
     },
 
     {
-        question: "‘–¯Œö‰ï¬—§ŒãAéŒ¾‚³‚ê‚½­¡‘Ì§‚ÍH",
-        answer: "‹¤˜a­",
+        question: "å›½æ°‘å…¬ä¼šæˆç«‹å¾Œã€å®£è¨€ã•ã‚ŒãŸæ”¿æ²»ä½“åˆ¶ã¯ï¼Ÿ",
+        answer: "å…±å’Œæ”¿",
         choices: [
-            "—§Œ›ŒNå­",
-            "‹¤˜a­",
-            "’é­",
-            "â‘Î‰¤­"
+            "ç«‹æ†²å›ä¸»æ”¿",
+            "å…±å’Œæ”¿",
+            "å¸æ”¿",
+            "çµ¶å¯¾ç‹æ”¿"
         ]
     },
 
     {
-        question: "1793”NA‹}i‹¤˜a”h‚Ì’†Sl•¨‚Æ‚µ‚Ä‹°•|­¡‚ğs‚Á‚½l•¨‚ÍH",
-        answer: "ƒƒxƒXƒsƒG[ƒ‹",
+        question: "1793å¹´ã€æ€¥é€²å…±å’Œæ´¾ã®ä¸­å¿ƒäººç‰©ã¨ã—ã¦ææ€–æ”¿æ²»ã‚’è¡Œã£ãŸäººç‰©ã¯ï¼Ÿ",
+        answer: "ãƒ­ãƒ™ã‚¹ãƒ”ã‚¨ãƒ¼ãƒ«",
         choices: [
-            "ƒiƒ|ƒŒƒIƒ“Eƒ{ƒiƒpƒ‹ƒg",
-            "ƒƒxƒXƒsƒG[ƒ‹",
-            "ƒ‹ƒC16¢",
-            "ƒ‹ƒ\["
+            "ãƒŠãƒãƒ¬ã‚ªãƒ³ãƒ»ãƒœãƒŠãƒ‘ãƒ«ãƒˆ",
+            "ãƒ­ãƒ™ã‚¹ãƒ”ã‚¨ãƒ¼ãƒ«",
+            "ãƒ«ã‚¤16ä¸–",
+            "ãƒ«ã‚½ãƒ¼"
         ]
     },
 
     {
-        question: "1795”NAVŒ›–@‚Ì‚à‚Æ‚Å¬—§‚µ‚½­•{‚ÍH",
-        answer: "‘Ù­•{",
+        question: "1795å¹´ã€æ–°æ†²æ³•ã®ã‚‚ã¨ã§æˆç«‹ã—ãŸæ”¿åºœã¯ï¼Ÿ",
+        answer: "ç·è£æ”¿åºœ",
         choices: [
-            "‘–¯­•{",
-            "‘Ù­•{",
-            "“—Ì­•{",
-            "‹¤˜a­•{"
+            "å›½æ°‘æ”¿åºœ",
+            "ç·è£æ”¿åºœ",
+            "çµ±é ˜æ”¿åºœ",
+            "å…±å’Œæ”¿åºœ"
         ]
     },
 
     {
-        question: "1799”NA‘Ù­•{‚ğ“|‚µ‚Ä“—Ì­•{‚ğ‚Â‚­‚èA‘æˆê“—Ì‚Æ‚È‚Á‚½l•¨‚ÍH",
-        answer: "ƒiƒ|ƒŒƒIƒ“Eƒ{ƒiƒpƒ‹ƒg",
+        question: "1799å¹´ã€ç·è£æ”¿åºœã‚’å€’ã—ã¦çµ±é ˜æ”¿åºœã‚’ã¤ãã‚Šã€ç¬¬ä¸€çµ±é ˜ã¨ãªã£ãŸäººç‰©ã¯ï¼Ÿ",
+        answer: "ãƒŠãƒãƒ¬ã‚ªãƒ³ãƒ»ãƒœãƒŠãƒ‘ãƒ«ãƒˆ",
         choices: [
-            "ƒƒxƒXƒsƒG[ƒ‹",
-            "ƒiƒ|ƒŒƒIƒ“Eƒ{ƒiƒpƒ‹ƒg",
-            "ƒ‹ƒC16¢",
-            "ƒ‹ƒCƒiƒ|ƒŒƒIƒ“"
+            "ãƒ­ãƒ™ã‚¹ãƒ”ã‚¨ãƒ¼ãƒ«",
+            "ãƒŠãƒãƒ¬ã‚ªãƒ³ãƒ»ãƒœãƒŠãƒ‘ãƒ«ãƒˆ",
+            "ãƒ«ã‚¤16ä¸–",
+            "ãƒ«ã‚¤ï¼ãƒŠãƒãƒ¬ã‚ªãƒ³"
         ]
     },
 
     {
-        question: "ƒtƒ‰ƒ“ƒXŠv–½‚ğû‘©‚³‚¹‚½l•¨‚ÍH",
-        answer: "ƒiƒ|ƒŒƒIƒ“Eƒ{ƒiƒpƒ‹ƒg",
+        question: "ãƒ•ãƒ©ãƒ³ã‚¹é©å‘½ã‚’åæŸã•ã›ãŸäººç‰©ã¯ï¼Ÿ",
+        answer: "ãƒŠãƒãƒ¬ã‚ªãƒ³ãƒ»ãƒœãƒŠãƒ‘ãƒ«ãƒˆ",
         choices: [
-            "ƒƒxƒXƒsƒG[ƒ‹",
-            "ƒiƒ|ƒŒƒIƒ“Eƒ{ƒiƒpƒ‹ƒg",
-            "ƒ‹ƒ\[",
-            "ƒ‚ƒ“ƒeƒXƒLƒ…["
+            "ãƒ­ãƒ™ã‚¹ãƒ”ã‚¨ãƒ¼ãƒ«",
+            "ãƒŠãƒãƒ¬ã‚ªãƒ³ãƒ»ãƒœãƒŠãƒ‘ãƒ«ãƒˆ",
+            "ãƒ«ã‚½ãƒ¼",
+            "ãƒ¢ãƒ³ãƒ†ã‚¹ã‚­ãƒ¥ãƒ¼"
         ]
     },
 
     {
-        question: "ƒiƒ|ƒŒƒIƒ“‚ªì‚Á‚½­‘Ì‚ÍH",
-        answer: "“—Ì­•{",
+        question: "ãƒŠãƒãƒ¬ã‚ªãƒ³ãŒä½œã£ãŸæ”¿ä½“ã¯ï¼Ÿ",
+        answer: "çµ±é ˜æ”¿åºœ",
         choices: [
-            "‘Ù­•{",
-            "“—Ì­•{",
-            "‘æ“ñ‹¤˜a­",
-            "‘æ“ñ’é­"
+            "ç·è£æ”¿åºœ",
+            "çµ±é ˜æ”¿åºœ",
+            "ç¬¬äºŒå…±å’Œæ”¿",
+            "ç¬¬äºŒå¸æ”¿"
         ]
     },
 
     {
-        question: "1806”N‚Éƒiƒ|ƒŒƒIƒ“‚ªÁ–Å‚³‚¹‚½‘‚ÍH",
-        answer: "_¹ƒ[ƒ}’é‘",
+        question: "1806å¹´ã«ãƒŠãƒãƒ¬ã‚ªãƒ³ãŒæ¶ˆæ»…ã•ã›ãŸå›½ã¯ï¼Ÿ",
+        answer: "ç¥è–ãƒ­ãƒ¼ãƒå¸å›½",
         choices: [
-            "_¹ƒ[ƒ}’é‘",
-            "ƒI[ƒXƒgƒŠƒA’é‘",
-            "ƒƒVƒA’é‘",
-            "ƒtƒ‰ƒ“ƒX‰¤‘"
+            "ç¥è–ãƒ­ãƒ¼ãƒå¸å›½",
+            "ã‚ªãƒ¼ã‚¹ãƒˆãƒªã‚¢å¸å›½",
+            "ãƒ­ã‚·ã‚¢å¸å›½",
+            "ãƒ•ãƒ©ãƒ³ã‚¹ç‹å›½"
         ]
     },
 
     {
-        question: "1812”NAƒiƒ|ƒŒƒIƒ“‚ª‰“ª‚µ‚Ä¸”s‚µ‚½‘‚ÍH",
-        answer: "ƒƒVƒA",
+        question: "1812å¹´ã€ãƒŠãƒãƒ¬ã‚ªãƒ³ãŒé å¾ã—ã¦å¤±æ•—ã—ãŸå›½ã¯ï¼Ÿ",
+        answer: "ãƒ­ã‚·ã‚¢",
         choices: [
-            "ƒCƒMƒŠƒX",
-            "ƒƒVƒA",
-            "ƒhƒCƒc",
-            "ƒCƒ^ƒŠƒA"
+            "ã‚¤ã‚®ãƒªã‚¹",
+            "ãƒ­ã‚·ã‚¢",
+            "ãƒ‰ã‚¤ãƒ„",
+            "ã‚¤ã‚¿ãƒªã‚¢"
         ]
     },
 
     {
-        question: "ƒiƒ|ƒŒƒIƒ“¸‹rŒãAƒˆ[ƒƒbƒp”‘‚Ì‘ã•\‚ªW‚Ü‚Á‚ÄŠJ‚¢‚½‰ï‹c‚ÍH",
-        answer: "ƒEƒB[ƒ“‰ï‹c",
+        question: "ãƒŠãƒãƒ¬ã‚ªãƒ³å¤±è„šå¾Œã€ãƒ¨ãƒ¼ãƒ­ãƒƒãƒ‘è«¸å›½ã®ä»£è¡¨ãŒé›†ã¾ã£ã¦é–‹ã„ãŸä¼šè­°ã¯ï¼Ÿ",
+        answer: "ã‚¦ã‚£ãƒ¼ãƒ³ä¼šè­°",
         choices: [
-            "ƒpƒŠ‰ï‹c",
-            "ƒEƒB[ƒ“‰ï‹c",
-            "ƒxƒ‹ƒŠƒ“‰ï‹c",
-            "ƒtƒ‰ƒ“ƒNƒtƒ‹ƒg‰ï‹c"
+            "ãƒ‘ãƒªä¼šè­°",
+            "ã‚¦ã‚£ãƒ¼ãƒ³ä¼šè­°",
+            "ãƒ™ãƒ«ãƒªãƒ³ä¼šè­°",
+            "ãƒ•ãƒ©ãƒ³ã‚¯ãƒ•ãƒ«ãƒˆä¼šè­°"
         ]
     },
 
     {
-        question: "1830”N7Œ‚Éƒtƒ‰ƒ“ƒX‚Å‹N‚±‚èAƒEƒB[ƒ“‘Ì§‚ğ—h‚é‚ª‚µ‚½Šv–½‚ğ‰½‚Æ‚¢‚¤H",
-        answer: "µŒŠv–½",
+        question: "1830å¹´7æœˆã«ãƒ•ãƒ©ãƒ³ã‚¹ã§èµ·ã“ã‚Šã€ã‚¦ã‚£ãƒ¼ãƒ³ä½“åˆ¶ã‚’æºã‚‹ãŒã—ãŸé©å‘½ã‚’ä½•ã¨ã„ã†ï¼Ÿ",
+        answer: "ä¸ƒæœˆé©å‘½",
         choices: [
-            "“ñŒŠv–½",
-            "µŒŠv–½",
-            "OŒŠv–½",
-            "ƒtƒ‰ƒ“ƒXŠv–½"
+            "äºŒæœˆé©å‘½",
+            "ä¸ƒæœˆé©å‘½",
+            "ä¸‰æœˆé©å‘½",
+            "ãƒ•ãƒ©ãƒ³ã‚¹é©å‘½"
         ]
     },
 
     {
-        question: "19¢‹I‘O”¼Aƒˆ[ƒƒbƒp‚Å”­“W‚µA‘–{å‹`Ğ‰ï‚ÌŒ`¬‚ği‚ß‚½Šv–½‚ğ‰½‚Æ‚¢‚¤H",
-        answer: "Y‹ÆŠv–½",
+        question: "19ä¸–ç´€å‰åŠã€ãƒ¨ãƒ¼ãƒ­ãƒƒãƒ‘ã§ç™ºå±•ã—ã€è³‡æœ¬ä¸»ç¾©ç¤¾ä¼šã®å½¢æˆã‚’é€²ã‚ãŸé©å‘½ã‚’ä½•ã¨ã„ã†ï¼Ÿ",
+        answer: "ç”£æ¥­é©å‘½",
         choices: [
-            "ƒtƒ‰ƒ“ƒXŠv–½",
-            "Y‹ÆŠv–½",
-            "µŒŠv–½",
-            "“ñŒŠv–½"
+            "ãƒ•ãƒ©ãƒ³ã‚¹é©å‘½",
+            "ç”£æ¥­é©å‘½",
+            "ä¸ƒæœˆé©å‘½",
+            "äºŒæœˆé©å‘½"
         ]
     },
 
     {
-        question: "µŒ‰¤­‚Ì‚à‚Æ‚Å¬’·‚µ‚½•x—T‚È¤H‹ÆÒE‹à—Z‹ÆÒ‚ÆAs–¯‚â˜J“­Ò‚Æ‚Ì‘Î—§‚ª[‚Ü‚Á‚½”wŒi‚É‚ ‚Á‚½‚à‚Ì‚Í‰½H",
-        answer: "Y‹ÆŠv–½",
+        question: "ä¸ƒæœˆç‹æ”¿ã®ã‚‚ã¨ã§æˆé•·ã—ãŸå¯Œè£•ãªå•†å·¥æ¥­è€…ãƒ»é‡‘èæ¥­è€…ã¨ã€å¸‚æ°‘ã‚„åŠ´åƒè€…ã¨ã®å¯¾ç«‹ãŒæ·±ã¾ã£ãŸèƒŒæ™¯ã«ã‚ã£ãŸã‚‚ã®ã¯ä½•ï¼Ÿ",
+        answer: "ç”£æ¥­é©å‘½",
         choices: [
-            "Y‹ÆŠv–½",
-            "–¼—_Šv–½",
-            "@‹³‰üŠv",
-            "”_‹ÆŠv–½"
+            "ç”£æ¥­é©å‘½",
+            "åèª‰é©å‘½",
+            "å®—æ•™æ”¹é©",
+            "è¾²æ¥­é©å‘½"
         ]
     },
 
     {
-        question: "1848”NAƒtƒ‰ƒ“ƒX‚Å‹N‚±‚Á‚½Šv–½‚ğ‰½‚Æ‚¢‚¤H",
-        answer: "“ñŒŠv–½",
+        question: "1848å¹´ã€ãƒ•ãƒ©ãƒ³ã‚¹ã§èµ·ã“ã£ãŸé©å‘½ã‚’ä½•ã¨ã„ã†ï¼Ÿ",
+        answer: "äºŒæœˆé©å‘½",
         choices: [
-            "µŒŠv–½",
-            "“ñŒŠv–½",
-            "OŒŠv–½",
-            "ƒtƒ‰ƒ“ƒXŠv–½"
+            "ä¸ƒæœˆé©å‘½",
+            "äºŒæœˆé©å‘½",
+            "ä¸‰æœˆé©å‘½",
+            "ãƒ•ãƒ©ãƒ³ã‚¹é©å‘½"
         ]
     },
 
     {
-        question: "“ñŒŠv–½‚ğ‚«‚Á‚©‚¯‚ÉAƒtƒ‰ƒ“ƒX‚Å‚Í‰½‚ª¬—§‚µ‚½H",
-        answer: "‘æ“ñ‹¤˜a­",
+        question: "äºŒæœˆé©å‘½ã‚’ãã£ã‹ã‘ã«ã€ãƒ•ãƒ©ãƒ³ã‚¹ã§ã¯ä½•ãŒæˆç«‹ã—ãŸï¼Ÿ",
+        answer: "ç¬¬äºŒå…±å’Œæ”¿",
         choices: [
-            "‘æˆê‹¤˜a­",
-            "‘æ“ñ‹¤˜a­",
-            "‘æ“ñ’é­",
-            "µŒ‰¤­"
+            "ç¬¬ä¸€å…±å’Œæ”¿",
+            "ç¬¬äºŒå…±å’Œæ”¿",
+            "ç¬¬äºŒå¸æ”¿",
+            "ä¸ƒæœˆç‹æ”¿"
         ]
     },
 
     {
-        question: "“ñŒŠv–½‚ÌŒ‹‰ÊAƒtƒ‰ƒ“ƒX‚ÌµŒ‰¤­‚Í‚Ç‚¤‚È‚Á‚½H",
-        answer: "•ö‰ó‚µ‚½",
+        question: "äºŒæœˆé©å‘½ã®çµæœã€ãƒ•ãƒ©ãƒ³ã‚¹ã®ä¸ƒæœˆç‹æ”¿ã¯ã©ã†ãªã£ãŸï¼Ÿ",
+        answer: "å´©å£Šã—ãŸ",
         choices: [
-            "‹­‰»‚³‚ê‚½",
-            "•ö‰ó‚µ‚½",
-            "’é­‚É‚È‚Á‚½",
-            "ƒCƒMƒŠƒX‚É“‡‚³‚ê‚½"
+            "å¼·åŒ–ã•ã‚ŒãŸ",
+            "å´©å£Šã—ãŸ",
+            "å¸æ”¿ã«ãªã£ãŸ",
+            "ã‚¤ã‚®ãƒªã‚¹ã«çµ±åˆã•ã‚ŒãŸ"
         ]
     },
 
     {
-        question: "1848”NAƒtƒ‰ƒ“ƒX‚Ì“ñŒŠv–½‚Ì‰e‹¿‚ğó‚¯‚ÄƒI[ƒXƒgƒŠƒA‚Å‹N‚±‚Á‚½Šv–½‚ğ‰½‚Æ‚¢‚¤H",
-        answer: "OŒŠv–½",
+        question: "1848å¹´ã€ãƒ•ãƒ©ãƒ³ã‚¹ã®äºŒæœˆé©å‘½ã®å½±éŸ¿ã‚’å—ã‘ã¦ã‚ªãƒ¼ã‚¹ãƒˆãƒªã‚¢ã§èµ·ã“ã£ãŸé©å‘½ã‚’ä½•ã¨ã„ã†ï¼Ÿ",
+        answer: "ä¸‰æœˆé©å‘½",
         choices: [
-            "µŒŠv–½",
-            "OŒŠv–½",
-            "“ñŒŠv–½",
-            "–¼—_Šv–½"
+            "ä¸ƒæœˆé©å‘½",
+            "ä¸‰æœˆé©å‘½",
+            "äºŒæœˆé©å‘½",
+            "åèª‰é©å‘½"
         ]
     },
 
     {
-        question: "ƒhƒCƒc“ˆê‚ÆŒ›–@§’è‚É‚Â‚¢‚Ä‹c˜_‚·‚é‚½‚ßA1848”N‚ÉŠJÃ‚³‚ê‚½‹c‰ï‚ÍH",
-        answer: "ƒtƒ‰ƒ“ƒNƒtƒ‹ƒg‘–¯‹c‰ï",
+        question: "ãƒ‰ã‚¤ãƒ„çµ±ä¸€ã¨æ†²æ³•åˆ¶å®šã«ã¤ã„ã¦è­°è«–ã™ã‚‹ãŸã‚ã€1848å¹´ã«é–‹å‚¬ã•ã‚ŒãŸè­°ä¼šã¯ï¼Ÿ",
+        answer: "ãƒ•ãƒ©ãƒ³ã‚¯ãƒ•ãƒ«ãƒˆå›½æ°‘è­°ä¼š",
         choices: [
-            "‘–¯Œö‰ï",
-            "ƒtƒ‰ƒ“ƒNƒtƒ‹ƒg‘–¯‹c‰ï",
-            "—§–@‹c‰ï",
-            "ƒEƒB[ƒ“‹c‰ï"
+            "å›½æ°‘å…¬ä¼š",
+            "ãƒ•ãƒ©ãƒ³ã‚¯ãƒ•ãƒ«ãƒˆå›½æ°‘è­°ä¼š",
+            "ç«‹æ³•è­°ä¼š",
+            "ã‚¦ã‚£ãƒ¼ãƒ³è­°ä¼š"
         ]
     },
 
     {
-        question: "1848”N‚ÌŠv–½‚Å‚ÍA©—Rå‹`‚Æ‚Æ‚à‚É‰½‚Ì‰^“®‚ª‚‚Ü‚Á‚½H",
-        answer: "ƒiƒVƒ‡ƒiƒŠƒYƒ€",
+        question: "1848å¹´ã®é©å‘½ã§ã¯ã€è‡ªç”±ä¸»ç¾©ã¨ã¨ã‚‚ã«ä½•ã®é‹å‹•ãŒé«˜ã¾ã£ãŸï¼Ÿ",
+        answer: "ãƒŠã‚·ãƒ§ãƒŠãƒªã‚ºãƒ ",
         choices: [
-            "’é‘å‹`",
-            "ƒiƒVƒ‡ƒiƒŠƒYƒ€",
-            "â‘Î‰¤­",
-            "d¤å‹`"
+            "å¸å›½ä¸»ç¾©",
+            "ãƒŠã‚·ãƒ§ãƒŠãƒªã‚ºãƒ ",
+            "çµ¶å¯¾ç‹æ”¿",
+            "é‡å•†ä¸»ç¾©"
         ]
     },
 
     {
-        question: "ƒiƒVƒ‡ƒiƒŠƒYƒ€‚Æ‚ÍAˆê‚Â‚Ì–¯‘°‚ª‰½‚ğ‚Â‚­‚é‚±‚Æ‚ğ—‘z‚Æ‚·‚él‚¦•ûH",
-        answer: "‘–¯‘‰Æ",
+        question: "ãƒŠã‚·ãƒ§ãƒŠãƒªã‚ºãƒ ã¨ã¯ã€ä¸€ã¤ã®æ°‘æ—ãŒä½•ã‚’ã¤ãã‚‹ã“ã¨ã‚’ç†æƒ³ã¨ã™ã‚‹è€ƒãˆæ–¹ï¼Ÿ",
+        answer: "å›½æ°‘å›½å®¶",
         choices: [
-            "A–¯’n",
-            "‘–¯‘‰Æ",
-            "’é‘",
-            "‰¤‘"
+            "æ¤æ°‘åœ°",
+            "å›½æ°‘å›½å®¶",
+            "å¸å›½",
+            "ç‹å›½"
         ]
     },
 
     {
-        question: "ƒiƒVƒ‡ƒiƒŠƒYƒ€‚Ì‚‚Ü‚è‚É‚æ‚Á‚ÄAƒI[ƒXƒgƒŠƒA‚È‚Ç‚Å‚Í‰½‚Ì–¯‘°‚â­”W’c‚Ö‚Ì—}ˆ³‚ª–â‘è‚Æ‚È‚Á‚½H",
-        answer: "­”–¯‘°",
+        question: "ãƒŠã‚·ãƒ§ãƒŠãƒªã‚ºãƒ ã®é«˜ã¾ã‚Šã«ã‚ˆã£ã¦ã€ã‚ªãƒ¼ã‚¹ãƒˆãƒªã‚¢ãªã©ã§ã¯ä½•ã®æ°‘æ—ã‚„å°‘æ•°é›†å›£ã¸ã®æŠ‘åœ§ãŒå•é¡Œã¨ãªã£ãŸï¼Ÿ",
+        answer: "å°‘æ•°æ°‘æ—",
         choices: [
-            "‘½”–¯‘°",
-            "­”–¯‘°",
-            "‹M‘°",
-            "¹EÒ"
+            "å¤šæ•°æ°‘æ—",
+            "å°‘æ•°æ°‘æ—",
+            "è²´æ—",
+            "è–è·è€…"
         ]
     },
 
     {
-        question: "1848”NŠv–½‚Å‚ÍA˜J“­‰^“®‚âĞ‰ïå‹`‰^“®‚ª‹­‚Ü‚Á‚½‚±‚Æ‚ÅA‚Ç‚Ì‚æ‚¤‚ÈŠK‘w‚Æ‘Î—§‚µ‚½H",
-        answer: "‘–{‰Æ",
+        question: "1848å¹´é©å‘½ã§ã¯ã€åŠ´åƒé‹å‹•ã‚„ç¤¾ä¼šä¸»ç¾©é‹å‹•ãŒå¼·ã¾ã£ãŸã“ã¨ã§ã€ã©ã®ã‚ˆã†ãªéšå±¤ã¨å¯¾ç«‹ã—ãŸï¼Ÿ",
+        answer: "è³‡æœ¬å®¶",
         choices: [
-            "‹M‘°",
-            "¹EÒ",
-            "‘–{‰Æ",
-            "”_–¯"
+            "è²´æ—",
+            "è–è·è€…",
+            "è³‡æœ¬å®¶",
+            "è¾²æ°‘"
         ]
     },
 
     {
-        question: "‘æ“ñ‹¤˜a­‚Ì‘å“—Ì‘I‹“‚É“–‘I‚µA1852”N‚Éc’é‚Æ‚È‚Á‚½l•¨‚ÍH",
-        answer: "ƒ‹ƒCƒiƒ|ƒŒƒIƒ“",
+        question: "ç¬¬äºŒå…±å’Œæ”¿ã®å¤§çµ±é ˜é¸æŒ™ã«å½“é¸ã—ã€1852å¹´ã«çš‡å¸ã¨ãªã£ãŸäººç‰©ã¯ï¼Ÿ",
+        answer: "ãƒ«ã‚¤ï¼ãƒŠãƒãƒ¬ã‚ªãƒ³",
         choices: [
-            "ƒiƒ|ƒŒƒIƒ“Eƒ{ƒiƒpƒ‹ƒg",
-            "ƒ‹ƒC16¢",
-            "ƒ‹ƒCƒiƒ|ƒŒƒIƒ“",
-            "ƒƒxƒXƒsƒG[ƒ‹"
+            "ãƒŠãƒãƒ¬ã‚ªãƒ³ãƒ»ãƒœãƒŠãƒ‘ãƒ«ãƒˆ",
+            "ãƒ«ã‚¤16ä¸–",
+            "ãƒ«ã‚¤ï¼ãƒŠãƒãƒ¬ã‚ªãƒ³",
+            "ãƒ­ãƒ™ã‚¹ãƒ”ã‚¨ãƒ¼ãƒ«"
         ]
     },
 
     {
-        question: "ƒiƒ|ƒŒƒIƒ“3¢‚Ì‘æ“ñ’é­‚ğ•ö‰ó‚³‚¹‚é‚«‚Á‚©‚¯‚Æ‚È‚Á‚½í‘ˆ‚ÍH",
-        answer: "••§í‘ˆ",
+        question: "ãƒŠãƒãƒ¬ã‚ªãƒ³3ä¸–ã®ç¬¬äºŒå¸æ”¿ã‚’å´©å£Šã•ã›ã‚‹ãã£ã‹ã‘ã¨ãªã£ãŸæˆ¦äº‰ã¯ï¼Ÿ",
+        answer: "æ™®ä»æˆ¦äº‰",
         choices: [
-            "µ”Ní‘ˆ",
-            "••§í‘ˆ",
-            "ƒNƒŠƒ~ƒAí‘ˆ",
-            "•S”Ní‘ˆ"
+            "ä¸ƒå¹´æˆ¦äº‰",
+            "æ™®ä»æˆ¦äº‰",
+            "ã‚¯ãƒªãƒŸã‚¢æˆ¦äº‰",
+            "ç™¾å¹´æˆ¦äº‰"
         ]
     }
 ];
 
 const englishQuestions = [
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì•¶‚Ì Playing basketball ‚Ì—p–@‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BPlaying basketball is fun.",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®æ–‡ã® Playing basketball ã®ç”¨æ³•ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚Playing basketball is fun.",
 choices:[
-"åŒê",
-"•âŒê",
-"–Ú“IŒê",
-"‘O’uŒ‚Ì–Ú“IŒê"
+"ä¸»èª",
+"è£œèª",
+"ç›®çš„èª",
+"å‰ç½®è©ã®ç›®çš„èª"
 ],
-answer:"åŒê",
-explanation:"Playing basketball ‚ÍuƒoƒXƒPƒbƒgƒ{[ƒ‹‚ğ‚·‚é‚±‚Æv‚Æ‚¢‚¤ˆÓ–¡‚ÅA•¶‚ÌåŒê‚É‚È‚Á‚Ä‚¢‚Ü‚·B"
+answer:"ä¸»èª",
+explanation:"Playing basketball ã¯ã€Œãƒã‚¹ã‚±ãƒƒãƒˆãƒœãƒ¼ãƒ«ã‚’ã™ã‚‹ã“ã¨ã€ã¨ã„ã†æ„å‘³ã§ã€æ–‡ã®ä¸»èªã«ãªã£ã¦ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì•¶‚Ì watching movies ‚Ì—p–@‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BMy favorite pastime is watching movies.",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®æ–‡ã® watching movies ã®ç”¨æ³•ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚My favorite pastime is watching movies.",
 choices:[
-"åŒê",
-"•âŒê",
-"–Ú“IŒê",
-"Œ`—eŒ"
+"ä¸»èª",
+"è£œèª",
+"ç›®çš„èª",
+"å½¢å®¹è©"
 ],
-answer:"•âŒê",
-explanation:"watching movies ‚ÍåŒê My favorite pastime ‚Ì“à—e‚ğà–¾‚·‚é•âŒê‚Å‚·B"
+answer:"è£œèª",
+explanation:"watching movies ã¯ä¸»èª My favorite pastime ã®å†…å®¹ã‚’èª¬æ˜ã™ã‚‹è£œèªã§ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì•¶‚Ì listening to music ‚Ì—p–@‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI like listening to music.",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®æ–‡ã® listening to music ã®ç”¨æ³•ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I like listening to music.",
 choices:[
-"åŒê",
-"•âŒê",
-"–Ú“IŒê",
-"•›Œ"
+"ä¸»èª",
+"è£œèª",
+"ç›®çš„èª",
+"å‰¯è©"
 ],
-answer:"–Ú“IŒê",
-explanation:"listening to music ‚Í“®Œ like ‚Ì–Ú“IŒê‚É‚È‚Á‚Ä‚¢‚Ü‚·B"
+answer:"ç›®çš„èª",
+explanation:"listening to music ã¯å‹•è© like ã®ç›®çš„èªã«ãªã£ã¦ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì•¶‚Ì coming today ‚Ì“­‚«‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BThank you for coming today.",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®æ–‡ã® coming today ã®åƒãã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚Thank you for coming today.",
 choices:[
-"åŒê",
-"•âŒê",
-"‘O’uŒfor‚Ì–Ú“IŒê",
-"“®Œ‚ÌŒ´Œ`"
+"ä¸»èª",
+"è£œèª",
+"å‰ç½®è©forã®ç›®çš„èª",
+"å‹•è©ã®åŸå½¢"
 ],
-answer:"‘O’uŒfor‚Ì–Ú“IŒê",
-explanation:"‘O’uŒ for ‚ÌŒã‚ë‚É‚Í–¼Œ‘Š“–Œê‹å‚ª•K—v‚È‚Ì‚ÅA“®–¼Œ coming ‚ª’u‚©‚ê‚Ä‚¢‚Ü‚·B"
+answer:"å‰ç½®è©forã®ç›®çš„èª",
+explanation:"å‰ç½®è© for ã®å¾Œã‚ã«ã¯åè©ç›¸å½“èªå¥ãŒå¿…è¦ãªã®ã§ã€å‹•åè© coming ãŒç½®ã‹ã‚Œã¦ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚ÄÅ‚à“KØ‚È‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI don't like     going out at night.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æœ€ã‚‚é©åˆ‡ãªã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I don't like â–¡â–¡â–¡ going out at night.",
 choices:[
 "him",
 "he",
@@ -2421,12 +2421,12 @@ choices:[
 "himself"
 ],
 answer:"him",
-explanation:"“®–¼Œ‚ÌˆÓ–¡ã‚ÌåŒê‚ğ‘ã–¼Œ‚Å•\‚·ê‡A–Ú“IŠi‚Ü‚½‚ÍŠ—LŠi‚ğg‚¦‚Ü‚·B‚±‚Ì•¶‚Å‚Í him going ‚à‰Â”\‚Å‚·B"
+explanation:"å‹•åè©ã®æ„å‘³ä¸Šã®ä¸»èªã‚’ä»£åè©ã§è¡¨ã™å ´åˆã€ç›®çš„æ ¼ã¾ãŸã¯æ‰€æœ‰æ ¼ã‚’ä½¿ãˆã¾ã™ã€‚ã“ã®æ–‡ã§ã¯ him going ã‚‚å¯èƒ½ã§ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚ÄÅ‚à“KØ‚È‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BHe is anxious about     staying home alone.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æœ€ã‚‚é©åˆ‡ãªã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚He is anxious about â–¡â–¡â–¡ staying home alone.",
 choices:[
 "Lucy",
 "Lucy's",
@@ -2434,12 +2434,12 @@ choices:[
 "Lucys"
 ],
 answer:"Lucy's",
-explanation:"“®–¼Œ staying ‚ÌˆÓ–¡ã‚ÌåŒê‚ğ–¼Œ‚Å•\‚·ê‡AŠ—LŠi Lucy's ‚ğg‚¢‚Ü‚·B"
+explanation:"å‹•åè© staying ã®æ„å‘³ä¸Šã®ä¸»èªã‚’åè©ã§è¡¨ã™å ´åˆã€æ‰€æœ‰æ ¼ Lucy's ã‚’ä½¿ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"u”Ş‚ª–é‚ÉŠOo‚·‚é‚±‚Æ‚ªD‚«‚Å‚Í‚È‚¢v‚Æ‚¢‚¤ˆÓ–¡‚ÉÅ‚à‹ß‚¢‰p•¶‚Í‚Ç‚ê‚Å‚·‚©B",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"ã€Œå½¼ãŒå¤œã«å¤–å‡ºã™ã‚‹ã“ã¨ãŒå¥½ãã§ã¯ãªã„ã€ã¨ã„ã†æ„å‘³ã«æœ€ã‚‚è¿‘ã„è‹±æ–‡ã¯ã©ã‚Œã§ã™ã‹ã€‚",
 choices:[
 "I don't like him going out at night.",
 "I don't like he going out at night.",
@@ -2447,25 +2447,25 @@ choices:[
 "I don't like him to going out at night."
 ],
 answer:"I don't like him going out at night.",
-explanation:"“®–¼Œ‚ÌˆÓ–¡ã‚ÌåŒê‚ğ–Ú“IŠi him ‚Å•\‚µ‚Ä‚¢‚Ü‚·B"
+explanation:"å‹•åè©ã®æ„å‘³ä¸Šã®ä¸»èªã‚’ç›®çš„æ ¼ him ã§è¡¨ã—ã¦ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"“®–¼Œ‚ğ”Û’è‚·‚é‚Æ‚«‚Ì³‚µ‚¢Œ`‚Í‚Ç‚ê‚Å‚·‚©B",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"å‹•åè©ã‚’å¦å®šã™ã‚‹ã¨ãã®æ­£ã—ã„å½¢ã¯ã©ã‚Œã§ã™ã‹ã€‚",
 choices:[
-"not{“®–¼Œ",
-"“®–¼Œ{not",
-"don't{“®–¼Œ",
-"no{“®–¼Œ"
+"notï¼‹å‹•åè©",
+"å‹•åè©ï¼‹not",
+"don'tï¼‹å‹•åè©",
+"noï¼‹å‹•åè©"
 ],
-answer:"not{“®–¼Œ",
-explanation:"“®–¼Œ‚Ì”Û’è‚Í not doing ‚ÌŒ`‚É‚µ‚Ü‚·B"
+answer:"notï¼‹å‹•åè©",
+explanation:"å‹•åè©ã®å¦å®šã¯ not doing ã®å½¢ã«ã—ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI'm sorry for     sooner.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I'm sorry for â–¡â–¡â–¡ sooner.",
 choices:[
 "not writing",
 "not to write",
@@ -2473,51 +2473,51 @@ choices:[
 "no writing"
 ],
 answer:"not writing",
-explanation:"“®–¼Œ‚Ì”Û’èŒ`‚Í not{doing ‚Å‚·Bfor ‚Í‘O’uŒ‚È‚Ì‚ÅA‚»‚ÌŒã‚ë‚É‚Í“®–¼Œ‚ª‘±‚«‚Ü‚·B"
+explanation:"å‹•åè©ã®å¦å®šå½¢ã¯ notï¼‹doing ã§ã™ã€‚for ã¯å‰ç½®è©ãªã®ã§ã€ãã®å¾Œã‚ã«ã¯å‹•åè©ãŒç¶šãã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì being treated ‚Í‚Ç‚Ì‚æ‚¤‚ÈŒ`‚Å‚·‚©BMy little sister is tired of being treated like a child.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã® being treated ã¯ã©ã®ã‚ˆã†ãªå½¢ã§ã™ã‹ã€‚My little sister is tired of being treated like a child.",
 choices:[
-"“®–¼Œ‚Ìó“®‘Ô",
-"•s’èŒ‚Ìó“®‘Ô",
-"Œ»İ•ªŒ",
-"‰ß‹•ªŒ‚¾‚¯‚ÌŒ`"
+"å‹•åè©ã®å—å‹•æ…‹",
+"ä¸å®šè©ã®å—å‹•æ…‹",
+"ç¾åœ¨åˆ†è©",
+"éå»åˆ†è©ã ã‘ã®å½¢"
 ],
-answer:"“®–¼Œ‚Ìó“®‘Ô",
-explanation:"being{‰ß‹•ªŒ‚Å“®–¼Œ‚Ìó“®‘Ôu`‚³‚ê‚é‚±‚Æv‚ğ•\‚µ‚Ü‚·B"
+answer:"å‹•åè©ã®å—å‹•æ…‹",
+explanation:"beingï¼‹éå»åˆ†è©ã§å‹•åè©ã®å—å‹•æ…‹ã€Œï½ã•ã‚Œã‚‹ã“ã¨ã€ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"ššš",
-question:"Ÿ‚Ì‰p•¶‚ÌˆÓ–¡‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BShe is proud of having been a nurse.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜…",
+question:"æ¬¡ã®è‹±æ–‡ã®æ„å‘³ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚She is proud of having been a nurse.",
 choices:[
-"”Ş—‚ÍŠÅŒìt‚Å‚ ‚é‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚éB",
-"”Ş—‚ÍŠÅŒìt‚¾‚Á‚½‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚éB",
-"”Ş—‚ÍŠÅŒìt‚É‚È‚é‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚éB",
-"”Ş—‚ÍŠÅŒìt‚É‚È‚è‚½‚­‚È‚¢‚Æv‚Á‚Ä‚¢‚éB"
+"å½¼å¥³ã¯çœ‹è­·å¸«ã§ã‚ã‚‹ã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ã‚‹ã€‚",
+"å½¼å¥³ã¯çœ‹è­·å¸«ã ã£ãŸã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ã‚‹ã€‚",
+"å½¼å¥³ã¯çœ‹è­·å¸«ã«ãªã‚‹ã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ã‚‹ã€‚",
+"å½¼å¥³ã¯çœ‹è­·å¸«ã«ãªã‚ŠãŸããªã„ã¨æ€ã£ã¦ã„ã‚‹ã€‚"
 ],
-answer:"”Ş—‚ÍŠÅŒìt‚¾‚Á‚½‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚éB",
-explanation:"having{‰ß‹•ªŒ‚ÍŠ®—¹Œ`‚Ì“®–¼Œ‚ÅAåß‚Ì“_‚æ‚è‘O‚Ì‚±‚Æ‚ğ•\‚µ‚Ü‚·B"
+answer:"å½¼å¥³ã¯çœ‹è­·å¸«ã ã£ãŸã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ã‚‹ã€‚",
+explanation:"havingï¼‹éå»åˆ†è©ã¯å®Œäº†å½¢ã®å‹•åè©ã§ã€ä¸»ç¯€ã®æ™‚ç‚¹ã‚ˆã‚Šå‰ã®ã“ã¨ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"ššš",
-question:"Ÿ‚Ì‰p•¶‚ÌˆÓ–¡‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BShe was proud of having been a nurse.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜…",
+question:"æ¬¡ã®è‹±æ–‡ã®æ„å‘³ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚She was proud of having been a nurse.",
 choices:[
-"”Ş—‚ÍŠÅŒìt‚Å‚ ‚é‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚éB",
-"”Ş—‚ÍŠÅŒìt‚¾‚Á‚½‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚½B",
-"”Ş—‚ÍŠÅŒìt‚É‚È‚é‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚éB",
-"”Ş—‚ÍŠÅŒìt‚Å‚Í‚È‚©‚Á‚½‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚½B"
+"å½¼å¥³ã¯çœ‹è­·å¸«ã§ã‚ã‚‹ã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ã‚‹ã€‚",
+"å½¼å¥³ã¯çœ‹è­·å¸«ã ã£ãŸã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ãŸã€‚",
+"å½¼å¥³ã¯çœ‹è­·å¸«ã«ãªã‚‹ã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ã‚‹ã€‚",
+"å½¼å¥³ã¯çœ‹è­·å¸«ã§ã¯ãªã‹ã£ãŸã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ãŸã€‚"
 ],
-answer:"”Ş—‚ÍŠÅŒìt‚¾‚Á‚½‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚½B",
-explanation:"was proud ‚ª‰ß‹Œ`‚È‚Ì‚ÅuŒÖ‚è‚Év‚Á‚Ä‚¢‚½vBhaving been a nurse ‚Í‚»‚ê‚æ‚è‘O‚ÌŒoŒ±‚ğ•\‚µ‚Ü‚·B"
+answer:"å½¼å¥³ã¯çœ‹è­·å¸«ã ã£ãŸã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ãŸã€‚",
+explanation:"was proud ãŒéå»å½¢ãªã®ã§ã€Œèª‡ã‚Šã«æ€ã£ã¦ã„ãŸã€ã€‚having been a nurse ã¯ãã‚Œã‚ˆã‚Šå‰ã®çµŒé¨“ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì“®Œ‚Ì‚¤‚¿A“®–¼Œ‚ğ–Ú“IŒê‚É‚Æ‚é‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®å‹•è©ã®ã†ã¡ã€å‹•åè©ã‚’ç›®çš„èªã«ã¨ã‚‹ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
 choices:[
 "enjoy",
 "decide",
@@ -2525,25 +2525,25 @@ choices:[
 "refuse"
 ],
 answer:"enjoy",
-explanation:"enjoy‚Í“®–¼Œ‚ğ–Ú“IŒê‚É‚Æ‚é‘ã•\“I‚È“®Œ‚Å‚·Benjoy doing ‚ÌŒ`‚Åg‚¢‚Ü‚·B"
+explanation:"enjoyã¯å‹•åè©ã‚’ç›®çš„èªã«ã¨ã‚‹ä»£è¡¨çš„ãªå‹•è©ã§ã™ã€‚enjoy doing ã®å½¢ã§ä½¿ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì‚¤‚¿A“®–¼Œ‚ğ–Ú“IŒê‚É‚Æ‚é“®Œ‚Æ‚µ‚Ä³‚µ‚¢‘g‚İ‡‚í‚¹‚Í‚Ç‚ê‚Å‚·‚©B",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®ã†ã¡ã€å‹•åè©ã‚’ç›®çš„èªã«ã¨ã‚‹å‹•è©ã¨ã—ã¦æ­£ã—ã„çµ„ã¿åˆã‚ã›ã¯ã©ã‚Œã§ã™ã‹ã€‚",
 choices:[
-"finishEmindEavoid",
-"decideEpromiseErefuse",
-"wantEhopeEexpect",
-"agreeEofferEfail"
+"finishãƒ»mindãƒ»avoid",
+"decideãƒ»promiseãƒ»refuse",
+"wantãƒ»hopeãƒ»expect",
+"agreeãƒ»offerãƒ»fail"
 ],
-answer:"finishEmindEavoid",
-explanation:"finish doingAmind doingAavoid doing ‚Ì‚æ‚¤‚ÉA‚±‚ê‚ç‚Í“®–¼Œ‚ğ–Ú“IŒê‚É‚Æ‚è‚Ü‚·B"
+answer:"finishãƒ»mindãƒ»avoid",
+explanation:"finish doingã€mind doingã€avoid doing ã®ã‚ˆã†ã«ã€ã“ã‚Œã‚‰ã¯å‹•åè©ã‚’ç›®çš„èªã«ã¨ã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BWe enjoyed     cards.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚We enjoyed â–¡â–¡â–¡ cards.",
 choices:[
 "playing",
 "to play",
@@ -2551,12 +2551,12 @@ choices:[
 "played"
 ],
 answer:"playing",
-explanation:"enjoy‚Í“®–¼Œ‚ğ–Ú“IŒê‚É‚Æ‚é‚Ì‚ÅAenjoy playing cards ‚Æ‚È‚è‚Ü‚·B"
+explanation:"enjoyã¯å‹•åè©ã‚’ç›®çš„èªã«ã¨ã‚‹ã®ã§ã€enjoy playing cards ã¨ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì‚¤‚¿A•s’èŒ‚ğ–Ú“IŒê‚É‚Æ‚é“®Œ‚Í‚Ç‚ê‚Å‚·‚©B",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®ã†ã¡ã€ä¸å®šè©ã‚’ç›®çš„èªã«ã¨ã‚‹å‹•è©ã¯ã©ã‚Œã§ã™ã‹ã€‚",
 choices:[
 "decide",
 "avoid",
@@ -2564,12 +2564,12 @@ choices:[
 "mind"
 ],
 answer:"decide",
-explanation:"decide to do ‚Åu`‚·‚é‚±‚Æ‚ğŒˆ‚ß‚év‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"decide to do ã§ã€Œï½ã™ã‚‹ã“ã¨ã‚’æ±ºã‚ã‚‹ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI hope     you again.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I hope â–¡â–¡â–¡ you again.",
 choices:[
 "to see",
 "seeing",
@@ -2577,225 +2577,225 @@ choices:[
 "to seeing"
 ],
 answer:"to see",
-explanation:"hope‚Í•s’èŒ‚ğ–Ú“IŒê‚É‚Æ‚èAhope to do ‚ÌŒ`‚É‚È‚è‚Ü‚·B"
+explanation:"hopeã¯ä¸å®šè©ã‚’ç›®çš„èªã«ã¨ã‚Šã€hope to do ã®å½¢ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì•¶‚ÌˆÓ–¡‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI like playing soccer.",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®æ–‡ã®æ„å‘³ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I like playing soccer.",
 choices:[
-"„‚ÍƒTƒbƒJ[‚ğ‚·‚é‚±‚Æ‚ªD‚«‚Å‚·B",
-"„‚ÍƒTƒbƒJ[‚ğ‚µI‚¦‚Ü‚µ‚½B",
-"„‚ÍƒTƒbƒJ[‚ğ‚·‚é‚±‚Æ‚ğŒˆ‚ß‚Ü‚µ‚½B",
-"„‚ÍƒTƒbƒJ[‚ğ‚·‚é‚±‚Æ‚ğ–Y‚ê‚Ü‚µ‚½B"
+"ç§ã¯ã‚µãƒƒã‚«ãƒ¼ã‚’ã™ã‚‹ã“ã¨ãŒå¥½ãã§ã™ã€‚",
+"ç§ã¯ã‚µãƒƒã‚«ãƒ¼ã‚’ã—çµ‚ãˆã¾ã—ãŸã€‚",
+"ç§ã¯ã‚µãƒƒã‚«ãƒ¼ã‚’ã™ã‚‹ã“ã¨ã‚’æ±ºã‚ã¾ã—ãŸã€‚",
+"ç§ã¯ã‚µãƒƒã‚«ãƒ¼ã‚’ã™ã‚‹ã“ã¨ã‚’å¿˜ã‚Œã¾ã—ãŸã€‚"
 ],
-answer:"„‚ÍƒTƒbƒJ[‚ğ‚·‚é‚±‚Æ‚ªD‚«‚Å‚·B",
-explanation:"like‚Í“®–¼ŒE•s’èŒ‚Ì‚Ç‚¿‚ç‚à–Ú“IŒê‚É‚Æ‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B"
+answer:"ç§ã¯ã‚µãƒƒã‚«ãƒ¼ã‚’ã™ã‚‹ã“ã¨ãŒå¥½ãã§ã™ã€‚",
+explanation:"likeã¯å‹•åè©ãƒ»ä¸å®šè©ã®ã©ã¡ã‚‰ã‚‚ç›®çš„èªã«ã¨ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"ššš",
-question:"Ÿ‚Ì•¶‚ÌˆÓ–¡‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI'll never forget visiting Australia this summer.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜…",
+question:"æ¬¡ã®æ–‡ã®æ„å‘³ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I'll never forget visiting Australia this summer.",
 choices:[
-"‚±‚Ì‰ÄAƒI[ƒXƒgƒ‰ƒŠƒA‚ğ–K‚ê‚é‚±‚Æ‚ğŒˆ‚µ‚Ä–Y‚ê‚È‚¢B",
-"‚±‚Ì‰ÄAƒI[ƒXƒgƒ‰ƒŠƒA‚ğ–K‚ê‚½‚±‚Æ‚ğŒˆ‚µ‚Ä–Y‚ê‚È‚¢B",
-"‚±‚Ì‰ÄAƒI[ƒXƒgƒ‰ƒŠƒA‚ğ–K‚ê‚é‚±‚Æ‚ğ–Y‚ê‚Ä‚µ‚Ü‚¤B",
-"ƒI[ƒXƒgƒ‰ƒŠƒA‚ğ–K‚ê‚é‚±‚Æ‚ğŒˆ‚ß‚½B"
+"ã“ã®å¤ã€ã‚ªãƒ¼ã‚¹ãƒˆãƒ©ãƒªã‚¢ã‚’è¨ªã‚Œã‚‹ã“ã¨ã‚’æ±ºã—ã¦å¿˜ã‚Œãªã„ã€‚",
+"ã“ã®å¤ã€ã‚ªãƒ¼ã‚¹ãƒˆãƒ©ãƒªã‚¢ã‚’è¨ªã‚ŒãŸã“ã¨ã‚’æ±ºã—ã¦å¿˜ã‚Œãªã„ã€‚",
+"ã“ã®å¤ã€ã‚ªãƒ¼ã‚¹ãƒˆãƒ©ãƒªã‚¢ã‚’è¨ªã‚Œã‚‹ã“ã¨ã‚’å¿˜ã‚Œã¦ã—ã¾ã†ã€‚",
+"ã‚ªãƒ¼ã‚¹ãƒˆãƒ©ãƒªã‚¢ã‚’è¨ªã‚Œã‚‹ã“ã¨ã‚’æ±ºã‚ãŸã€‚"
 ],
-answer:"‚±‚Ì‰ÄAƒI[ƒXƒgƒ‰ƒŠƒA‚ğ–K‚ê‚½‚±‚Æ‚ğŒˆ‚µ‚Ä–Y‚ê‚È‚¢B",
-explanation:"forget doing ‚Íu`‚µ‚½‚±‚Æ‚ğ–Y‚ê‚év‚Æ‚¢‚¤ˆÓ–¡‚Å‚·B‚±‚±‚Å‚Í–K‚ê‚½ŒoŒ±‚ğ–Y‚ê‚È‚¢‚Æ‚¢‚¤ˆÓ–¡‚Å‚·B"
+answer:"ã“ã®å¤ã€ã‚ªãƒ¼ã‚¹ãƒˆãƒ©ãƒªã‚¢ã‚’è¨ªã‚ŒãŸã“ã¨ã‚’æ±ºã—ã¦å¿˜ã‚Œãªã„ã€‚",
+explanation:"forget doing ã¯ã€Œï½ã—ãŸã“ã¨ã‚’å¿˜ã‚Œã‚‹ã€ã¨ã„ã†æ„å‘³ã§ã™ã€‚ã“ã“ã§ã¯è¨ªã‚ŒãŸçµŒé¨“ã‚’å¿˜ã‚Œãªã„ã¨ã„ã†æ„å‘³ã§ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"ššš",
-question:"Ÿ‚Ì•¶‚ÌˆÓ–¡‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI forgot to take my medicine this morning.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜…",
+question:"æ¬¡ã®æ–‡ã®æ„å‘³ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I forgot to take my medicine this morning.",
 choices:[
-"¡’©A–ò‚ğˆù‚ñ‚¾‚±‚Æ‚ğ–Y‚ê‚½B",
-"¡’©A–ò‚ğˆù‚Ş‚Ì‚ğ–Y‚ê‚½B",
-"¡’©A–ò‚ğˆù‚ñ‚Å‚İ‚½B",
-"¡’©A–ò‚ğˆù‚Ş‚±‚Æ‚ğŒã‰÷‚µ‚½B"
+"ä»Šæœã€è–¬ã‚’é£²ã‚“ã ã“ã¨ã‚’å¿˜ã‚ŒãŸã€‚",
+"ä»Šæœã€è–¬ã‚’é£²ã‚€ã®ã‚’å¿˜ã‚ŒãŸã€‚",
+"ä»Šæœã€è–¬ã‚’é£²ã‚“ã§ã¿ãŸã€‚",
+"ä»Šæœã€è–¬ã‚’é£²ã‚€ã“ã¨ã‚’å¾Œæ‚”ã—ãŸã€‚"
 ],
-answer:"¡’©A–ò‚ğˆù‚Ş‚Ì‚ğ–Y‚ê‚½B",
-explanation:"forget to do ‚Íu`‚·‚é‚±‚Æ‚ğ–Y‚ê‚év‚Æ‚¢‚¤ˆÓ–¡‚Å‚·B"
+answer:"ä»Šæœã€è–¬ã‚’é£²ã‚€ã®ã‚’å¿˜ã‚ŒãŸã€‚",
+explanation:"forget to do ã¯ã€Œï½ã™ã‚‹ã“ã¨ã‚’å¿˜ã‚Œã‚‹ã€ã¨ã„ã†æ„å‘³ã§ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"ššš",
-question:"remember doing ‚Æ remember to do ‚Ìˆá‚¢‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜…",
+question:"remember doing ã¨ remember to do ã®é•ã„ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
 choices:[
-"doing‚Íu‚µ‚½‚±‚Æ‚ğŠo‚¦‚Ä‚¢‚évAto do‚Íu–Y‚ê‚¸‚É`‚·‚év",
-"doing‚Íu`‚·‚é‚±‚Æ‚ğ–Y‚ê‚évAto do‚Íu‚µ‚½‚±‚Æ‚ğŠo‚¦‚Ä‚¢‚év",
-"‚Ç‚¿‚ç‚à‘S‚­“¯‚¶ˆÓ–¡",
-"doing‚Íu`‚µ‚æ‚¤‚Æ‚·‚évAto do‚Íu`‚µ‚½‚±‚Æ‚ğŒã‰÷‚·‚év"
+"doingã¯ã€Œã—ãŸã“ã¨ã‚’è¦šãˆã¦ã„ã‚‹ã€ã€to doã¯ã€Œå¿˜ã‚Œãšã«ï½ã™ã‚‹ã€",
+"doingã¯ã€Œï½ã™ã‚‹ã“ã¨ã‚’å¿˜ã‚Œã‚‹ã€ã€to doã¯ã€Œã—ãŸã“ã¨ã‚’è¦šãˆã¦ã„ã‚‹ã€",
+"ã©ã¡ã‚‰ã‚‚å…¨ãåŒã˜æ„å‘³",
+"doingã¯ã€Œï½ã—ã‚ˆã†ã¨ã™ã‚‹ã€ã€to doã¯ã€Œï½ã—ãŸã“ã¨ã‚’å¾Œæ‚”ã™ã‚‹ã€"
 ],
-answer:"doing‚Íu‚µ‚½‚±‚Æ‚ğŠo‚¦‚Ä‚¢‚évAto do‚Íu–Y‚ê‚¸‚É`‚·‚év",
-explanation:"remember doing‚Í‰ß‹‚ÌŒoŒ±‚ğŠo‚¦‚Ä‚¢‚é‚±‚ÆAremember to do‚Í‚±‚ê‚©‚ç‚·‚é‚×‚«‚±‚Æ‚ğ–Y‚ê‚È‚¢‚±‚Æ‚ğ•\‚µ‚Ü‚·B"
+answer:"doingã¯ã€Œã—ãŸã“ã¨ã‚’è¦šãˆã¦ã„ã‚‹ã€ã€to doã¯ã€Œå¿˜ã‚Œãšã«ï½ã™ã‚‹ã€",
+explanation:"remember doingã¯éå»ã®çµŒé¨“ã‚’è¦šãˆã¦ã„ã‚‹ã“ã¨ã€remember to doã¯ã“ã‚Œã‹ã‚‰ã™ã‚‹ã¹ãã“ã¨ã‚’å¿˜ã‚Œãªã„ã“ã¨ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"ššš",
-question:"try doing ‚Æ try to do ‚ÌˆÓ–¡‚Ìˆá‚¢‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜…",
+question:"try doing ã¨ try to do ã®æ„å‘³ã®é•ã„ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
 choices:[
-"doing‚Íu‚µ‚É`‚µ‚Ä‚İ‚évAto do‚Íu`‚µ‚æ‚¤‚Æ‚·‚év",
-"doing‚Íu`‚µ‚æ‚¤‚Æ‚·‚évAto do‚Íu‚µ‚É`‚µ‚Ä‚İ‚év",
-"‚Ç‚¿‚ç‚àu`‚µ‚½‚±‚Æ‚ğŠo‚¦‚Ä‚¢‚év",
-"‚Ç‚¿‚ç‚àu`‚·‚é‚±‚Æ‚ğŒã‰÷‚·‚év"
+"doingã¯ã€Œè©¦ã—ã«ï½ã—ã¦ã¿ã‚‹ã€ã€to doã¯ã€Œï½ã—ã‚ˆã†ã¨ã™ã‚‹ã€",
+"doingã¯ã€Œï½ã—ã‚ˆã†ã¨ã™ã‚‹ã€ã€to doã¯ã€Œè©¦ã—ã«ï½ã—ã¦ã¿ã‚‹ã€",
+"ã©ã¡ã‚‰ã‚‚ã€Œï½ã—ãŸã“ã¨ã‚’è¦šãˆã¦ã„ã‚‹ã€",
+"ã©ã¡ã‚‰ã‚‚ã€Œï½ã™ã‚‹ã“ã¨ã‚’å¾Œæ‚”ã™ã‚‹ã€"
 ],
-answer:"doing‚Íu‚µ‚É`‚µ‚Ä‚İ‚évAto do‚Íu`‚µ‚æ‚¤‚Æ‚·‚év",
-explanation:"try doing‚Í•û–@‚Æ‚µ‚Ä‚µ‚Ä‚İ‚é‚±‚ÆAtry to do‚Í“w—Í‚µ‚Ä`‚µ‚æ‚¤‚Æ‚·‚é‚±‚Æ‚ğ•\‚µ‚Ü‚·B"
+answer:"doingã¯ã€Œè©¦ã—ã«ï½ã—ã¦ã¿ã‚‹ã€ã€to doã¯ã€Œï½ã—ã‚ˆã†ã¨ã™ã‚‹ã€",
+explanation:"try doingã¯æ–¹æ³•ã¨ã—ã¦è©¦ã—ã¦ã¿ã‚‹ã“ã¨ã€try to doã¯åŠªåŠ›ã—ã¦ï½ã—ã‚ˆã†ã¨ã™ã‚‹ã“ã¨ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"š™™",
-question:"uƒoƒXƒPƒbƒgƒ{[ƒ‹‚ğ‚·‚é‚±‚Æ‚ÍŠy‚µ‚¢Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜†â˜†",
+question:"ã€Œãƒã‚¹ã‚±ãƒƒãƒˆãƒœãƒ¼ãƒ«ã‚’ã™ã‚‹ã“ã¨ã¯æ¥½ã—ã„ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"Playing basketball is fun.",
-explanation:"“®–¼Œ Playing basketball ‚ğåŒê‚É‚µ‚Ü‚·B"
+explanation:"å‹•åè© Playing basketball ã‚’ä¸»èªã«ã—ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"š™™",
-question:"u„‚Í‰¹Šy‚ğ’®‚­‚±‚Æ‚ªD‚«‚Å‚·Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜†â˜†",
+question:"ã€Œç§ã¯éŸ³æ¥½ã‚’è´ãã“ã¨ãŒå¥½ãã§ã™ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I like listening to music.",
-explanation:"like‚Ì–Ú“IŒê‚Æ‚µ‚Ä“®–¼Œ listening to music ‚ğg‚¢‚Ü‚·B"
+explanation:"likeã®ç›®çš„èªã¨ã—ã¦å‹•åè© listening to music ã‚’ä½¿ã„ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"šš™",
-question:"u‚à‚Á‚Æ‘‚­è†‚ğ‘‚©‚È‚­‚Ä‚·‚İ‚Ü‚¹‚ñBv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜†",
+question:"ã€Œã‚‚ã£ã¨æ—©ãæ‰‹ç´™ã‚’æ›¸ã‹ãªãã¦ã™ã¿ã¾ã›ã‚“ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I'm sorry for not writing sooner.",
-explanation:"for‚Í‘O’uŒ‚È‚Ì‚ÅA‚»‚ÌŒã‚ë‚É‚Í“®–¼Œ‚ğ’u‚«‚Ü‚·B”Û’è‚Í not writing ‚Å‚·B"
+explanation:"forã¯å‰ç½®è©ãªã®ã§ã€ãã®å¾Œã‚ã«ã¯å‹•åè©ã‚’ç½®ãã¾ã™ã€‚å¦å®šã¯ not writing ã§ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"šš™",
-question:"u„‚½‚¿‚Íƒgƒ‰ƒ“ƒv‚ğ‚µ‚ÄŠy‚µ‚ñ‚¾Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜†",
+question:"ã€Œç§ãŸã¡ã¯ãƒˆãƒ©ãƒ³ãƒ—ã‚’ã—ã¦æ¥½ã—ã‚“ã ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"We enjoyed playing cards.",
-explanation:"enjoy‚Í“®–¼Œ‚ğ–Ú“IŒê‚É‚Æ‚é‚½‚ßAenjoyed playing cards ‚Æ‚È‚è‚Ü‚·B"
+explanation:"enjoyã¯å‹•åè©ã‚’ç›®çš„èªã«ã¨ã‚‹ãŸã‚ã€enjoyed playing cards ã¨ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"šš™",
-question:"u‚ ‚È‚½‚É‚Ü‚½‰ï‚¢‚½‚¢Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜†",
+question:"ã€Œã‚ãªãŸã«ã¾ãŸä¼šã„ãŸã„ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I hope to see you again.",
-explanation:"hope‚Í•s’èŒ‚ğ–Ú“IŒê‚É‚Æ‚é“®Œ‚È‚Ì‚Å hope to do ‚ÌŒ`‚É‚µ‚Ü‚·B"
+explanation:"hopeã¯ä¸å®šè©ã‚’ç›®çš„èªã«ã¨ã‚‹å‹•è©ãªã®ã§ hope to do ã®å½¢ã«ã—ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"ššš",
-question:"u”Ş—‚ÍŠÅŒìt‚¾‚Á‚½‚±‚Æ‚ğŒÖ‚è‚Év‚Á‚Ä‚¢‚éBv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜…",
+question:"ã€Œå½¼å¥³ã¯çœ‹è­·å¸«ã ã£ãŸã“ã¨ã‚’èª‡ã‚Šã«æ€ã£ã¦ã„ã‚‹ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"She is proud of having been a nurse.",
-explanation:"åß‚æ‚è‘O‚ÌuŠÅŒìt‚¾‚Á‚½v‚Æ‚¢‚¤ŒoŒ±‚È‚Ì‚ÅAŠ®—¹Œ`‚Ì“®–¼Œ having been ‚ğg‚¢‚Ü‚·B"
+explanation:"ä¸»ç¯€ã‚ˆã‚Šå‰ã®ã€Œçœ‹è­·å¸«ã ã£ãŸã€ã¨ã„ã†çµŒé¨“ãªã®ã§ã€å®Œäº†å½¢ã®å‹•åè© having been ã‚’ä½¿ã„ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"ššš",
-question:"u¡’©A„‚Í–ò‚ğˆù‚Ş‚Ì‚ğ–Y‚ê‚½Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜…",
+question:"ã€Œä»Šæœã€ç§ã¯è–¬ã‚’é£²ã‚€ã®ã‚’å¿˜ã‚ŒãŸã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I forgot to take my medicine this morning.",
-explanation:"forget to do ‚Íu`‚·‚é‚Ì‚ğ–Y‚ê‚év‚Æ‚¢‚¤ˆÓ–¡‚Å‚·B"
+explanation:"forget to do ã¯ã€Œï½ã™ã‚‹ã®ã‚’å¿˜ã‚Œã‚‹ã€ã¨ã„ã†æ„å‘³ã§ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"ššš",
-question:"u‚±‚Ì‰ÄAƒI[ƒXƒgƒ‰ƒŠƒA‚ğ–K‚ê‚½‚±‚Æ‚ğŒˆ‚µ‚Ä–Y‚ê‚È‚¢Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜…",
+question:"ã€Œã“ã®å¤ã€ã‚ªãƒ¼ã‚¹ãƒˆãƒ©ãƒªã‚¢ã‚’è¨ªã‚ŒãŸã“ã¨ã‚’æ±ºã—ã¦å¿˜ã‚Œãªã„ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I'll never forget visiting Australia this summer.",
-explanation:"forget doing ‚Íu`‚µ‚½‚±‚Æ‚ğ–Y‚ê‚év‚Æ‚¢‚¤ˆÓ–¡‚È‚Ì‚ÅAvisiting‚ğg‚¢‚Ü‚·B"
+explanation:"forget doing ã¯ã€Œï½ã—ãŸã“ã¨ã‚’å¿˜ã‚Œã‚‹ã€ã¨ã„ã†æ„å‘³ãªã®ã§ã€visitingã‚’ä½¿ã„ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"ššš",
-question:"u‚µ‚É‚»‚Ì–{‚ğ“Ç‚ñ‚Å‚İ‚½Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚ÉAtry‚ğg‚Á‚Ä‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜…",
+question:"ã€Œè©¦ã—ã«ãã®æœ¬ã‚’èª­ã‚“ã§ã¿ãŸã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«ã€tryã‚’ä½¿ã£ã¦è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I tried reading the book.",
-explanation:"try doing ‚Íu‚µ‚É`‚µ‚Ä‚İ‚év‚Æ‚¢‚¤ˆÓ–¡‚Å‚·B"
+explanation:"try doing ã¯ã€Œè©¦ã—ã«ï½ã—ã¦ã¿ã‚‹ã€ã¨ã„ã†æ„å‘³ã§ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"ššš",
-question:"u3‚É”Ş‚É‰ï‚¤‚±‚Æ‚ğ–Y‚ê‚¸‚ÉŠo‚¦‚Ä‚¨‚©‚È‚¯‚ê‚Î‚È‚ç‚È‚¢Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚ÉAremember‚ğg‚Á‚Ä‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜…",
+question:"ã€Œ3æ™‚ã«å½¼ã«ä¼šã†ã“ã¨ã‚’å¿˜ã‚Œãšã«è¦šãˆã¦ãŠã‹ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«ã€rememberã‚’ä½¿ã£ã¦è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I must remember to meet him at three.",
-explanation:"remember to do ‚Íu–Y‚ê‚¸‚É`‚·‚év‚Æ‚¢‚¤ˆÓ–¡‚Å‚·B"
+explanation:"remember to do ã¯ã€Œå¿˜ã‚Œãšã«ï½ã™ã‚‹ã€ã¨ã„ã†æ„å‘³ã§ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì•¶‚Ì to get enough sleep ‚Ì—p–@‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BIt's important to get enough sleep.",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®æ–‡ã® to get enough sleep ã®ç”¨æ³•ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚It's important to get enough sleep.",
 choices:[
-"–¼Œ“I—p–@",
-"Œ`—eŒ“I—p–@",
-"•›Œ“I—p–@",
-"•s’èŒ‚Ìó“®‘Ô"
+"åè©çš„ç”¨æ³•",
+"å½¢å®¹è©çš„ç”¨æ³•",
+"å‰¯è©çš„ç”¨æ³•",
+"ä¸å®šè©ã®å—å‹•æ…‹"
 ],
-answer:"–¼Œ“I—p–@",
-explanation:"to get enough sleep ‚Íu\•ª‚È‡–°‚ğ‚Æ‚é‚±‚Æv‚Æ‚¢‚¤ˆÓ–¡‚ÅA•¶‚Ì“à—e‚ğ•\‚·–¼Œ“I—p–@‚Å‚·B"
+answer:"åè©çš„ç”¨æ³•",
+explanation:"to get enough sleep ã¯ã€Œååˆ†ãªç¡çœ ã‚’ã¨ã‚‹ã“ã¨ã€ã¨ã„ã†æ„å‘³ã§ã€æ–‡ã®å†…å®¹ã‚’è¡¨ã™åè©çš„ç”¨æ³•ã§ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì•¶‚Ì to be a singer ‚Ì“­‚«‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BHer dream is to be a singer.",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®æ–‡ã® to be a singer ã®åƒãã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚Her dream is to be a singer.",
 choices:[
-"åŒê",
-"•âŒê",
-"–Ú“IŒê",
-"•›Œ"
+"ä¸»èª",
+"è£œèª",
+"ç›®çš„èª",
+"å‰¯è©"
 ],
-answer:"•âŒê",
-explanation:"to be a singer ‚Í Her dream ‚Ì“à—e‚ğà–¾‚·‚é•âŒê‚É‚È‚Á‚Ä‚¢‚Ü‚·B"
+answer:"è£œèª",
+explanation:"to be a singer ã¯ Her dream ã®å†…å®¹ã‚’èª¬æ˜ã™ã‚‹è£œèªã«ãªã£ã¦ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì•¶‚Ì to go to university ‚Ì—p–@‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI hope to go to university.",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®æ–‡ã® to go to university ã®ç”¨æ³•ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I hope to go to university.",
 choices:[
-"–¼Œ“I—p–@",
-"Œ`—eŒ“I—p–@",
-"•›Œ“I—p–@",
-"ó“®‘Ô"
+"åè©çš„ç”¨æ³•",
+"å½¢å®¹è©çš„ç”¨æ³•",
+"å‰¯è©çš„ç”¨æ³•",
+"å—å‹•æ…‹"
 ],
-answer:"–¼Œ“I—p–@",
-explanation:"to go to university ‚Í hope ‚Ì–Ú“IŒê‚Æ‚È‚èAu‘åŠw‚És‚­‚±‚Æ‚ğŠó–]‚·‚év‚Æ‚¢‚¤ˆÓ–¡‚ğ•\‚µ‚Ä‚¢‚Ü‚·B"
+answer:"åè©çš„ç”¨æ³•",
+explanation:"to go to university ã¯ hope ã®ç›®çš„èªã¨ãªã‚Šã€ã€Œå¤§å­¦ã«è¡Œãã“ã¨ã‚’å¸Œæœ›ã™ã‚‹ã€ã¨ã„ã†æ„å‘³ã‚’è¡¨ã—ã¦ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì to help him ‚Ì—p–@‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BLuckily, he had friends to help him.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã® to help him ã®ç”¨æ³•ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚Luckily, he had friends to help him.",
 choices:[
-"friends‚ğCü‚·‚éŒ`—eŒ“I—p–@",
-"had‚ğCü‚·‚é•›Œ“I—p–@",
-"he‚Ì“à—e‚ğ•\‚·–¼Œ“I—p–@",
-"luckily‚ğCü‚·‚é•›Œ“I—p–@"
+"friendsã‚’ä¿®é£¾ã™ã‚‹å½¢å®¹è©çš„ç”¨æ³•",
+"hadã‚’ä¿®é£¾ã™ã‚‹å‰¯è©çš„ç”¨æ³•",
+"heã®å†…å®¹ã‚’è¡¨ã™åè©çš„ç”¨æ³•",
+"luckilyã‚’ä¿®é£¾ã™ã‚‹å‰¯è©çš„ç”¨æ³•"
 ],
-answer:"friends‚ğCü‚·‚éŒ`—eŒ“I—p–@",
-explanation:"to help him ‚Íu”Ş‚ğ•‚¯‚Ä‚­‚ê‚év‚Æ‚¢‚¤ˆÓ–¡‚ÅA’¼‘O‚Ì friends ‚ğCü‚µ‚Ä‚¢‚Ü‚·B"
+answer:"friendsã‚’ä¿®é£¾ã™ã‚‹å½¢å®¹è©çš„ç”¨æ³•",
+explanation:"to help him ã¯ã€Œå½¼ã‚’åŠ©ã‘ã¦ãã‚Œã‚‹ã€ã¨ã„ã†æ„å‘³ã§ã€ç›´å‰ã® friends ã‚’ä¿®é£¾ã—ã¦ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"something to write with ‚ÌˆÓ–¡‚Æ‚µ‚ÄÅ‚à“KØ‚È‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"something to write with ã®æ„å‘³ã¨ã—ã¦æœ€ã‚‚é©åˆ‡ãªã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
 choices:[
-"‰½‚©‘‚­‚à‚Ì",
-"‰½‚©“Ç‚Ş‚à‚Ì",
-"‰½‚©H‚×‚é‚à‚Ì",
-"‰½‚©•·‚­‚à‚Ì"
+"ä½•ã‹æ›¸ãã‚‚ã®",
+"ä½•ã‹èª­ã‚€ã‚‚ã®",
+"ä½•ã‹é£Ÿã¹ã‚‹ã‚‚ã®",
+"ä½•ã‹èãã‚‚ã®"
 ],
-answer:"‰½‚©‘‚­‚à‚Ì",
-explanation:"something to write with ‚Íu‰½‚©‚ğ‘‚­‚½‚ß‚Ég‚¤‚à‚Ìv‚Æ‚¢‚¤ˆÓ–¡‚Å‚·Bwith‚ğ–Y‚ê‚È‚¢‚±‚Æ‚ªd—v‚Å‚·B"
+answer:"ä½•ã‹æ›¸ãã‚‚ã®",
+explanation:"something to write with ã¯ã€Œä½•ã‹ã‚’æ›¸ããŸã‚ã«ä½¿ã†ã‚‚ã®ã€ã¨ã„ã†æ„å‘³ã§ã™ã€‚withã‚’å¿˜ã‚Œãªã„ã“ã¨ãŒé‡è¦ã§ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì to catch the 6:30 train ‚Ì—p–@‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI got up early to catch the 6:30 train.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã® to catch the 6:30 train ã®ç”¨æ³•ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I got up early to catch the 6:30 train.",
 choices:[
-"–Ú“I‚ğ•\‚·•›Œ“I—p–@",
-"–¼Œ“I—p–@",
-"Œ`—eŒ“I—p–@",
-"•âŒê‚Æ‚µ‚Ä‚Ì—p–@"
+"ç›®çš„ã‚’è¡¨ã™å‰¯è©çš„ç”¨æ³•",
+"åè©çš„ç”¨æ³•",
+"å½¢å®¹è©çš„ç”¨æ³•",
+"è£œèªã¨ã—ã¦ã®ç”¨æ³•"
 ],
-answer:"–Ú“I‚ğ•\‚·•›Œ“I—p–@",
-explanation:"to catch the 6:30 train ‚Íu630•ª‚Ì“dÔ‚Éæ‚é‚½‚ß‚Év‚Æ‚¢‚¤–Ú“I‚ğ•\‚µ‚Ä‚¢‚Ü‚·B"
+answer:"ç›®çš„ã‚’è¡¨ã™å‰¯è©çš„ç”¨æ³•",
+explanation:"to catch the 6:30 train ã¯ã€Œ6æ™‚30åˆ†ã®é›»è»Šã«ä¹—ã‚‹ãŸã‚ã«ã€ã¨ã„ã†ç›®çš„ã‚’è¡¨ã—ã¦ã„ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"š™™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI'm glad     you.",
+type:"é¸æŠå¼",
+level:"â˜…â˜†â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I'm glad â–¡â–¡â–¡ you.",
 choices:[
 "to see",
 "see to",
@@ -2803,12 +2803,12 @@ choices:[
 "to seeing"
 ],
 answer:"to see",
-explanation:"glad to do ‚Åu`‚µ‚Ä‚¤‚ê‚µ‚¢v‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"glad to do ã§ã€Œï½ã—ã¦ã†ã‚Œã—ã„ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BHe is smart     solve the puzzle.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚He is smart â–¡â–¡â–¡ solve the puzzle.",
 choices:[
 "enough to",
 "to enough",
@@ -2816,12 +2816,12 @@ choices:[
 "too enough"
 ],
 answer:"enough to",
-explanation:"Œ`—eŒ{enough{to do ‚Åu`‚·‚é‚Ù‚Ç\•ª‚Éc‚¾v‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"å½¢å®¹è©ï¼‹enoughï¼‹to do ã§ã€Œï½ã™ã‚‹ã»ã©ååˆ†ã«â€¦ã ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BWe arrived early         get good seats.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚We arrived early â–¡â–¡â–¡ â–¡â–¡â–¡ get good seats.",
 choices:[
 "in order to",
 "so that to",
@@ -2829,12 +2829,12 @@ choices:[
 "too to"
 ],
 answer:"in order to",
-explanation:"in order to do ‚Íu`‚·‚é‚½‚ß‚Év‚Æ‚¢‚¤–Ú“I‚ğ•\‚µ‚Ü‚·B"
+explanation:"in order to do ã¯ã€Œï½ã™ã‚‹ãŸã‚ã«ã€ã¨ã„ã†ç›®çš„ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI don't know     to do.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I don't know â–¡â–¡â–¡ to do.",
 choices:[
 "what",
 "where",
@@ -2842,12 +2842,12 @@ choices:[
 "why"
 ],
 answer:"what",
-explanation:"what to do ‚Åu‰½‚ğ‚·‚×‚«‚©v‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"what to do ã§ã€Œä½•ã‚’ã™ã¹ãã‹ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI want you     come to tomorrow's party.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I want you â–¡â–¡â–¡ come to tomorrow's party.",
 choices:[
 "to",
 "for",
@@ -2855,12 +2855,12 @@ choices:[
 "at"
 ],
 answer:"to",
-explanation:"want{O{to do ‚ÅuO‚É`‚µ‚Ä‚Ù‚µ‚¢v‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"wantï¼‹Oï¼‹to do ã§ã€ŒOã«ï½ã—ã¦ã»ã—ã„ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BMy parents won't allow me     study abroad.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚My parents won't allow me â–¡â–¡â–¡ study abroad.",
 choices:[
 "to",
 "for",
@@ -2868,12 +2868,12 @@ choices:[
 "at"
 ],
 answer:"to",
-explanation:"allow{O{to do ‚ÅuO‚ª`‚·‚é‚Ì‚ğ‹–‚·v‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"allowï¼‹Oï¼‹to do ã§ã€ŒOãŒï½ã™ã‚‹ã®ã‚’è¨±ã™ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BHe asked me     save a seat for him.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚He asked me â–¡â–¡â–¡ save a seat for him.",
 choices:[
 "to",
 "for",
@@ -2881,12 +2881,12 @@ choices:[
 "at"
 ],
 answer:"to",
-explanation:"ask{O{to do ‚ÅuO‚É`‚·‚é‚æ‚¤—Š‚Şv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"askï¼‹Oï¼‹to do ã§ã€ŒOã«ï½ã™ã‚‹ã‚ˆã†é ¼ã‚€ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BMy mother made me     my room.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚My mother made me â–¡â–¡â–¡ my room.",
 choices:[
 "clean",
 "to clean",
@@ -2894,12 +2894,12 @@ choices:[
 "cleaned"
 ],
 answer:"clean",
-explanation:"make{O{Œ´Œ`•s’èŒ‚ÅuO‚É`‚³‚¹‚év‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·Bmake‚ÌŒã‚Å‚Íto‚ğ•t‚¯‚Ü‚¹‚ñB"
+explanation:"makeï¼‹Oï¼‹åŸå½¢ä¸å®šè©ã§ã€ŒOã«ï½ã•ã›ã‚‹ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚makeã®å¾Œã§ã¯toã‚’ä»˜ã‘ã¾ã›ã‚“ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BMy father let me     to the movies.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚My father let me â–¡â–¡â–¡ to the movies.",
 choices:[
 "go",
 "to go",
@@ -2907,12 +2907,12 @@ choices:[
 "went"
 ],
 answer:"go",
-explanation:"let{O{Œ´Œ`•s’èŒ‚ÅuO‚ª`‚·‚é‚Ì‚ğ‹–‚·v‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"letï¼‹Oï¼‹åŸå½¢ä¸å®šè©ã§ã€ŒOãŒï½ã™ã‚‹ã®ã‚’è¨±ã™ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI had the porter     my baggage.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I had the porter â–¡â–¡â–¡ my baggage.",
 choices:[
 "carry",
 "to carry",
@@ -2920,12 +2920,12 @@ choices:[
 "carried"
 ],
 answer:"carry",
-explanation:"have{O{Œ´Œ`•s’èŒ‚ÅuO‚É`‚µ‚Ä‚à‚ç‚¤v‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"haveï¼‹Oï¼‹åŸå½¢ä¸å®šè©ã§ã€ŒOã«ï½ã—ã¦ã‚‚ã‚‰ã†ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BI saw the man     out of the car.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚I saw the man â–¡â–¡â–¡ out of the car.",
 choices:[
 "get",
 "to get",
@@ -2933,25 +2933,25 @@ choices:[
 "got"
 ],
 answer:"get",
-explanation:"see{O{Œ´Œ`•s’èŒ‚ÅuO‚ª`‚·‚é‚Ì‚ğŒ©‚év‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"seeï¼‹Oï¼‹åŸå½¢ä¸å®šè©ã§ã€ŒOãŒï½ã™ã‚‹ã®ã‚’è¦‹ã‚‹ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"ššš",
-question:"Ÿ‚Ì‰p•¶‚ÌˆÓ–¡‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BHe seems to have been ill.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜…",
+question:"æ¬¡ã®è‹±æ–‡ã®æ„å‘³ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚He seems to have been ill.",
 choices:[
-"”Ş‚Í•a‹C‚¾‚Á‚½‚Æv‚í‚ê‚éB",
-"”Ş‚Í•a‹C‚É‚È‚é‚Æv‚í‚ê‚éB",
-"”Ş‚Í•a‹C‚Å‚ ‚éÅ’†‚¾‚Æv‚í‚ê‚éB",
-"”Ş‚Í•a‹C‚É‚È‚é‚½‚ß‚É“w—Í‚µ‚½B"
+"å½¼ã¯ç—…æ°—ã ã£ãŸã¨æ€ã‚ã‚Œã‚‹ã€‚",
+"å½¼ã¯ç—…æ°—ã«ãªã‚‹ã¨æ€ã‚ã‚Œã‚‹ã€‚",
+"å½¼ã¯ç—…æ°—ã§ã‚ã‚‹æœ€ä¸­ã ã¨æ€ã‚ã‚Œã‚‹ã€‚",
+"å½¼ã¯ç—…æ°—ã«ãªã‚‹ãŸã‚ã«åŠªåŠ›ã—ãŸã€‚"
 ],
-answer:"”Ş‚Í•a‹C‚¾‚Á‚½‚Æv‚í‚ê‚éB",
-explanation:"to have{‰ß‹•ªŒ‚ÍŠ®—¹Œ`‚ÅAseems ‚æ‚è‘O‚Ìo—ˆ–Eó‘Ô‚ğ•\‚µ‚Ü‚·B"
+answer:"å½¼ã¯ç—…æ°—ã ã£ãŸã¨æ€ã‚ã‚Œã‚‹ã€‚",
+explanation:"to haveï¼‹éå»åˆ†è©ã¯å®Œäº†å½¢ã§ã€seems ã‚ˆã‚Šå‰ã®å‡ºæ¥äº‹ãƒ»çŠ¶æ…‹ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"šš™",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BShe told me     to be late.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚She told me â–¡â–¡â–¡ to be late.",
 choices:[
 "not",
 "no",
@@ -2959,12 +2959,12 @@ choices:[
 "didn't"
 ],
 answer:"not",
-explanation:"•s’èŒ‚ğ”Û’è‚·‚é‚Æ‚«‚Í not to do ‚ÌŒ`‚É‚µ‚Ü‚·B"
+explanation:"ä¸å®šè©ã‚’å¦å®šã™ã‚‹ã¨ãã¯ not to do ã®å½¢ã«ã—ã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"ššš",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BShe seems         enjoying her holiday.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜…",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚She seems â–¡â–¡â–¡ â–¡â–¡â–¡ enjoying her holiday.",
 choices:[
 "to be",
 "to have",
@@ -2972,12 +2972,12 @@ choices:[
 "being to"
 ],
 answer:"to be",
-explanation:"to be{doing ‚Å•s’èŒ‚ÌisŒ`‚Æ‚È‚èAu`‚µ‚Ä‚¢‚é‚æ‚¤‚¾v‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚è‚Ü‚·B"
+explanation:"to beï¼‹doing ã§ä¸å®šè©ã®é€²è¡Œå½¢ã¨ãªã‚Šã€ã€Œï½ã—ã¦ã„ã‚‹ã‚ˆã†ã ã€ã¨ã„ã†æ„å‘³ã«ãªã‚Šã¾ã™ã€‚"
 },
 {
-type:"‘I‘ğ®",
-level:"ššš",
-question:"Ÿ‚Ì•¶‚Ì‹óŠ‚É“ü‚é‚à‚Ì‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©BChildren need         accompanied by an adult.",
+type:"é¸æŠå¼",
+level:"â˜…â˜…â˜…",
+question:"æ¬¡ã®æ–‡ã®ç©ºæ‰€ã«å…¥ã‚‹ã‚‚ã®ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚Children need â–¡â–¡â–¡ â–¡â–¡â–¡ accompanied by an adult.",
 choices:[
 "to be",
 "to have",
@@ -2985,77 +2985,77 @@ choices:[
 "being to"
 ],
 answer:"to be",
-explanation:"to be{‰ß‹•ªŒ‚Å•s’èŒ‚Ìó“®‘Ô‚ğ•\‚µ‚Ü‚·BChildren need to be accompanied ‚Åuq‚Ç‚à‚½‚¿‚Í‘ål‚É“¯s‚µ‚Ä‚à‚ç‚¤•K—v‚ª‚ ‚év‚Æ‚¢‚¤ˆÓ–¡‚Å‚·B"
+explanation:"to beï¼‹éå»åˆ†è©ã§ä¸å®šè©ã®å—å‹•æ…‹ã‚’è¡¨ã—ã¾ã™ã€‚Children need to be accompanied ã§ã€Œå­ã©ã‚‚ãŸã¡ã¯å¤§äººã«åŒè¡Œã—ã¦ã‚‚ã‚‰ã†å¿…è¦ãŒã‚ã‚‹ã€ã¨ã„ã†æ„å‘³ã§ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"š™™",
-question:"u\•ª‚È‡–°‚ğ‚Æ‚é‚±‚Æ‚Í‘åØ‚Å‚·Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚ÉAIt‚©‚çn‚ß‚Ä‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜†â˜†",
+question:"ã€Œååˆ†ãªç¡çœ ã‚’ã¨ã‚‹ã“ã¨ã¯å¤§åˆ‡ã§ã™ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«ã€Itã‹ã‚‰å§‹ã‚ã¦è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"It's important to get enough sleep.",
-explanation:"It is ` to do ‚ÌŒ`®åŒê\•¶‚ğg‚¢‚Ü‚·B"
+explanation:"It is ï½ to do ã®å½¢å¼ä¸»èªæ§‹æ–‡ã‚’ä½¿ã„ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"š™™",
-question:"u„‚Í‘åŠw‚És‚­‚±‚Æ‚ğŠó–]‚µ‚Ä‚¢‚Ü‚·Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚ÉAI hope‚©‚çn‚ß‚Ä‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜†â˜†",
+question:"ã€Œç§ã¯å¤§å­¦ã«è¡Œãã“ã¨ã‚’å¸Œæœ›ã—ã¦ã„ã¾ã™ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«ã€I hopeã‹ã‚‰å§‹ã‚ã¦è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I hope to go to university.",
-explanation:"hope‚Ì–Ú“IŒê‚Æ‚µ‚Äto go to university‚ğ’u‚«‚Ü‚·B"
+explanation:"hopeã®ç›®çš„èªã¨ã—ã¦to go to universityã‚’ç½®ãã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"šš™",
-question:"Ÿ‚Ì‰p•¶‚ğ“ú–{Œê‚É–ó‚µ‚È‚³‚¢BI found it easy to book a hotel online.",
-answer:"„‚ÍƒCƒ“ƒ^[ƒlƒbƒg‚Åƒzƒeƒ‹‚ğ—\–ñ‚·‚é‚±‚Æ‚ªŠÈ’P‚¾‚Æ‚í‚©‚Á‚½B",
-explanation:"find{it{Œ`—eŒ{to do ‚Ì\•¶‚Å‚·Bit‚ÍŒ`®–Ú“IŒê‚ÅAto book a hotel online‚ª“à—e‚ğ•\‚µ‚Ü‚·B"
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜†",
+question:"æ¬¡ã®è‹±æ–‡ã‚’æ—¥æœ¬èªã«è¨³ã—ãªã•ã„ã€‚I found it easy to book a hotel online.",
+answer:"ç§ã¯ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã§ãƒ›ãƒ†ãƒ«ã‚’äºˆç´„ã™ã‚‹ã“ã¨ãŒç°¡å˜ã ã¨ã‚ã‹ã£ãŸã€‚",
+explanation:"findï¼‹itï¼‹å½¢å®¹è©ï¼‹to do ã®æ§‹æ–‡ã§ã™ã€‚itã¯å½¢å¼ç›®çš„èªã§ã€to book a hotel onlineãŒå†…å®¹ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"šš™",
-question:"u¡“ú‚Í‚·‚é‚×‚«‚±‚Æ‚ª‚½‚­‚³‚ñ‚ ‚è‚Ü‚·Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜†",
+question:"ã€Œä»Šæ—¥ã¯ã™ã‚‹ã¹ãã“ã¨ãŒãŸãã•ã‚“ã‚ã‚Šã¾ã™ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I have a lot of things to do today.",
-explanation:"things to do ‚Íu‚·‚é‚×‚«‚±‚Æv‚Æ‚¢‚¤ˆÓ–¡‚ÅAto do‚ªthings‚ğCü‚µ‚Ä‚¢‚Ü‚·B"
+explanation:"things to do ã¯ã€Œã™ã‚‹ã¹ãã“ã¨ã€ã¨ã„ã†æ„å‘³ã§ã€to doãŒthingsã‚’ä¿®é£¾ã—ã¦ã„ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"šš™",
-question:"u„‚Í‚ ‚È‚½‚É–¾“ú‚Ìƒp[ƒeƒB[‚É—ˆ‚Ä‚Ù‚µ‚¢Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜†",
+question:"ã€Œç§ã¯ã‚ãªãŸã«æ˜æ—¥ã®ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã«æ¥ã¦ã»ã—ã„ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I want you to come to tomorrow's party.",
-explanation:"want{O{to do ‚ÅuO‚É`‚µ‚Ä‚Ù‚µ‚¢v‚Æ‚¢‚¤ˆÓ–¡‚ğ•\‚µ‚Ü‚·B"
+explanation:"wantï¼‹Oï¼‹to do ã§ã€ŒOã«ï½ã—ã¦ã»ã—ã„ã€ã¨ã„ã†æ„å‘³ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"šš™",
-question:"u•ê‚Í„‚É•”‰®‚ğ‘|œ‚³‚¹‚½Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜†",
+question:"ã€Œæ¯ã¯ç§ã«éƒ¨å±‹ã‚’æƒé™¤ã•ã›ãŸã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"My mother made me clean my room.",
-explanation:"make{O{Œ´Œ`•s’èŒ‚ÅuO‚É`‚³‚¹‚év‚ğ•\‚µ‚Ü‚·B"
+explanation:"makeï¼‹Oï¼‹åŸå½¢ä¸å®šè©ã§ã€ŒOã«ï½ã•ã›ã‚‹ã€ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"ššš",
-question:"u”Ş‚Í•a‹C‚¾‚Á‚½‚Æv‚í‚ê‚éBv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜…",
+question:"ã€Œå½¼ã¯ç—…æ°—ã ã£ãŸã¨æ€ã‚ã‚Œã‚‹ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"He seems to have been ill.",
-explanation:"to have been ill ‚ÍŠ®—¹Œ`‚Ì•s’èŒ‚ÅAseems‚æ‚è‘O‚Ìu•a‹C‚¾‚Á‚½v‚Æ‚¢‚¤ó‘Ô‚ğ•\‚µ‚Ü‚·B"
+explanation:"to have been ill ã¯å®Œäº†å½¢ã®ä¸å®šè©ã§ã€seemsã‚ˆã‚Šå‰ã®ã€Œç—…æ°—ã ã£ãŸã€ã¨ã„ã†çŠ¶æ…‹ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"šš™",
-question:"u”Ş—‚Í„‚É’x‚ê‚È‚¢‚æ‚¤‚ÉŒ¾‚Á‚½Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚ÉAŸ‚Ì‰p•¶‚ğ‘‚«Š·‚¦‚È‚³‚¢BShe told me to be late.",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜†",
+question:"ã€Œå½¼å¥³ã¯ç§ã«é…ã‚Œãªã„ã‚ˆã†ã«è¨€ã£ãŸã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«ã€æ¬¡ã®è‹±æ–‡ã‚’æ›¸ãæ›ãˆãªã•ã„ã€‚She told me to be late.",
 answer:"She told me not to be late.",
-explanation:"•s’èŒ‚ğ”Û’è‚·‚é‚Æ‚«‚Í not to do ‚ÌŒ`‚É‚µ‚Ü‚·B"
+explanation:"ä¸å®šè©ã‚’å¦å®šã™ã‚‹ã¨ãã¯ not to do ã®å½¢ã«ã—ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"ššš",
-question:"u”Ş—‚Í‹x‰É‚ğŠy‚µ‚ñ‚Å‚¢‚é‚æ‚¤‚¾Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜…",
+question:"ã€Œå½¼å¥³ã¯ä¼‘æš‡ã‚’æ¥½ã—ã‚“ã§ã„ã‚‹ã‚ˆã†ã ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"She seems to be enjoying her holiday.",
-explanation:"seem{to be{doing ‚Åu`‚µ‚Ä‚¢‚é‚æ‚¤‚¾v‚Æ‚¢‚¤is’†‚Ìó‘Ô‚ğ•\‚µ‚Ü‚·B"
+explanation:"seemï¼‹to beï¼‹doing ã§ã€Œï½ã—ã¦ã„ã‚‹ã‚ˆã†ã ã€ã¨ã„ã†é€²è¡Œä¸­ã®çŠ¶æ…‹ã‚’è¡¨ã—ã¾ã™ã€‚"
 },
 {
-type:"‹Lq®",
-level:"šš™",
-question:"u„‚Í‰½‚ğ‚·‚×‚«‚©‚í‚©‚ç‚È‚¢Bv‚Æ‚¢‚¤ˆÓ–¡‚É‚È‚é‚æ‚¤‚É‰p•¶‚ğ‘‚«‚È‚³‚¢B",
+type:"è¨˜è¿°å¼",
+level:"â˜…â˜…â˜†",
+question:"ã€Œç§ã¯ä½•ã‚’ã™ã¹ãã‹ã‚ã‹ã‚‰ãªã„ã€‚ã€ã¨ã„ã†æ„å‘³ã«ãªã‚‹ã‚ˆã†ã«è‹±æ–‡ã‚’æ›¸ããªã•ã„ã€‚",
 answer:"I don't know what to do.",
-explanation:"‹^–âŒ{to do ‚ÌŒ`‚Åu‰½‚ğ‚·‚×‚«‚©v‚Æ‚¢‚¤ˆÓ–¡‚ğ•\‚µ‚Ü‚·B"
+explanation:"ç–‘å•è©ï¼‹to do ã®å½¢ã§ã€Œä½•ã‚’ã™ã¹ãã‹ã€ã¨ã„ã†æ„å‘³ã‚’è¡¨ã—ã¾ã™ã€‚"
 }
 
 
@@ -3063,299 +3063,299 @@ explanation:"‹^–âŒ{to do ‚ÌŒ`‚Åu‰½‚ğ‚·‚×‚«‚©v‚Æ‚¢‚¤ˆÓ–¡‚ğ•\‚µ‚Ü‚·B"
 ];
 const mathAQuestions = [
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "1ŒÂ‚ÌƒTƒCƒRƒ‚ğ1‰ñ“Š‚°‚é‚Æ‚«A3‚Ì”{”‚Ì–Ú‚ªo‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "1å€‹ã®ã‚µã‚¤ã‚³ãƒ­ã‚’1å›æŠ•ã’ã‚‹ã¨ãã€3ã®å€æ•°ã®ç›®ãŒå‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/6", "1/3", "1/2", "2/3"],
         answer: "1/3",
-        explanation: "3‚Ì”{”‚Ì–Ú‚Í3A6‚Ì2’Ê‚èB‘S‘Ì‚Í6’Ê‚è‚È‚Ì‚ÅA2/6=1/3B"
+        explanation: "3ã®å€æ•°ã®ç›®ã¯3ã€6ã®2é€šã‚Šã€‚å…¨ä½“ã¯6é€šã‚Šãªã®ã§ã€2/6=1/3ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "1–‡‚Ìd‰İ‚ğ3‰ñ“Š‚°‚é‚Æ‚«A•\‚ª‚¿‚å‚¤‚Ç2‰ño‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "1æšã®ç¡¬è²¨ã‚’3å›æŠ•ã’ã‚‹ã¨ãã€è¡¨ãŒã¡ã‚‡ã†ã©2å›å‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/4", "3/8", "1/2", "5/8"],
         answer: "3/8",
-        explanation: "•\E— ‚Ìo•û‚Í2^3=8’Ê‚èB•\‚ª‚¿‚å‚¤‚Ç2‰ño‚éê‡‚Í3C2=3’Ê‚è‚È‚Ì‚ÅA3/8B"
+        explanation: "è¡¨ãƒ»è£ã®å‡ºæ–¹ã¯2^3=8é€šã‚Šã€‚è¡¨ãŒã¡ã‚‡ã†ã©2å›å‡ºã‚‹å ´åˆã¯3C2=3é€šã‚Šãªã®ã§ã€3/8ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "1ŒÂ‚ÌƒTƒCƒRƒ‚ğ2‰ñ“Š‚°‚é‚Æ‚«A2‰ñ‚Æ‚àŠï”‚Ì–Ú‚ªo‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "1å€‹ã®ã‚µã‚¤ã‚³ãƒ­ã‚’2å›æŠ•ã’ã‚‹ã¨ãã€2å›ã¨ã‚‚å¥‡æ•°ã®ç›®ãŒå‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/6", "1/4", "1/3", "1/2"],
         answer: "1/4",
-        explanation: "Šï”‚Í1A3A5‚Ì3’Ê‚èB1‰ñ‚ÅŠï”‚ªo‚éŠm—¦‚Í3/6=1/2B2‰ñ‚Æ‚àŠï”‚È‚Ì‚ÅA1/2~1/2=1/4B"
+        explanation: "å¥‡æ•°ã¯1ã€3ã€5ã®3é€šã‚Šã€‚1å›ã§å¥‡æ•°ãŒå‡ºã‚‹ç¢ºç‡ã¯3/6=1/2ã€‚2å›ã¨ã‚‚å¥‡æ•°ãªã®ã§ã€1/2Ã—1/2=1/4ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "1‚©‚ç10‚Ü‚Å‚Ì”š‚ª1–‡‚¸‚Â‘‚©‚ê‚½10–‡‚ÌƒJ[ƒh‚ª‚ ‚éB‚±‚Ì’†‚©‚ç1–‡‚ğ–³ìˆ×‚É‘I‚Ô‚Æ‚«A‘I‚ñ‚¾ƒJ[ƒh‚Ì”š‚ª3‚Ì”{”‚Ü‚½‚Í‹ô”‚Å‚ ‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "1ã‹ã‚‰10ã¾ã§ã®æ•°å­—ãŒ1æšãšã¤æ›¸ã‹ã‚ŒãŸ10æšã®ã‚«ãƒ¼ãƒ‰ãŒã‚ã‚‹ã€‚ã“ã®ä¸­ã‹ã‚‰1æšã‚’ç„¡ä½œç‚ºã«é¸ã¶ã¨ãã€é¸ã‚“ã ã‚«ãƒ¼ãƒ‰ã®æ•°å­—ãŒ3ã®å€æ•°ã¾ãŸã¯å¶æ•°ã§ã‚ã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/2", "3/5", "7/10", "4/5"],
         answer: "7/10",
-        explanation: "3‚Ì”{”‚Í3A6A9‚Ì3ŒÂB‹ô”‚Í2A4A6A8A10‚Ì5ŒÂB—¼•û‚ÉŠÜ‚Ü‚ê‚é6‚ğd•¡‚µ‚Ä”‚¦‚È‚¢‚Ì‚ÅA3+5|1=7ŒÂB‚æ‚Á‚Ä7/10B"
+        explanation: "3ã®å€æ•°ã¯3ã€6ã€9ã®3å€‹ã€‚å¶æ•°ã¯2ã€4ã€6ã€8ã€10ã®5å€‹ã€‚ä¸¡æ–¹ã«å«ã¾ã‚Œã‚‹6ã‚’é‡è¤‡ã—ã¦æ•°ãˆãªã„ã®ã§ã€3+5ï¼1=7å€‹ã€‚ã‚ˆã£ã¦7/10ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "“–‚½‚è‚ª3–{A‚Í‚¸‚ê‚ª7–{“ü‚Á‚Ä‚¢‚é” ‚©‚çA“¯‚É2–{‚Ì‚­‚¶‚ğ–³ìˆ×‚Éæ‚èo‚·‚Æ‚«A2–{‚Æ‚à“–‚½‚è‚Å‚ ‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "å½“ãŸã‚ŠãŒ3æœ¬ã€ã¯ãšã‚ŒãŒ7æœ¬å…¥ã£ã¦ã„ã‚‹ç®±ã‹ã‚‰ã€åŒæ™‚ã«2æœ¬ã®ãã˜ã‚’ç„¡ä½œç‚ºã«å–ã‚Šå‡ºã™ã¨ãã€2æœ¬ã¨ã‚‚å½“ãŸã‚Šã§ã‚ã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/10", "1/15", "1/20", "2/15"],
         answer: "1/15",
-        explanation: "‘S•”‚Å10–{B10–{‚©‚ç2–{‚ğ‘I‚Ô•û–@‚Í10C2=45’Ê‚èB“–‚½‚è2–{‚Ì‘I‚Ñ•û‚Í3C2=3’Ê‚èB‚æ‚Á‚Ä3/45=1/15B"
+        explanation: "å…¨éƒ¨ã§10æœ¬ã€‚10æœ¬ã‹ã‚‰2æœ¬ã‚’é¸ã¶æ–¹æ³•ã¯10C2=45é€šã‚Šã€‚å½“ãŸã‚Š2æœ¬ã®é¸ã³æ–¹ã¯3C2=3é€šã‚Šã€‚ã‚ˆã£ã¦3/45=1/15ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "2ŒÂ‚ÌƒTƒCƒRƒ‚ğ“¯‚É1‰ñ“Š‚°‚é‚Æ‚«A2ŒÂ‚Æ‚à“¯‚¶–Ú‚ªo‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "2å€‹ã®ã‚µã‚¤ã‚³ãƒ­ã‚’åŒæ™‚ã«1å›æŠ•ã’ã‚‹ã¨ãã€2å€‹ã¨ã‚‚åŒã˜ç›®ãŒå‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/12", "1/6", "1/4", "1/3"],
         answer: "1/6",
-        explanation: "o•û‚Í6~6=36’Ê‚èB“¯‚¶–Ú‚É‚È‚é‚Ì‚Í6’Ê‚è‚È‚Ì‚ÅA6/36=1/6B"
+        explanation: "å‡ºæ–¹ã¯6Ã—6=36é€šã‚Šã€‚åŒã˜ç›®ã«ãªã‚‹ã®ã¯6é€šã‚Šãªã®ã§ã€6/36=1/6ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "2ŒÂ‚ÌƒTƒCƒRƒ‚ğ“¯‚É1‰ñ“Š‚°‚é‚Æ‚«A2ŒÂ‚Ì–Ú‚Ì˜a‚ª8‚É‚È‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "2å€‹ã®ã‚µã‚¤ã‚³ãƒ­ã‚’åŒæ™‚ã«1å›æŠ•ã’ã‚‹ã¨ãã€2å€‹ã®ç›®ã®å’ŒãŒ8ã«ãªã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/9", "5/36", "1/6", "7/36"],
         answer: "5/36",
-        explanation: "‘S‘Ì‚Í36’Ê‚èB˜a‚ª8‚É‚È‚é‚Ì‚Í(2,6),(3,5),(4,4),(5,3),(6,2)‚Ì5’Ê‚èB‚æ‚Á‚Ä5/36B"
+        explanation: "å…¨ä½“ã¯36é€šã‚Šã€‚å’ŒãŒ8ã«ãªã‚‹ã®ã¯(2,6),(3,5),(4,4),(5,3),(6,2)ã®5é€šã‚Šã€‚ã‚ˆã£ã¦5/36ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "AAB‚ğŠÜ‚Ş6l‚ªA‚­‚¶ˆø‚«‚Å‡”Ô‚ğŒˆ‚ß‚Ä‰¡ˆê—ñ‚É•À‚Ô‚Æ‚«AA‚ª1”Ô–ÚAB‚ª6”Ô–Ú‚É‚È‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "Aã€Bã‚’å«ã‚€6äººãŒã€ãã˜å¼•ãã§é †ç•ªã‚’æ±ºã‚ã¦æ¨ªä¸€åˆ—ã«ä¸¦ã¶ã¨ãã€AãŒ1ç•ªç›®ã€BãŒ6ç•ªç›®ã«ãªã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/15", "1/20", "1/30", "1/60"],
         answer: "1/30",
-        explanation: "6l‚Ì•À‚Ñ•û‚Í6!’Ê‚èBA‚ª1”Ô–ÚAB‚ª6”Ô–Ú‚È‚çc‚è4l‚Í4!’Ê‚èB‚æ‚Á‚Ä4!/6!=1/30B"
+        explanation: "6äººã®ä¸¦ã³æ–¹ã¯6!é€šã‚Šã€‚AãŒ1ç•ªç›®ã€BãŒ6ç•ªç›®ãªã‚‰æ®‹ã‚Š4äººã¯4!é€šã‚Šã€‚ã‚ˆã£ã¦4!/6!=1/30ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "AAB‚ğŠÜ‚Ş6l‚ªA‚­‚¶ˆø‚«‚Å‡”Ô‚ğŒˆ‚ß‚Ä‰¡ˆê—ñ‚É•À‚Ô‚Æ‚«AA‚ÆB‚ª—×‚è‡‚¤Šm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "Aã€Bã‚’å«ã‚€6äººãŒã€ãã˜å¼•ãã§é †ç•ªã‚’æ±ºã‚ã¦æ¨ªä¸€åˆ—ã«ä¸¦ã¶ã¨ãã€Aã¨BãŒéš£ã‚Šåˆã†ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/6", "1/3", "1/2", "2/3"],
         answer: "1/3",
-        explanation: "A‚ÆB‚ğ1‚Â‚Ì‚©‚½‚Ü‚è‚Æl‚¦‚é‚Æ5!’Ê‚èB‚©‚½‚Ü‚è‚Ì’†‚ÍABABA‚Ì2’Ê‚èB5!~2=240’Ê‚èB240/720=1/3B"
+        explanation: "Aã¨Bã‚’1ã¤ã®ã‹ãŸã¾ã‚Šã¨è€ƒãˆã‚‹ã¨5!é€šã‚Šã€‚ã‹ãŸã¾ã‚Šã®ä¸­ã¯ABã€BAã®2é€šã‚Šã€‚5!Ã—2=240é€šã‚Šã€‚240/720=1/3ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "AAB‚ğŠÜ‚Ş6l‚ªA‚­‚¶ˆø‚«‚Å‡”Ô‚ğŒˆ‚ß‚Ä‰¡ˆê—ñ‚É•À‚Ô‚Æ‚«AA‚ªB‚æ‚è‘O‚É•À‚ÔŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "Aã€Bã‚’å«ã‚€6äººãŒã€ãã˜å¼•ãã§é †ç•ªã‚’æ±ºã‚ã¦æ¨ªä¸€åˆ—ã«ä¸¦ã¶ã¨ãã€AãŒBã‚ˆã‚Šå‰ã«ä¸¦ã¶ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/6", "1/3", "1/2", "2/3"],
         answer: "1/2",
-        explanation: "A‚ªB‚æ‚è‘O‚Ìê‡‚ÆAB‚ªA‚æ‚è‘O‚Ìê‡‚Ì2’Ê‚è‚ª‚ ‚èA‚Ç‚¿‚ç‚à“¯‚¶Šm—¦‚È‚Ì‚Å1/2B"
+        explanation: "AãŒBã‚ˆã‚Šå‰ã®å ´åˆã¨ã€BãŒAã‚ˆã‚Šå‰ã®å ´åˆã®2é€šã‚ŠãŒã‚ã‚Šã€ã©ã¡ã‚‰ã‚‚åŒã˜ç¢ºç‡ãªã®ã§1/2ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘Ü‚Ì’†‚ÉÔ‹Ê3ŒÂA”’‹Ê4ŒÂ‚ª“ü‚Á‚Ä‚¢‚éB‚±‚Ì‘Ü‚©‚ç‹Ê‚ğ3ŒÂ“¯‚Éæ‚èo‚·‚Æ‚«AÔ‹Ê‚ª1ŒÂA”’‹Ê‚ª2ŒÂo‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "è¢‹ã®ä¸­ã«èµ¤ç‰3å€‹ã€ç™½ç‰4å€‹ãŒå…¥ã£ã¦ã„ã‚‹ã€‚ã“ã®è¢‹ã‹ã‚‰ç‰ã‚’3å€‹åŒæ™‚ã«å–ã‚Šå‡ºã™ã¨ãã€èµ¤ç‰ãŒ1å€‹ã€ç™½ç‰ãŒ2å€‹å‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["3/7", "18/35", "2/5", "4/7"],
         answer: "18/35",
-        explanation: "‘S‘Ì‚Í7C3’Ê‚èBÔ‹Ê‚©‚ç1ŒÂ‚Í3C1A”’‹Ê‚©‚ç2ŒÂ‚Í4C2B‚µ‚½‚ª‚Á‚Ä3C1~4C2/7C3=18/35B"
+        explanation: "å…¨ä½“ã¯7C3é€šã‚Šã€‚èµ¤ç‰ã‹ã‚‰1å€‹ã¯3C1ã€ç™½ç‰ã‹ã‚‰2å€‹ã¯4C2ã€‚ã—ãŸãŒã£ã¦3C1Ã—4C2/7C3=18/35ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘Ü‚Ì’†‚ÉÔ‹Ê4ŒÂA”’‹Ê5ŒÂ‚ª“ü‚Á‚Ä‚¢‚éB‚±‚Ì‘Ü‚©‚ç‹Ê‚ğ3ŒÂ“¯‚Éæ‚èo‚·‚Æ‚«A­‚È‚­‚Æ‚à1ŒÂ‚ÍÔ‹Ê‚ªo‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "è¢‹ã®ä¸­ã«èµ¤ç‰4å€‹ã€ç™½ç‰5å€‹ãŒå…¥ã£ã¦ã„ã‚‹ã€‚ã“ã®è¢‹ã‹ã‚‰ç‰ã‚’3å€‹åŒæ™‚ã«å–ã‚Šå‡ºã™ã¨ãã€å°‘ãªãã¨ã‚‚1å€‹ã¯èµ¤ç‰ãŒå‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["5/42", "1/2", "37/42", "4/5"],
         answer: "37/42",
-        explanation: "—]–Û‚ğ—˜—p‚·‚éBÔ‹Ê‚ª1ŒÂ‚ào‚È‚¢A‚Â‚Ü‚è3ŒÂ‚Æ‚à”’‹Ê‚Æ‚È‚éŠm—¦‚Í5C3/9C3=5/42B‚æ‚Á‚Ä1|5/42=37/42B"
+        explanation: "ä½™äº‹è±¡ã‚’åˆ©ç”¨ã™ã‚‹ã€‚èµ¤ç‰ãŒ1å€‹ã‚‚å‡ºãªã„ã€ã¤ã¾ã‚Š3å€‹ã¨ã‚‚ç™½ç‰ã¨ãªã‚‹ç¢ºç‡ã¯5C3/9C3=5/42ã€‚ã‚ˆã£ã¦1ï¼5/42=37/42ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘ål6lAq‹Ÿ4l‚Ì‡Œv10l‚Ì’†‚©‚çA’Š‘I‚Å5l‚ğ‘I‚Ô‚Æ‚«A‘ål3lAq‹Ÿ2l‚ª‘I‚Î‚ê‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "å¤§äºº6äººã€å­ä¾›4äººã®åˆè¨ˆ10äººã®ä¸­ã‹ã‚‰ã€æŠ½é¸ã§5äººã‚’é¸ã¶ã¨ãã€å¤§äºº3äººã€å­ä¾›2äººãŒé¸ã°ã‚Œã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["2/7", "10/21", "1/2", "4/7"],
         answer: "10/21",
-        explanation: "‘S‘Ì‚Í10C5B‘ål3lEq‹Ÿ2l‚Í6C3~4C2’Ê‚èB‚æ‚Á‚Ä120/252=10/21B"
+        explanation: "å…¨ä½“ã¯10C5ã€‚å¤§äºº3äººãƒ»å­ä¾›2äººã¯6C3Ã—4C2é€šã‚Šã€‚ã‚ˆã£ã¦120/252=10/21ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘ål6lAq‹Ÿ4l‚Ì‡Œv10l‚Ì’†‚©‚çA’Š‘I‚Å4l‚ğ‘I‚Ô‚Æ‚«A‘ål‚ª2lˆÈã‘I‚Î‚ê‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "å¤§äºº6äººã€å­ä¾›4äººã®åˆè¨ˆ10äººã®ä¸­ã‹ã‚‰ã€æŠ½é¸ã§4äººã‚’é¸ã¶ã¨ãã€å¤§äººãŒ2äººä»¥ä¸Šé¸ã°ã‚Œã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/2", "5/7", "37/42", "6/7"],
         answer: "37/42",
-        explanation: "‘ål2lE3lE4l‚Ìê‡‚ğl‚¦‚éBê‡‚Ì”‚Í90+80+15=185’Ê‚èB‘S‘Ì‚Í10C4=210’Ê‚è‚È‚Ì‚Å185/210=37/42B"
+        explanation: "å¤§äºº2äººãƒ»3äººãƒ»4äººã®å ´åˆã‚’è€ƒãˆã‚‹ã€‚å ´åˆã®æ•°ã¯90+80+15=185é€šã‚Šã€‚å…¨ä½“ã¯10C4=210é€šã‚Šãªã®ã§185/210=37/42ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "‘Ü‚Ì’†‚ÉÔ‹Ê4ŒÂA”’‹Ê5ŒÂ‚ª“ü‚Á‚Ä‚¢‚éB‚±‚Ì‘Ü‚©‚ç‹Ê‚ğ2ŒÂ“¯‚Éæ‚èo‚·‚Æ‚«A2ŒÂ‚Ì‹Ê‚ª“¯‚¶F‚Å‚ ‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "è¢‹ã®ä¸­ã«èµ¤ç‰4å€‹ã€ç™½ç‰5å€‹ãŒå…¥ã£ã¦ã„ã‚‹ã€‚ã“ã®è¢‹ã‹ã‚‰ç‰ã‚’2å€‹åŒæ™‚ã«å–ã‚Šå‡ºã™ã¨ãã€2å€‹ã®ç‰ãŒåŒã˜è‰²ã§ã‚ã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/3", "4/9", "1/2", "5/9"],
         answer: "4/9",
-        explanation: "‘S‘Ì‚Í9C2=36’Ê‚èB“¯‚¶F‚ÍÔ2ŒÂ‚Ü‚½‚Í”’2ŒÂ‚ÅA4C2+5C2=16’Ê‚èB‚æ‚Á‚Ä16/36=4/9B"
+        explanation: "å…¨ä½“ã¯9C2=36é€šã‚Šã€‚åŒã˜è‰²ã¯èµ¤2å€‹ã¾ãŸã¯ç™½2å€‹ã§ã€4C2+5C2=16é€šã‚Šã€‚ã‚ˆã£ã¦16/36=4/9ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "1‚©‚ç100‚Ü‚Å‚Ì”Ô†‚ª1–‡‚¸‚Â‘‚©‚ê‚½100–‡‚Ì”Ô†D‚ª‚ ‚éB‚±‚Ì’†‚©‚ç1–‡‚ğ–³ìˆ×‚É‘I‚Ô‚Æ‚«A5‚Ì”{”‚Å‚È‚¢”Ô†D‚ğˆø‚­Šm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "1ã‹ã‚‰100ã¾ã§ã®ç•ªå·ãŒ1æšãšã¤æ›¸ã‹ã‚ŒãŸ100æšã®ç•ªå·æœ­ãŒã‚ã‚‹ã€‚ã“ã®ä¸­ã‹ã‚‰1æšã‚’ç„¡ä½œç‚ºã«é¸ã¶ã¨ãã€5ã®å€æ•°ã§ãªã„ç•ªå·æœ­ã‚’å¼•ãç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/5", "2/5", "4/5", "9/10"],
         answer: "4/5",
-        explanation: "5‚Ì”{”‚Í20ŒÂB5‚Ì”{”‚Å‚È‚¢”Ô†‚Í100|20=80ŒÂB‚æ‚Á‚Ä80/100=4/5B"
+        explanation: "5ã®å€æ•°ã¯20å€‹ã€‚5ã®å€æ•°ã§ãªã„ç•ªå·ã¯100ï¼20=80å€‹ã€‚ã‚ˆã£ã¦80/100=4/5ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘Ü‚Ì’†‚ÉÔ‹Ê4ŒÂA”’‹Ê5ŒÂ‚ª“ü‚Á‚Ä‚¢‚éB‚±‚Ì‘Ü‚©‚ç‹Ê‚ğ3ŒÂ“¯‚Éæ‚èo‚·‚Æ‚«A­‚È‚­‚Æ‚à1ŒÂ‚ªÔ‹Ê‚Å‚ ‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "è¢‹ã®ä¸­ã«èµ¤ç‰4å€‹ã€ç™½ç‰5å€‹ãŒå…¥ã£ã¦ã„ã‚‹ã€‚ã“ã®è¢‹ã‹ã‚‰ç‰ã‚’3å€‹åŒæ™‚ã«å–ã‚Šå‡ºã™ã¨ãã€å°‘ãªãã¨ã‚‚1å€‹ãŒèµ¤ç‰ã§ã‚ã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["5/42", "1/2", "37/42", "8/9"],
         answer: "37/42",
-        explanation: "—]–Û‚Í3ŒÂ‚Æ‚à”’‹ÊBŠm—¦‚Í5C3/9C3=5/42B‚µ‚½‚ª‚Á‚Ä1|5/42=37/42B"
+        explanation: "ä½™äº‹è±¡ã¯3å€‹ã¨ã‚‚ç™½ç‰ã€‚ç¢ºç‡ã¯5C3/9C3=5/42ã€‚ã—ãŸãŒã£ã¦1ï¼5/42=37/42ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "1ŒÂ‚ÌƒTƒCƒRƒ‚ğ3‰ñ“Š‚°‚é‚Æ‚«A­‚È‚­‚Æ‚à1‰ñ‚Í6‚Ì–Ú‚ªo‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "1å€‹ã®ã‚µã‚¤ã‚³ãƒ­ã‚’3å›æŠ•ã’ã‚‹ã¨ãã€å°‘ãªãã¨ã‚‚1å›ã¯6ã®ç›®ãŒå‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["25/216", "91/216", "1/2", "125/216"],
         answer: "91/216",
-        explanation: "—]–Û‚Í3‰ñ‚Æ‚à6‚ªo‚È‚¢‚±‚ÆB‚»‚ÌŠm—¦‚Í(5/6)^3=125/216B‚æ‚Á‚Ä1|125/216=91/216B"
+        explanation: "ä½™äº‹è±¡ã¯3å›ã¨ã‚‚6ãŒå‡ºãªã„ã“ã¨ã€‚ãã®ç¢ºç‡ã¯(5/6)^3=125/216ã€‚ã‚ˆã£ã¦1ï¼125/216=91/216ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "1‚©‚ç50‚Ü‚Å‚Ì”Ô†‚ª1–‡‚¸‚Â‘‚©‚ê‚½50–‡‚Ì”Ô†D‚ª‚ ‚éB‚±‚Ì’†‚©‚ç3–‡‚ğ“¯‚Éæ‚èo‚·‚Æ‚«A­‚È‚­‚Æ‚à1–‡‚ª10‚Ì”{”‚Ì”Ô†D‚Å‚ ‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "1ã‹ã‚‰50ã¾ã§ã®ç•ªå·ãŒ1æšãšã¤æ›¸ã‹ã‚ŒãŸ50æšã®ç•ªå·æœ­ãŒã‚ã‚‹ã€‚ã“ã®ä¸­ã‹ã‚‰3æšã‚’åŒæ™‚ã«å–ã‚Šå‡ºã™ã¨ãã€å°‘ãªãã¨ã‚‚1æšãŒ10ã®å€æ•°ã®ç•ªå·æœ­ã§ã‚ã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/4", "541/1960", "3/10", "5/14"],
         answer: "541/1960",
-        explanation: "10‚Ì”{”‚Í5–‡A‚»‚¤‚Å‚È‚¢D‚Í45–‡B—]–Û‚æ‚è1|45C3/50C3=541/1960B"
+        explanation: "10ã®å€æ•°ã¯5æšã€ãã†ã§ãªã„æœ­ã¯45æšã€‚ä½™äº‹è±¡ã‚ˆã‚Š1ï¼45C3/50C3=541/1960ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "2–‡‚Ìd‰İ‚Æ1ŒÂ‚ÌƒTƒCƒRƒ‚ğ“¯‚É1‰ñ“Š‚°‚é‚Æ‚«A2–‡‚Ìd‰İ‚ª‚Æ‚à‚É•\‚ÅA‚©‚ÂƒTƒCƒRƒ‚ª4ˆÈã‚Ì–Ú‚É‚È‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "2æšã®ç¡¬è²¨ã¨1å€‹ã®ã‚µã‚¤ã‚³ãƒ­ã‚’åŒæ™‚ã«1å›æŠ•ã’ã‚‹ã¨ãã€2æšã®ç¡¬è²¨ãŒã¨ã‚‚ã«è¡¨ã§ã€ã‹ã¤ã‚µã‚¤ã‚³ãƒ­ãŒ4ä»¥ä¸Šã®ç›®ã«ãªã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/12", "1/8", "1/6", "1/4"],
         answer: "1/8",
-        explanation: "2–‡‚Æ‚à•\‚Í1/4BƒTƒCƒRƒ‚ª4ˆÈã‚Í3/6=1/2B‚µ‚½‚ª‚Á‚Ä1/4~1/2=1/8B"
+        explanation: "2æšã¨ã‚‚è¡¨ã¯1/4ã€‚ã‚µã‚¤ã‚³ãƒ­ãŒ4ä»¥ä¸Šã¯3/6=1/2ã€‚ã—ãŸãŒã£ã¦1/4Ã—1/2=1/8ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "1ŒÂ‚ÌƒTƒCƒRƒ‚ğ3‰ñ‘±‚¯‚Ä“Š‚°‚é‚Æ‚«A3‰ñ‚Æ‚à‹ô”‚Ì–Ú‚ªo‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "1å€‹ã®ã‚µã‚¤ã‚³ãƒ­ã‚’3å›ç¶šã‘ã¦æŠ•ã’ã‚‹ã¨ãã€3å›ã¨ã‚‚å¶æ•°ã®ç›®ãŒå‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/4", "1/6", "1/8", "1/12"],
         answer: "1/8",
-        explanation: "‹ô”‚Í2A4A6‚Ì3’Ê‚è‚È‚Ì‚Å1‰ñ‚Å‹ô”‚ªo‚éŠm—¦‚Í1/2B3‰ñ‚Æ‚à‹ô”‚È‚Ì‚Å(1/2)^3=1/8B"
+        explanation: "å¶æ•°ã¯2ã€4ã€6ã®3é€šã‚Šãªã®ã§1å›ã§å¶æ•°ãŒå‡ºã‚‹ç¢ºç‡ã¯1/2ã€‚3å›ã¨ã‚‚å¶æ•°ãªã®ã§(1/2)^3=1/8ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "1–‡‚Ìd‰İ‚ğ3‰ñ‘±‚¯‚Ä“Š‚°‚é‚Æ‚«A1‰ñ–Ú‚Æ2‰ñ–Ú‚Í•\A3‰ñ–Ú‚Í— ‚ªo‚éŠm—¦‚ğ‹‚ß‚È‚³‚¢B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "1æšã®ç¡¬è²¨ã‚’3å›ç¶šã‘ã¦æŠ•ã’ã‚‹ã¨ãã€1å›ç›®ã¨2å›ç›®ã¯è¡¨ã€3å›ç›®ã¯è£ãŒå‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ãªã•ã„ã€‚",
         choices: ["1/4", "1/6", "1/8", "1/16"],
         answer: "1/8",
-        explanation: "•\A•\A— ‚Æ‚¢‚¤1‚Â‚ÌŒ‹‰Ê‚ğ‹‚ß‚é‚Ì‚ÅA1/2~1/2~1/2=1/8B"
+        explanation: "è¡¨ã€è¡¨ã€è£ã¨ã„ã†1ã¤ã®çµæœã‚’æ±‚ã‚ã‚‹ã®ã§ã€1/2Ã—1/2Ã—1/2=1/8ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘ÜA‚É‚ÍÔ‹Ê3ŒÂA”’‹Ê2ŒÂA‘ÜB‚É‚ÍÔ‹Ê2ŒÂA”’‹Ê4ŒÂ‚ª“ü‚Á‚Ä‚¢‚éBAAB‚Ì‘Ü‚©‚ç‚»‚ê‚¼‚ê1ŒÂ‚¸‚Â‹…‚ğæ‚èo‚·‚Æ‚«Aæ‚èo‚µ‚½2ŒÂ‚Ì‹…‚ªˆÙ‚È‚éF‚Å‚ ‚éŠm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "è¢‹Aã«ã¯èµ¤ç‰3å€‹ã€ç™½ç‰2å€‹ã€è¢‹Bã«ã¯èµ¤ç‰2å€‹ã€ç™½ç‰4å€‹ãŒå…¥ã£ã¦ã„ã‚‹ã€‚Aã€Bã®è¢‹ã‹ã‚‰ãã‚Œãã‚Œ1å€‹ãšã¤çƒã‚’å–ã‚Šå‡ºã™ã¨ãã€å–ã‚Šå‡ºã—ãŸ2å€‹ã®çƒãŒç•°ãªã‚‹è‰²ã§ã‚ã‚‹ç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["2/5", "8/15", "1/2", "3/5"],
         answer: "8/15",
-        explanation: "AÔEB”’‚Í3/5~2/3=2/5BA”’EBÔ‚Í2/5~1/3=2/15B‡‚í‚¹‚Ä8/15B"
+        explanation: "Aèµ¤ãƒ»Bç™½ã¯3/5Ã—2/3=2/5ã€‚Aç™½ãƒ»Bèµ¤ã¯2/5Ã—1/3=2/15ã€‚åˆã‚ã›ã¦8/15ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘ÜA‚É‚ÍÔ‹Ê4ŒÂA”’‹Ê3ŒÂA‘ÜB‚É‚ÍÔ‹Ê3ŒÂA”’‹Ê2ŒÂ‚ª“ü‚Á‚Ä‚¢‚éBAAB‚Ì‘Ü‚©‚ç‚»‚ê‚¼‚ê1ŒÂ‚¸‚Â‹…‚ğæ‚èo‚µAA‚Ì‘Ü‚©‚çæ‚èo‚µ‚½‹…‚ğB‚Ì‘Ü‚É“ü‚ê‚Ä‚©‚çAB‚Ì‘Ü‚©‚ç‚à‚¤1ŒÂ‹…‚ğæ‚èo‚·B‚±‚Ì‚Æ‚«A2‰ñ‚Æ‚àÔ‹Ê‚ğæ‚èo‚·Šm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "è¢‹Aã«ã¯èµ¤ç‰4å€‹ã€ç™½ç‰3å€‹ã€è¢‹Bã«ã¯èµ¤ç‰3å€‹ã€ç™½ç‰2å€‹ãŒå…¥ã£ã¦ã„ã‚‹ã€‚Aã€Bã®è¢‹ã‹ã‚‰ãã‚Œãã‚Œ1å€‹ãšã¤çƒã‚’å–ã‚Šå‡ºã—ã€Aã®è¢‹ã‹ã‚‰å–ã‚Šå‡ºã—ãŸçƒã‚’Bã®è¢‹ã«å…¥ã‚Œã¦ã‹ã‚‰ã€Bã®è¢‹ã‹ã‚‰ã‚‚ã†1å€‹çƒã‚’å–ã‚Šå‡ºã™ã€‚ã“ã®ã¨ãã€2å›ã¨ã‚‚èµ¤ç‰ã‚’å–ã‚Šå‡ºã™ç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["4/21", "2/7", "8/21", "1/2"],
         answer: "8/21",
-        explanation: "A‚©‚çÔ‹Ê‚ğæ‚èo‚·Šm—¦‚Í4/7B‚»‚ÌÔ‹Ê‚ğB‚É“ü‚ê‚é‚ÆB‚ÍÔ4ŒÂE”’2ŒÂ‚È‚Ì‚ÅAB‚©‚çÔ‹Ê‚ğˆø‚­Šm—¦‚Í4/6=2/3B‚æ‚Á‚Ä8/21B"
+        explanation: "Aã‹ã‚‰èµ¤ç‰ã‚’å–ã‚Šå‡ºã™ç¢ºç‡ã¯4/7ã€‚ãã®èµ¤ç‰ã‚’Bã«å…¥ã‚Œã‚‹ã¨Bã¯èµ¤4å€‹ãƒ»ç™½2å€‹ãªã®ã§ã€Bã‹ã‚‰èµ¤ç‰ã‚’å¼•ãç¢ºç‡ã¯4/6=2/3ã€‚ã‚ˆã£ã¦8/21ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "•\‚Æ— ‚ªo‚éŠm—¦‚ª‚»‚ê‚¼‚ê1/2‚Å‚ ‚éd‰İ‚ğ1–‡A6‰ñ“Š‚°‚éB‚±‚Ì‚Æ‚«A•\‚ª‚¿‚å‚¤‚Ç3‰ñA— ‚ª3‰ño‚éŠm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "è¡¨ã¨è£ãŒå‡ºã‚‹ç¢ºç‡ãŒãã‚Œãã‚Œ1/2ã§ã‚ã‚‹ç¡¬è²¨ã‚’1æšã€6å›æŠ•ã’ã‚‹ã€‚ã“ã®ã¨ãã€è¡¨ãŒã¡ã‚‡ã†ã©3å›ã€è£ãŒ3å›å‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["5/16", "3/8", "1/2", "15/32"],
         answer: "5/16",
-        explanation: "•\‚ªo‚é3‰ñ‚ğ6‰ñ‚Ì’†‚©‚ç‘I‚Ô‚Ì‚Å6C3=20’Ê‚èBŠeŒ‹‰Ê‚ÌŠm—¦‚Í(1/2)^6B‚æ‚Á‚Ä20/64=5/16B"
+        explanation: "è¡¨ãŒå‡ºã‚‹3å›ã‚’6å›ã®ä¸­ã‹ã‚‰é¸ã¶ã®ã§6C3=20é€šã‚Šã€‚å„çµæœã®ç¢ºç‡ã¯(1/2)^6ã€‚ã‚ˆã£ã¦20/64=5/16ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "1ŒÂ‚Ì‚³‚¢‚±‚ë‚ğ5‰ñ“Š‚°‚é‚Æ‚«A3‚Ì”{”‚Ì–Ú‚ª‚¿‚å‚¤‚Ç2‰ño‚éŠm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "1å€‹ã®ã•ã„ã“ã‚ã‚’5å›æŠ•ã’ã‚‹ã¨ãã€3ã®å€æ•°ã®ç›®ãŒã¡ã‚‡ã†ã©2å›å‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["40/243", "80/243", "100/243", "120/243"],
         answer: "80/243",
-        explanation: "3‚Ì”{”‚Í3A6‚È‚Ì‚ÅŠm—¦‚Í1/3B‚»‚êˆÈŠO‚Í2/3B5‰ñ’†‚¿‚å‚¤‚Ç2‰ñ‚È‚Ì‚Å5C2(1/3)^2(2/3)^3=80/243B"
+        explanation: "3ã®å€æ•°ã¯3ã€6ãªã®ã§ç¢ºç‡ã¯1/3ã€‚ãã‚Œä»¥å¤–ã¯2/3ã€‚5å›ä¸­ã¡ã‚‡ã†ã©2å›ãªã®ã§5C2(1/3)^2(2/3)^3=80/243ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘Ü‚Ì’†‚ÉÔ‹Ê4ŒÂA”’‹Ê3ŒÂ‚ª“ü‚Á‚Ä‚¢‚éB‚±‚Ì‘Ü‚©‚ç‹Ê‚ğ1ŒÂæ‚èo‚µAF‚ğŠm”F‚µ‚Ä‚©‚çŒ³‚Ì‘Ü‚É–ß‚·‚Æ‚¢‚¤‘€ì‚ğ4‰ñŒJ‚è•Ô‚·B‚±‚Ì‚Æ‚«AÔ‹Ê‚ª‚¿‚å‚¤‚Ç3‰ño‚éŠm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "è¢‹ã®ä¸­ã«èµ¤ç‰4å€‹ã€ç™½ç‰3å€‹ãŒå…¥ã£ã¦ã„ã‚‹ã€‚ã“ã®è¢‹ã‹ã‚‰ç‰ã‚’1å€‹å–ã‚Šå‡ºã—ã€è‰²ã‚’ç¢ºèªã—ã¦ã‹ã‚‰å…ƒã®è¢‹ã«æˆ»ã™ã¨ã„ã†æ“ä½œã‚’4å›ç¹°ã‚Šè¿”ã™ã€‚ã“ã®ã¨ãã€èµ¤ç‰ãŒã¡ã‚‡ã†ã©3å›å‡ºã‚‹ç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["256/2401", "512/2401", "768/2401", "1024/2401"],
         answer: "768/2401",
-        explanation: "Ô‹Ê‚Í4/7A”’‹Ê‚Í3/7B4‰ñ’†‚¿‚å‚¤‚Ç3‰ñÔ‹Ê‚È‚Ì‚Å4C3(4/7)^3(3/7)=768/2401B"
+        explanation: "èµ¤ç‰ã¯4/7ã€ç™½ç‰ã¯3/7ã€‚4å›ä¸­ã¡ã‚‡ã†ã©3å›èµ¤ç‰ãªã®ã§4C3(4/7)^3(3/7)=768/2401ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘Ü‚Ì’†‚ÉA1‚©‚ç10‚Ü‚Å‚Ì”Ô†‚ª‘‚©‚ê‚½ÔF‚ÌƒJ[ƒh5–‡‚ÆA11‚©‚ç15‚Ü‚Å‚Ì”Ô†‚ª‘‚©‚ê‚½”’F‚ÌƒJ[ƒh5–‡‚ª“ü‚Á‚Ä‚¢‚éB‚±‚Ì‘Ü‚©‚çƒJ[ƒh‚ğ1–‡æ‚èo‚·Bæ‚èo‚µ‚½ƒJ[ƒh‚ªÔF‚Å‚ ‚é‚±‚Æ‚ª•ª‚©‚Á‚Ä‚¢‚é‚Æ‚«A‚»‚Ì”Ô†‚ªŠï”‚Å‚ ‚éğŒ•t‚«Šm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "è¢‹ã®ä¸­ã«ã€1ã‹ã‚‰10ã¾ã§ã®ç•ªå·ãŒæ›¸ã‹ã‚ŒãŸèµ¤è‰²ã®ã‚«ãƒ¼ãƒ‰5æšã¨ã€11ã‹ã‚‰15ã¾ã§ã®ç•ªå·ãŒæ›¸ã‹ã‚ŒãŸç™½è‰²ã®ã‚«ãƒ¼ãƒ‰5æšãŒå…¥ã£ã¦ã„ã‚‹ã€‚ã“ã®è¢‹ã‹ã‚‰ã‚«ãƒ¼ãƒ‰ã‚’1æšå–ã‚Šå‡ºã™ã€‚å–ã‚Šå‡ºã—ãŸã‚«ãƒ¼ãƒ‰ãŒèµ¤è‰²ã§ã‚ã‚‹ã“ã¨ãŒåˆ†ã‹ã£ã¦ã„ã‚‹ã¨ãã€ãã®ç•ªå·ãŒå¥‡æ•°ã§ã‚ã‚‹æ¡ä»¶ä»˜ãç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["1/3", "2/5", "3/5", "4/5"],
         answer: "3/5",
-        explanation: "ÔF‚Å‚ ‚é‚±‚Æ‚ª•ª‚©‚Á‚Ä‚¢‚é‚Ì‚ÅÔFƒJ[ƒh5–‡‚¾‚¯‚ğl‚¦‚éBŠï”‚Í1A3A5‚Ì3–‡B‚æ‚Á‚Ä3/5B"
+        explanation: "èµ¤è‰²ã§ã‚ã‚‹ã“ã¨ãŒåˆ†ã‹ã£ã¦ã„ã‚‹ã®ã§èµ¤è‰²ã‚«ãƒ¼ãƒ‰5æšã ã‘ã‚’è€ƒãˆã‚‹ã€‚å¥‡æ•°ã¯1ã€3ã€5ã®3æšã€‚ã‚ˆã£ã¦3/5ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "” ‚Ì’†‚ÉA1‚©‚ç8‚Ü‚Å‚Ì”Ô†‚ª‘‚©‚ê‚½ÂF‚Ì”Ô†D8–‡‚ÆA1‚©‚ç6‚Ü‚Å‚Ì”Ô†‚ª‘‚©‚ê‚½”’F‚Ì”Ô†D6–‡‚ª“ü‚Á‚Ä‚¢‚éB‚±‚Ì” ‚©‚ç”Ô†D‚ğ1–‡ˆø‚­Bˆø‚¢‚½”Ô†D‚Ì”Ô†‚ª‹ô”‚Å‚ ‚é‚±‚Æ‚ª•ª‚©‚Á‚Ä‚¢‚é‚Æ‚«A‚»‚Ì”Ô†D‚ªÂF‚Å‚ ‚éğŒ•t‚«Šm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "ç®±ã®ä¸­ã«ã€1ã‹ã‚‰8ã¾ã§ã®ç•ªå·ãŒæ›¸ã‹ã‚ŒãŸé’è‰²ã®ç•ªå·æœ­8æšã¨ã€1ã‹ã‚‰6ã¾ã§ã®ç•ªå·ãŒæ›¸ã‹ã‚ŒãŸç™½è‰²ã®ç•ªå·æœ­6æšãŒå…¥ã£ã¦ã„ã‚‹ã€‚ã“ã®ç®±ã‹ã‚‰ç•ªå·æœ­ã‚’1æšå¼•ãã€‚å¼•ã„ãŸç•ªå·æœ­ã®ç•ªå·ãŒå¶æ•°ã§ã‚ã‚‹ã“ã¨ãŒåˆ†ã‹ã£ã¦ã„ã‚‹ã¨ãã€ãã®ç•ªå·æœ­ãŒé’è‰²ã§ã‚ã‚‹æ¡ä»¶ä»˜ãç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["3/7", "4/7", "1/2", "5/7"],
         answer: "4/7",
-        explanation: "‹ô”‚ÍÂF‚ª2A4A6A8‚Ì4–‡A”’F‚ª2A4A6‚Ì3–‡B‹ô”‚Í7–‡‚È‚Ì‚Å4/7B"
+        explanation: "å¶æ•°ã¯é’è‰²ãŒ2ã€4ã€6ã€8ã®4æšã€ç™½è‰²ãŒ2ã€4ã€6ã®3æšã€‚å¶æ•°ã¯7æšãªã®ã§4/7ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "” ‚Ì’†‚ÉA1‚©‚ç6‚Ü‚Å‚Ì”Ô†‚ª‘‚©‚ê‚½ÔF‚Ì”Ô†D6–‡‚ÆA7‚©‚ç12‚Ü‚Å‚Ì”Ô†‚ª‘‚©‚ê‚½”’F‚Ì”Ô†D6–‡‚ª“ü‚Á‚Ä‚¢‚éB‚±‚Ì” ‚©‚ç”Ô†D‚ğ1–‡ˆø‚­Bˆø‚¢‚½”Ô†D‚Ì”Ô†‚ª3‚Ì”{”‚Å‚ ‚é‚±‚Æ‚ª•ª‚©‚Á‚Ä‚¢‚é‚Æ‚«A‚»‚Ì”Ô†D‚ª”’F‚Å‚ ‚éğŒ•t‚«Šm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "ç®±ã®ä¸­ã«ã€1ã‹ã‚‰6ã¾ã§ã®ç•ªå·ãŒæ›¸ã‹ã‚ŒãŸèµ¤è‰²ã®ç•ªå·æœ­6æšã¨ã€7ã‹ã‚‰12ã¾ã§ã®ç•ªå·ãŒæ›¸ã‹ã‚ŒãŸç™½è‰²ã®ç•ªå·æœ­6æšãŒå…¥ã£ã¦ã„ã‚‹ã€‚ã“ã®ç®±ã‹ã‚‰ç•ªå·æœ­ã‚’1æšå¼•ãã€‚å¼•ã„ãŸç•ªå·æœ­ã®ç•ªå·ãŒ3ã®å€æ•°ã§ã‚ã‚‹ã“ã¨ãŒåˆ†ã‹ã£ã¦ã„ã‚‹ã¨ãã€ãã®ç•ªå·æœ­ãŒç™½è‰²ã§ã‚ã‚‹æ¡ä»¶ä»˜ãç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["1/3", "1/2", "2/3", "3/4"],
         answer: "1/2",
-        explanation: "3‚Ì”{”‚ÍÔF‚ª3A6‚Ì2–‡A”’F‚ª9A12‚Ì2–‡B‡Œv4–‡’†A”’F‚Í2–‡‚È‚Ì‚Å1/2B"
+        explanation: "3ã®å€æ•°ã¯èµ¤è‰²ãŒ3ã€6ã®2æšã€ç™½è‰²ãŒ9ã€12ã®2æšã€‚åˆè¨ˆ4æšä¸­ã€ç™½è‰²ã¯2æšãªã®ã§1/2ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "“–‚½‚è‚­‚¶‚ª3–{AŠO‚ê‚­‚¶‚ª7–{A‡‚í‚¹‚Ä10–{‚Ì‚­‚¶‚ª‚ ‚éBAAB‚Ì2l‚ª‚±‚Ì‡‚É1–{‚¸‚Â‚­‚¶‚ğˆø‚­B‚½‚¾‚µAˆø‚¢‚½‚­‚¶‚ÍŒ³‚É–ß‚³‚È‚¢B‚±‚Ì‚Æ‚«AAAB‚Ì2l‚Æ‚à“–‚½‚éŠm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "å½“ãŸã‚Šãã˜ãŒ3æœ¬ã€å¤–ã‚Œãã˜ãŒ7æœ¬ã€åˆã‚ã›ã¦10æœ¬ã®ãã˜ãŒã‚ã‚‹ã€‚Aã€Bã®2äººãŒã“ã®é †ã«1æœ¬ãšã¤ãã˜ã‚’å¼•ãã€‚ãŸã ã—ã€å¼•ã„ãŸãã˜ã¯å…ƒã«æˆ»ã•ãªã„ã€‚ã“ã®ã¨ãã€Aã€Bã®2äººã¨ã‚‚å½“ãŸã‚‹ç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["1/20", "1/15", "2/15", "1/10"],
         answer: "1/15",
-        explanation: "A‚ª“–‚½‚éŠm—¦‚Í3/10BA‚ª“–‚½‚Á‚½Œã‚Í“–‚½‚è2–{A‘S‘Ì9–{‚È‚Ì‚ÅB‚ª“–‚½‚éŠm—¦‚Í2/9B‚æ‚Á‚Ä3/10~2/9=1/15B"
+        explanation: "AãŒå½“ãŸã‚‹ç¢ºç‡ã¯3/10ã€‚AãŒå½“ãŸã£ãŸå¾Œã¯å½“ãŸã‚Š2æœ¬ã€å…¨ä½“9æœ¬ãªã®ã§BãŒå½“ãŸã‚‹ç¢ºç‡ã¯2/9ã€‚ã‚ˆã£ã¦3/10Ã—2/9=1/15ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "“–‚½‚è‚­‚¶‚ª4–{AŠO‚ê‚­‚¶‚ª8–{A‡‚í‚¹‚Ä12–{‚Ì‚­‚¶‚ª‚ ‚éBAABAC‚Ì3l‚ª‚±‚Ì‡‚É1–{‚¸‚Â‚­‚¶‚ğˆø‚­B‚½‚¾‚µAˆø‚¢‚½‚­‚¶‚ÍŒ³‚É–ß‚³‚È‚¢B‚±‚Ì‚Æ‚«AAABAC‚Ì3l‚Ì‚¤‚¿A‚¿‚å‚¤‚Ç2l‚ª“–‚½‚éŠm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "å½“ãŸã‚Šãã˜ãŒ4æœ¬ã€å¤–ã‚Œãã˜ãŒ8æœ¬ã€åˆã‚ã›ã¦12æœ¬ã®ãã˜ãŒã‚ã‚‹ã€‚Aã€Bã€Cã®3äººãŒã“ã®é †ã«1æœ¬ãšã¤ãã˜ã‚’å¼•ãã€‚ãŸã ã—ã€å¼•ã„ãŸãã˜ã¯å…ƒã«æˆ»ã•ãªã„ã€‚ã“ã®ã¨ãã€Aã€Bã€Cã®3äººã®ã†ã¡ã€ã¡ã‚‡ã†ã©2äººãŒå½“ãŸã‚‹ç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["8/55", "12/55", "16/55", "3/11"],
         answer: "12/55",
-        explanation: "‚¿‚å‚¤‚Ç2l‚ª“–‚½‚éê‡‚ÍAEBAAECABEC‚Ì3’Ê‚èB‚»‚ê‚¼‚ê4/55‚È‚Ì‚ÅA‡Œv12/55B"
+        explanation: "ã¡ã‚‡ã†ã©2äººãŒå½“ãŸã‚‹å ´åˆã¯Aãƒ»Bã€Aãƒ»Cã€Bãƒ»Cã®3é€šã‚Šã€‚ãã‚Œãã‚Œ4/55ãªã®ã§ã€åˆè¨ˆ12/55ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "“–‚½‚è‚­‚¶‚ª5–{AŠO‚ê‚­‚¶‚ª7–{A‡‚í‚¹‚Ä12–{‚Ì‚­‚¶‚ª‚ ‚éBAABAC‚Ì3l‚ª‚±‚Ì‡‚É1–{‚¸‚Â‚­‚¶‚ğˆø‚­B‚½‚¾‚µAˆø‚¢‚½‚­‚¶‚ÍŒ³‚É–ß‚³‚È‚¢B‚±‚Ì‚Æ‚«A­‚È‚­‚Æ‚à1l‚ª“–‚½‚éŠm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "å½“ãŸã‚Šãã˜ãŒ5æœ¬ã€å¤–ã‚Œãã˜ãŒ7æœ¬ã€åˆã‚ã›ã¦12æœ¬ã®ãã˜ãŒã‚ã‚‹ã€‚Aã€Bã€Cã®3äººãŒã“ã®é †ã«1æœ¬ãšã¤ãã˜ã‚’å¼•ãã€‚ãŸã ã—ã€å¼•ã„ãŸãã˜ã¯å…ƒã«æˆ»ã•ãªã„ã€‚ã“ã®ã¨ãã€å°‘ãªãã¨ã‚‚1äººãŒå½“ãŸã‚‹ç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["7/44", "1/2", "37/44", "5/6"],
         answer: "37/44",
-        explanation: "—]–Û‚Í3l‚Æ‚àŠO‚ê‚é‚±‚ÆBŠm—¦‚Í7/12~6/11~5/10=7/44B‚æ‚Á‚Ä1|7/44=37/44B"
+        explanation: "ä½™äº‹è±¡ã¯3äººã¨ã‚‚å¤–ã‚Œã‚‹ã“ã¨ã€‚ç¢ºç‡ã¯7/12Ã—6/11Ã—5/10=7/44ã€‚ã‚ˆã£ã¦1ï¼7/44=37/44ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "1‚©‚ç8‚Ü‚Å‚Ì”Ô†‚ª‘‚©‚ê‚½8–‡‚Ì”Ô†D‚ª‚ ‚éB‚±‚Ì’†‚©‚ç3–‡‚ğ“¯‚Éæ‚èo‚µAæ‚èo‚µ‚½3–‡‚Ì”Ô†‚ÌÅ‘å‚Ì”‚ª6ˆÈã‚Å‚ ‚éŠm—¦‚ğ‹‚ß‚æB",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "1ã‹ã‚‰8ã¾ã§ã®ç•ªå·ãŒæ›¸ã‹ã‚ŒãŸ8æšã®ç•ªå·æœ­ãŒã‚ã‚‹ã€‚ã“ã®ä¸­ã‹ã‚‰3æšã‚’åŒæ™‚ã«å–ã‚Šå‡ºã—ã€å–ã‚Šå‡ºã—ãŸ3æšã®ç•ªå·ã®æœ€å¤§ã®æ•°ãŒ6ä»¥ä¸Šã§ã‚ã‚‹ç¢ºç‡ã‚’æ±‚ã‚ã‚ˆã€‚",
         choices: ["5/28", "1/2", "23/28", "25/28"],
         answer: "23/28",
-        explanation: "‘S‘Ì‚Í8C3=56’Ê‚èBÅ‘å‚ª5ˆÈ‰º‚Æ‚È‚é‚Ì‚Í1`5‚©‚ç3–‡‚ğ‘I‚Ô10’Ê‚èB—]–Û‚æ‚è1|10/56=23/28B"
+        explanation: "å…¨ä½“ã¯8C3=56é€šã‚Šã€‚æœ€å¤§ãŒ5ä»¥ä¸‹ã¨ãªã‚‹ã®ã¯1ï½5ã‹ã‚‰3æšã‚’é¸ã¶10é€šã‚Šã€‚ä½™äº‹è±¡ã‚ˆã‚Š1ï¼10/56=23/28ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "1ŒÂ‚Ì‚³‚¢‚±‚ë‚ğ1‰ñ“Š‚°‚éBo‚½–Ú‚ª1A2‚Ì‚Æ‚«‚Í100‰~A3A4‚Ì‚Æ‚«‚Í200‰~A5A6‚Ì‚Æ‚«‚Í500‰~‚ğ‚à‚ç‚¦‚éƒQ[ƒ€‚ª‚ ‚éB‚±‚ÌƒQ[ƒ€‚Å‚à‚ç‚¦‚é‹àŠz‚ÌŠú‘Ò’l‚ğ‹‚ß‚æB",
-        choices: ["200/3‰~", "400/3‰~", "800/3‰~", "1000/3‰~"],
-        answer: "800/3‰~",
-        explanation: "100‰~A200‰~A500‰~‚ª‚»‚ê‚¼‚ê2/6‚ÌŠm—¦‚Å“¾‚ç‚ê‚éBŠú‘Ò’l‚Í100~2/6+200~2/6+500~2/6=800/3‰~B"
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "1å€‹ã®ã•ã„ã“ã‚ã‚’1å›æŠ•ã’ã‚‹ã€‚å‡ºãŸç›®ãŒ1ã€2ã®ã¨ãã¯100å††ã€3ã€4ã®ã¨ãã¯200å††ã€5ã€6ã®ã¨ãã¯500å††ã‚’ã‚‚ã‚‰ãˆã‚‹ã‚²ãƒ¼ãƒ ãŒã‚ã‚‹ã€‚ã“ã®ã‚²ãƒ¼ãƒ ã§ã‚‚ã‚‰ãˆã‚‹é‡‘é¡ã®æœŸå¾…å€¤ã‚’æ±‚ã‚ã‚ˆã€‚",
+        choices: ["200/3å††", "400/3å††", "800/3å††", "1000/3å††"],
+        answer: "800/3å††",
+        explanation: "100å††ã€200å††ã€500å††ãŒãã‚Œãã‚Œ2/6ã®ç¢ºç‡ã§å¾—ã‚‰ã‚Œã‚‹ã€‚æœŸå¾…å€¤ã¯100Ã—2/6+200Ã—2/6+500Ã—2/6=800/3å††ã€‚"
     },
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "•\‚Æ— ‚ªo‚éŠm—¦‚ª‚»‚ê‚¼‚ê1/2‚Å‚ ‚éd‰İ‚ğ3–‡“¯‚É“Š‚°‚éB•\‚ª0–‡‚Ì‚Æ‚«‚Í0‰~A1–‡‚Ì‚Æ‚«‚Í100‰~A2–‡‚Ì‚Æ‚«‚Í300‰~A3–‡‚Ì‚Æ‚«‚Í600‰~‚ğ‚à‚ç‚¦‚é‚à‚Ì‚Æ‚·‚éB‚±‚Ì‚Æ‚«A‚à‚ç‚¦‚é‹àŠz‚ÌŠú‘Ò’l‚ğ‹‚ß‚æB",
-        choices: ["150‰~", "200‰~", "225‰~", "250‰~"],
-        answer: "225‰~",
-        explanation: "•\0–‡A1–‡A2–‡A3–‡‚ÌŠm—¦‚Í‚»‚ê‚¼‚ê1/8A3/8A3/8A1/8BŠú‘Ò’l‚Í0~1/8+100~3/8+300~3/8+600~1/8=225‰~B"
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "è¡¨ã¨è£ãŒå‡ºã‚‹ç¢ºç‡ãŒãã‚Œãã‚Œ1/2ã§ã‚ã‚‹ç¡¬è²¨ã‚’3æšåŒæ™‚ã«æŠ•ã’ã‚‹ã€‚è¡¨ãŒ0æšã®ã¨ãã¯0å††ã€1æšã®ã¨ãã¯100å††ã€2æšã®ã¨ãã¯300å††ã€3æšã®ã¨ãã¯600å††ã‚’ã‚‚ã‚‰ãˆã‚‹ã‚‚ã®ã¨ã™ã‚‹ã€‚ã“ã®ã¨ãã€ã‚‚ã‚‰ãˆã‚‹é‡‘é¡ã®æœŸå¾…å€¤ã‚’æ±‚ã‚ã‚ˆã€‚",
+        choices: ["150å††", "200å††", "225å††", "250å††"],
+        answer: "225å††",
+        explanation: "è¡¨0æšã€1æšã€2æšã€3æšã®ç¢ºç‡ã¯ãã‚Œãã‚Œ1/8ã€3/8ã€3/8ã€1/8ã€‚æœŸå¾…å€¤ã¯0Ã—1/8+100Ã—3/8+300Ã—3/8+600Ã—1/8=225å††ã€‚"
     }
 ];
 const mathIIIQuestions = [
     {
-        type: "‘I‘ğ®",
-        level: "š™™",
-        question: "ŠÖ” \\( y=x\\sqrt{x} \\) ‚Ì“±ŠÖ”‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜†â˜†",
+        question: "é–¢æ•° \\( y=x\\sqrt{x} \\) ã®å°é–¢æ•°ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\( y'=\\sqrt{x} \\)",
             "\\( y'=\\frac{3}{2}\\sqrt{x} \\)",
@@ -3363,13 +3363,13 @@ const mathIIIQuestions = [
             "\\( y'=3x \\)"
         ],
         answer: "\\( y'=\\frac{3}{2}\\sqrt{x} \\)",
-        explanation: "\\(x\\sqrt{x}=x^{\\frac{3}{2}}\\) ‚Æ•ÏŒ`‚·‚é‚ÆA\\(y'=\\frac{3}{2}x^{\\frac{1}{2}}=\\frac{3}{2}\\sqrt{x}\\) ‚Æ‚È‚è‚Ü‚·B"
+        explanation: "\\(x\\sqrt{x}=x^{\\frac{3}{2}}\\) ã¨å¤‰å½¢ã™ã‚‹ã¨ã€\\(y'=\\frac{3}{2}x^{\\frac{1}{2}}=\\frac{3}{2}\\sqrt{x}\\) ã¨ãªã‚Šã¾ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "ŠÖ” \\( y=\\frac{x^2+x+1}{\\sqrt{x}} \\) ‚Ì“±ŠÖ”‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "é–¢æ•° \\( y=\\frac{x^2+x+1}{\\sqrt{x}} \\) ã®å°é–¢æ•°ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\( y'=\\frac{1}{2}\\sqrt{x}+\\frac{1}{2\\sqrt{x}}-\\frac{1}{2x\\sqrt{x}} \\)",
             "\\( y'=\\frac{3}{2}\\sqrt{x}+\\frac{1}{2\\sqrt{x}}-\\frac{1}{2x\\sqrt{x}} \\)",
@@ -3377,13 +3377,13 @@ const mathIIIQuestions = [
             "\\( y'=\\sqrt{x}+\\frac{1}{\\sqrt{x}}+\\frac{1}{x} \\)"
         ],
         answer: "\\( y'=\\frac{3}{2}\\sqrt{x}+\\frac{1}{2\\sqrt{x}}-\\frac{1}{2x\\sqrt{x}} \\)",
-        explanation: "\\(y=x^{\\frac{3}{2}}+x^{\\frac{1}{2}}+x^{-\\frac{1}{2}}\\) ‚Æ•ÏŒ`‚µ‚ÄA‚»‚ê‚¼‚ê”÷•ª‚µ‚Ü‚·B"
+        explanation: "\\(y=x^{\\frac{3}{2}}+x^{\\frac{1}{2}}+x^{-\\frac{1}{2}}\\) ã¨å¤‰å½¢ã—ã¦ã€ãã‚Œãã‚Œå¾®åˆ†ã—ã¾ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "ŠÖ” \\( y=\\frac{x^2}{x-1} \\) ‚Ì“±ŠÖ”‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "é–¢æ•° \\( y=\\frac{x^2}{x-1} \\) ã®å°é–¢æ•°ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\( y'=\\frac{x(x-2)}{(x-1)^2} \\)",
             "\\( y'=\\frac{x^2}{(x-1)^2} \\)",
@@ -3391,13 +3391,13 @@ const mathIIIQuestions = [
             "\\( y'=\\frac{x(x+2)}{(x-1)^2} \\)"
         ],
         answer: "\\( y'=\\frac{x(x-2)}{(x-1)^2} \\)",
-        explanation: "¤‚Ì”÷•ª–@‚æ‚èA\\(y'=\\frac{2x(x-1)-x^2}{(x-1)^2}=\\frac{x(x-2)}{(x-1)^2}\\) ‚Å‚·B"
+        explanation: "å•†ã®å¾®åˆ†æ³•ã‚ˆã‚Šã€\\(y'=\\frac{2x(x-1)-x^2}{(x-1)^2}=\\frac{x(x-2)}{(x-1)^2}\\) ã§ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "\\(1+x+x^2+\\cdots+x^n\\) ‚ğ \\(x\\) ‚Å”÷•ª‚µ‚½®‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "\\(1+x+x^2+\\cdots+x^n\\) ã‚’ \\(x\\) ã§å¾®åˆ†ã—ãŸå¼ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\(1+2x+3x^2+\\cdots+nx^{n-1}\\)",
             "\\(x+2x^2+3x^3+\\cdots+nx^n\\)",
@@ -3405,13 +3405,13 @@ const mathIIIQuestions = [
             "\\(2+3x+4x^2+\\cdots+(n+1)x^n\\)"
         ],
         answer: "\\(1+2x+3x^2+\\cdots+nx^{n-1}\\)",
-        explanation: "\\(\\frac{d}{dx}x^k=kx^{k-1}\\) ‚ğŠe€‚É“K—p‚µ‚Ü‚·B"
+        explanation: "\\(\\frac{d}{dx}x^k=kx^{k-1}\\) ã‚’å„é …ã«é©ç”¨ã—ã¾ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "ŠÖ” \\(y=e^x(\\sin x+\\cos x)\\) ‚ª–‚½‚·“™®‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "é–¢æ•° \\(y=e^x(\\sin x+\\cos x)\\) ãŒæº€ãŸã™ç­‰å¼ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\(y''+2y'+2y=0\\)",
             "\\(y''-2y'+2y=0\\)",
@@ -3419,13 +3419,13 @@ const mathIIIQuestions = [
             "\\(y''+y'-2y=0\\)"
         ],
         answer: "\\(y''-2y'+2y=0\\)",
-        explanation: "\\(y\\) ‚ğ2‰ñ”÷•ª‚µ‚Ä®—‚·‚é‚ÆA\\(y''-2y'+2y=0\\) ‚ª¬‚è—§‚¿‚Ü‚·B"
+        explanation: "\\(y\\) ã‚’2å›å¾®åˆ†ã—ã¦æ•´ç†ã™ã‚‹ã¨ã€\\(y''-2y'+2y=0\\) ãŒæˆã‚Šç«‹ã¡ã¾ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‘È‰~ \\(\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1\\) ‚ğ”÷•ª‚µ‚½‚Æ‚«A\\(\\frac{dy}{dx}\\) ‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "æ¥•å†† \\(\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1\\) ã‚’å¾®åˆ†ã—ãŸã¨ãã€\\(\\frac{dy}{dx}\\) ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\(\\frac{dy}{dx}=\\frac{b^2x}{a^2y}\\)",
             "\\(\\frac{dy}{dx}=-\\frac{b^2x}{a^2y}\\)",
@@ -3433,13 +3433,13 @@ const mathIIIQuestions = [
             "\\(\\frac{dy}{dx}=-\\frac{xy}{a^2b^2}\\)"
         ],
         answer: "\\(\\frac{dy}{dx}=-\\frac{b^2x}{a^2y}\\)",
-        explanation: "—¼•Ó‚ğ”÷•ª‚·‚é‚ÆA\\(\\frac{2x}{a^2}+\\frac{2y}{b^2}\\frac{dy}{dx}=0\\) ‚Æ‚È‚è‚Ü‚·B"
+        explanation: "ä¸¡è¾ºã‚’å¾®åˆ†ã™ã‚‹ã¨ã€\\(\\frac{2x}{a^2}+\\frac{2y}{b^2}\\frac{dy}{dx}=0\\) ã¨ãªã‚Šã¾ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "\\(\\lim_{h\\to0}\\frac{f(a+h)-f(a-h)}{h}\\) ‚Ì’l‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "\\(\\lim_{h\\to0}\\frac{f(a+h)-f(a-h)}{h}\\) ã®å€¤ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\(f'(a)\\)",
             "\\(-f'(a)\\)",
@@ -3447,13 +3447,13 @@ const mathIIIQuestions = [
             "\\(0\\)"
         ],
         answer: "\\(2f'(a)\\)",
-        explanation: "®‚ğ2‚Â‚Ì”÷•ªŒW”‚É•ª‚¯‚é‚ÆA‚»‚ê‚¼‚ê \\(f'(a)\\) ‚É‚È‚é‚½‚ßA‡Œv‚Í \\(2f'(a)\\) ‚Å‚·B"
+        explanation: "å¼ã‚’2ã¤ã®å¾®åˆ†ä¿‚æ•°ã«åˆ†ã‘ã‚‹ã¨ã€ãã‚Œãã‚Œ \\(f'(a)\\) ã«ãªã‚‹ãŸã‚ã€åˆè¨ˆã¯ \\(2f'(a)\\) ã§ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "‹ÉŒÀ \\(\\lim_{x\\to0}\\frac{\\log(1+x)}{x}\\) ‚Ì’l‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "æ¥µé™ \\(\\lim_{x\\to0}\\frac{\\log(1+x)}{x}\\) ã®å€¤ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\(0\\)",
             "\\(1\\)",
@@ -3461,13 +3461,13 @@ const mathIIIQuestions = [
             "\\(\\infty\\)"
         ],
         answer: "\\(1\\)",
-        explanation: "”÷•ªŒW”‚Ì’è‹`‚©‚çA\\(\\lim_{x\\to0}\\frac{\\log(1+x)-\\log1}{x}=1\\) ‚Å‚·B"
+        explanation: "å¾®åˆ†ä¿‚æ•°ã®å®šç¾©ã‹ã‚‰ã€\\(\\lim_{x\\to0}\\frac{\\log(1+x)-\\log1}{x}=1\\) ã§ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "\\(\\lim_{n\\to\\infty}\\left(1+\\frac{1}{n}\\right)^{2n}\\) ‚Ì’l‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "\\(\\lim_{n\\to\\infty}\\left(1+\\frac{1}{n}\\right)^{2n}\\) ã®å€¤ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\(e\\)",
             "\\(e^2\\)",
@@ -3475,13 +3475,13 @@ const mathIIIQuestions = [
             "\\(\\frac{e}{2}\\)"
         ],
         answer: "\\(e^2\\)",
-        explanation: "\\(\\left(1+\\frac1n\\right)^{2n}=\\left\\{\\left(1+\\frac1n\\right)^n\\right\\}^2\\) ‚È‚Ì‚ÅA‹ÉŒÀ‚Í \\(e^2\\) ‚Å‚·B"
+        explanation: "\\(\\left(1+\\frac1n\\right)^{2n}=\\left\\{\\left(1+\\frac1n\\right)^n\\right\\}^2\\) ãªã®ã§ã€æ¥µé™ã¯ \\(e^2\\) ã§ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "ŠÖ” \\(y=\\frac{1-\\tan x}{1+\\tan x}\\) ‚Ì“±ŠÖ”‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "é–¢æ•° \\(y=\\frac{1-\\tan x}{1+\\tan x}\\) ã®å°é–¢æ•°ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\(y'=-\\frac{2}{(1+\\tan x)^2}\\)",
             "\\(y'=-\\frac{2(1+\\tan^2x)}{(1+\\tan x)^2}\\)",
@@ -3489,13 +3489,13 @@ const mathIIIQuestions = [
             "\\(y'=-\\frac{1}{1+\\tan x}\\)"
         ],
         answer: "\\(y'=-\\frac{2(1+\\tan^2x)}{(1+\\tan x)^2}\\)",
-        explanation: "¤‚Ì”÷•ª–@‚Æ \\((\\tan x)'=1+\\tan^2x\\) ‚ğg‚¢‚Ü‚·B"
+        explanation: "å•†ã®å¾®åˆ†æ³•ã¨ \\((\\tan x)'=1+\\tan^2x\\) ã‚’ä½¿ã„ã¾ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "šš™",
-        question: "ŠÖ” \\(f(x)=\\sin x\\) ‚Ì \\(n\\) ŠK“±ŠÖ”‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜†",
+        question: "é–¢æ•° \\(f(x)=\\sin x\\) ã® \\(n\\) éšå°é–¢æ•°ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\(f^{(n)}(x)=\\sin\\left(x+\\frac{n\\pi}{2}\\right)\\)",
             "\\(f^{(n)}(x)=\\cos(x+n\\pi)\\)",
@@ -3503,13 +3503,13 @@ const mathIIIQuestions = [
             "\\(f^{(n)}(x)=\\cos\\left(x+\\frac{n\\pi}{2}\\right)\\)"
         ],
         answer: "\\(f^{(n)}(x)=\\sin\\left(x+\\frac{n\\pi}{2}\\right)\\)",
-        explanation: "”÷•ª‚·‚é‚½‚Ñ‚ÉˆÊ‘Š‚ª \\(\\frac{\\pi}{2}\\) ‚¸‚Âi‚İA4‰ñ‚ÅŒ³‚É–ß‚è‚Ü‚·B"
+        explanation: "å¾®åˆ†ã™ã‚‹ãŸã³ã«ä½ç›¸ãŒ \\(\\frac{\\pi}{2}\\) ãšã¤é€²ã¿ã€4å›ã§å…ƒã«æˆ»ã‚Šã¾ã™ã€‚"
     },
 
     {
-        type: "‘I‘ğ®",
-        level: "ššš",
-        question: "•û’ö® \\(x^{\\frac23}+y^{\\frac23}=1\\) ‚Å’è‚ß‚ç‚ê‚é \\(y\\) ‚É‚Â‚¢‚ÄA\\(\\frac{dy}{dx}\\) ‚Æ‚µ‚Ä³‚µ‚¢‚à‚Ì‚Í‚Ç‚ê‚Å‚·‚©B",
+        type: "é¸æŠå¼",
+        level: "â˜…â˜…â˜…",
+        question: "æ–¹ç¨‹å¼ \\(x^{\\frac23}+y^{\\frac23}=1\\) ã§å®šã‚ã‚‰ã‚Œã‚‹ \\(y\\) ã«ã¤ã„ã¦ã€\\(\\frac{dy}{dx}\\) ã¨ã—ã¦æ­£ã—ã„ã‚‚ã®ã¯ã©ã‚Œã§ã™ã‹ã€‚",
         choices: [
             "\\(\\frac{dy}{dx}=-\\left(\\frac{x}{y}\\right)^{\\frac13}\\)",
             "\\(\\frac{dy}{dx}=-\\left(\\frac{y}{x}\\right)^{\\frac13}\\)",
@@ -3517,35 +3517,35 @@ const mathIIIQuestions = [
             "\\(\\frac{dy}{dx}=-\\frac{y}{x}\\)"
         ],
         answer: "\\(\\frac{dy}{dx}=-\\left(\\frac{y}{x}\\right)^{\\frac13}\\)",
-        explanation: "ˆÃ–Ù”÷•ª‚·‚é‚ÆA\\(\\frac23x^{-\\frac13}+\\frac23y^{-\\frac13}\\frac{dy}{dx}=0\\) ‚Æ‚È‚èA®—‚·‚é‚Æ‹‚ß‚ç‚ê‚Ü‚·B"
+        explanation: "æš—é»™å¾®åˆ†ã™ã‚‹ã¨ã€\\(\\frac23x^{-\\frac13}+\\frac23y^{-\\frac13}\\frac{dy}{dx}=0\\) ã¨ãªã‚Šã€æ•´ç†ã™ã‚‹ã¨æ±‚ã‚ã‚‰ã‚Œã¾ã™ã€‚"
     }
 ];
 const practiceQuestionData = {
-    "—ğj": practiceQuestions,
-    "‰pŒêi•¶–@j": englishQuestions,
-    "”ŠwA": mathAQuestions,
-    "”ŠwIII": mathIIIQuestions
+    "æ­´å²": practiceQuestions,
+    "è‹±èªï¼ˆæ–‡æ³•ï¼‰": englishQuestions,
+    "æ•°å­¦A": mathAQuestions,
+    "æ•°å­¦III": mathIIIQuestions
 };
 
 let currentPracticeQuestions = [];
 
-// Œ»İ‚Ì–â‘è
+// ç¾åœ¨ã®å•é¡Œ
 let currentPracticeQuestion = 0;
 
-// –â‘è‚Ì‡”Ô
+// å•é¡Œã®é †ç•ª
 let practiceQuestionOrder = [];
 
-// ³‰ğ”
+// æ­£è§£æ•°
 let practiceCorrectCount = 0;
 
 
 // ==========================================
-// —ûK–â‘èƒy[ƒW‚ğ•\¦
+// ç·´ç¿’å•é¡Œãƒšãƒ¼ã‚¸ã‚’è¡¨ç¤º
 // ==========================================
 
 function showPracticePage() {
 
-    // ŠwKŒv‰æ‘¤‚ğ‘S•”‰B‚·
+    // å­¦ç¿’è¨ˆç”»å´ã‚’å…¨éƒ¨éš ã™
     const mainTitle = document.querySelector(".main-title");
     const navMenu = document.querySelector(".nav-menu");
     const hero = document.getElementById("hero");
@@ -3567,7 +3567,7 @@ function showPracticePage() {
     if (mypage) mypage.style.display = "none";
 
 
-    // —ûK–â‘èƒy[ƒW‚ğ•\¦
+    // ç·´ç¿’å•é¡Œãƒšãƒ¼ã‚¸ã‚’è¡¨ç¤º
     const practicePage =
         document.getElementById("practice-page");
 
@@ -3576,7 +3576,7 @@ function showPracticePage() {
     }
 
 
-    // —ûK–â‘è‚Ìİ’è‰æ–Ê‚ğ•\¦
+    // ç·´ç¿’å•é¡Œã®è¨­å®šç”»é¢ã‚’è¡¨ç¤º
     const setting =
         document.getElementById("practice-setting");
 
@@ -3585,7 +3585,7 @@ function showPracticePage() {
     }
 
 
-    // –â‘è‰æ–Ê‚Í‰B‚·
+    // å•é¡Œç”»é¢ã¯éš ã™
     const questionArea =
         document.getElementById("practice-question-area");
 
@@ -3594,18 +3594,18 @@ function showPracticePage() {
     }
 
 
-    // ƒy[ƒWã•”‚Ö
+    // ãƒšãƒ¼ã‚¸ä¸Šéƒ¨ã¸
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
     console.log(
-    "—ûK–â‘èƒy[ƒW•\¦ result-layout:",
+    "ç·´ç¿’å•é¡Œãƒšãƒ¼ã‚¸è¡¨ç¤ºæ™‚ result-layout:",
     document.getElementById("result-layout").style.display
 );
 
 console.log(
-    "—ûK–â‘èƒy[ƒW•\¦ result-layout:",
+    "ç·´ç¿’å•é¡Œãƒšãƒ¼ã‚¸è¡¨ç¤ºæ™‚ result-layout:",
     getComputedStyle(
         document.getElementById("result-layout")
     ).display
@@ -3613,7 +3613,7 @@ console.log(
 }
 
 // ==========================================
-// —ûK–â‘èŠJn
+// ç·´ç¿’å•é¡Œé–‹å§‹
 // ==========================================
 let practiceWrongQuestions = [];
 
@@ -3623,41 +3623,41 @@ function startPractice() {
 ).style.display = "none";
 
 isRetryingWrongQuestions = false;
-    // Å‰‚Ì–â‘è‚©‚çƒXƒ^[ƒg
+    // æœ€åˆã®å•é¡Œã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆ
     currentPracticeQuestion = 0;
 
-    // ³‰ğ”‚ğƒŠƒZƒbƒg
+    // æ­£è§£æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ
     practiceCorrectCount = 0;
 
-    // ŠÔˆá‚¦‚½–â‘è‚ğƒŠƒZƒbƒg
+    // é–“é•ãˆãŸå•é¡Œã‚’ãƒªã‚»ãƒƒãƒˆ
     practiceWrongQuestions = [];
 
-    // 47–â‚Ì’†‚©‚ç–â‘è”Ô†‚ğì‚é
+    // 47å•ã®ä¸­ã‹ã‚‰å•é¡Œç•ªå·ã‚’ä½œã‚‹
  practiceQuestionOrder = currentPracticeQuestions.map((_, index) => index);
 
-    // –â‘è‚ğƒVƒƒƒbƒtƒ‹
+    // å•é¡Œã‚’ã‚·ãƒ£ãƒƒãƒ•ãƒ«
     shuffleArray(practiceQuestionOrder);
 
-    // ‘I‘ğ‚µ‚½–â‘è”‚¾‚¯æ‚èo‚·
+    // é¸æŠã—ãŸå•é¡Œæ•°ã ã‘å–ã‚Šå‡ºã™
     practiceQuestionOrder = practiceQuestionOrder.slice(
         0,
         selectedQuestionCount
     );
 
-    // –â‘è‚ğ•\¦
+    // å•é¡Œã‚’è¡¨ç¤º
     showPracticeQuestion();
 }
 
 // ==========================================
-// –â‘è‚ğ•\¦
+// å•é¡Œã‚’è¡¨ç¤º
 // ==========================================
 
 function showPracticeQuestion() {
 
     console.log(
-        "šŒ»İ‚Ì–â‘è‡F",
+        "â˜…ç¾åœ¨ã®å•é¡Œé †ï¼š",
         practiceQuestionOrder,
-        "Œ»İˆÊ’uF",
+        "ç¾åœ¨ä½ç½®ï¼š",
         currentPracticeQuestion
     );
 
@@ -3667,41 +3667,41 @@ function showPracticeQuestion() {
     const question =
         currentPracticeQuestions[questionIndex];
 
-    // –â‘è”Ô†
+    // å•é¡Œç•ªå·
     document.getElementById(
         "practice-question-number"
     ).textContent =
-        `‘æ${currentPracticeQuestion + 1}–â / ${practiceQuestionOrder.length}–â`;
+        `ç¬¬${currentPracticeQuestion + 1}å• / ${practiceQuestionOrder.length}å•`;
 
-    // –â‘è•¶
+    // å•é¡Œæ–‡
     document.getElementById(
         "practice-question"
     ).innerHTML = question.question;
 
-    // ‘I‘ğˆƒGƒŠƒA
+    // é¸æŠè‚¢ã‚¨ãƒªã‚¢
     const choicesContainer =
         document.getElementById("practice-choices");
 
     choicesContainer.innerHTML = "";
 
-    // Œ‹‰Ê‚ğƒŠƒZƒbƒg
+    // çµæœã‚’ãƒªã‚»ãƒƒãƒˆ
     const result =
         document.getElementById("practice-result");
 
     result.textContent = "";
     result.className = "practice-result";
 
-    // Ÿ‚Ì–â‘èƒ{ƒ^ƒ“‚ğ‰B‚·
+    // æ¬¡ã®å•é¡Œãƒœã‚¿ãƒ³ã‚’éš ã™
     document.getElementById(
         "practice-next-btn"
     ).style.display = "none";
 
 
     // ==========================================
-    // ‘I‘ğ®
+    // é¸æŠå¼
     // ==========================================
 
-    if (question.type === "‘I‘ğ®") {
+    if (question.type === "é¸æŠå¼") {
 
         const shuffledChoices =
             shuffleArray([...question.choices]);
@@ -3732,10 +3732,10 @@ function showPracticeQuestion() {
 
 
     // ==========================================
-    // ‹Lq®
+    // è¨˜è¿°å¼
     // ==========================================
 
-    else if (question.type === "‹Lq®") {
+    else if (question.type === "è¨˜è¿°å¼") {
 
         const input =
             document.createElement("input");
@@ -3743,12 +3743,12 @@ function showPracticeQuestion() {
         input.type = "text";
         input.id = "practice-answer-input";
         input.className = "practice-answer-input";
-        input.placeholder = "“š‚¦‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢";
+        input.placeholder = "ç­”ãˆã‚’å…¥åŠ›ã—ã¦ãã ã•ã„";
 
         const answerButton =
             document.createElement("button");
 
-        answerButton.textContent = "‰ñ“š‚·‚é";
+        answerButton.textContent = "å›ç­”ã™ã‚‹";
         answerButton.className =
             "practice-submit-btn";
 
@@ -3758,7 +3758,7 @@ function showPracticeQuestion() {
                 input.value.trim();
 
             if (userAnswer === "") {
-                alert("“š‚¦‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+                alert("ç­”ãˆã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
                 return;
             }
 
@@ -3770,7 +3770,7 @@ function showPracticeQuestion() {
         };
 
 
-        // EnterƒL[‚Å‚à‰ñ“š‚Å‚«‚é
+        // Enterã‚­ãƒ¼ã§ã‚‚å›ç­”ã§ãã‚‹
         input.addEventListener(
             "keydown",
             function(event) {
@@ -3798,7 +3798,7 @@ function showPracticeQuestion() {
 
 
 // ==========================================
-// –â‘è‚É‰ñ“š
+// å•é¡Œã«å›ç­”
 // ==========================================
 
 function answerPracticeQuestion(
@@ -3814,7 +3814,7 @@ function answerPracticeQuestion(
 
 
     // ==========================================
-    // ‚·‚Å‚É‰ñ“šÏ‚İ‚È‚ç‰½‚à‚µ‚È‚¢
+    // ã™ã§ã«å›ç­”æ¸ˆã¿ãªã‚‰ä½•ã‚‚ã—ãªã„
     // ==========================================
 
     if (result.classList.contains("answered")) {
@@ -3825,7 +3825,7 @@ function answerPracticeQuestion(
 
 
     // ==========================================
-    // “ü—Í‚³‚ê‚½“š‚¦‚ğ®‚¦‚é
+    // å…¥åŠ›ã•ã‚ŒãŸç­”ãˆã‚’æ•´ãˆã‚‹
     // ==========================================
 
     const userAnswer =
@@ -3840,10 +3840,10 @@ function answerPracticeQuestion(
 
 
     // ==========================================
-    // ‘I‘ğ®‚Ìê‡
+    // é¸æŠå¼ã®å ´åˆ
     // ==========================================
 
-    if (question.type === "‘I‘ğ®") {
+    if (question.type === "é¸æŠå¼") {
 
         const buttons =
             document.querySelectorAll(
@@ -3860,10 +3860,10 @@ function answerPracticeQuestion(
 
 
     // ==========================================
-    // ‹Lq®‚Ìê‡
+    // è¨˜è¿°å¼ã®å ´åˆ
     // ==========================================
 
-    else if (question.type === "‹Lq®") {
+    else if (question.type === "è¨˜è¿°å¼") {
 
         const input =
             document.getElementById(
@@ -3886,7 +3886,7 @@ function answerPracticeQuestion(
 
 
     // ==========================================
-    // ³‰ğ
+    // æ­£è§£
     // ==========================================
 
     if (userAnswer === correctAnswer) {
@@ -3894,8 +3894,8 @@ function answerPracticeQuestion(
         practiceCorrectCount++;
 
 
-        // ‘I‘ğ®‚È‚ç‘I‚ñ‚¾ƒ{ƒ^ƒ“‚ğ³‰ğ•\¦
-        if (question.type === "‘I‘ğ®") {
+        // é¸æŠå¼ãªã‚‰é¸ã‚“ã ãƒœã‚¿ãƒ³ã‚’æ­£è§£è¡¨ç¤º
+        if (question.type === "é¸æŠå¼") {
 
             selectedElement.classList.add(
                 "correct"
@@ -3903,7 +3903,7 @@ function answerPracticeQuestion(
         }
 
 
-        result.textContent = "³‰ğI";
+        result.textContent = "æ­£è§£ï¼";
 
         result.className =
             "practice-result correct-result answered";
@@ -3911,12 +3911,12 @@ function answerPracticeQuestion(
 
 
     // ==========================================
-    // •s³‰ğ
+    // ä¸æ­£è§£
     // ==========================================
 
     else {
 
-        // ŠÔˆá‚¦‚½–â‘è‚ğ‹L˜^
+        // é–“é•ãˆãŸå•é¡Œã‚’è¨˜éŒ²
         if (!isRetryingWrongQuestions) {
 
             const questionIndex =
@@ -3937,15 +3937,15 @@ function answerPracticeQuestion(
         }
 
 
-        // ‘I‘ğ®‚Ìê‡
-        if (question.type === "‘I‘ğ®") {
+        // é¸æŠå¼ã®å ´åˆ
+        if (question.type === "é¸æŠå¼") {
 
             const buttons =
                 document.querySelectorAll(
                     ".practice-choice"
                 );
 
-            // ³‰ğ‚Ì‘I‘ğˆ‚ğ•\¦
+            // æ­£è§£ã®é¸æŠè‚¢ã‚’è¡¨ç¤º
             buttons.forEach(button => {
 
                 if (
@@ -3963,15 +3963,15 @@ function answerPracticeQuestion(
 
 
         result.innerHTML =
-            `•s³‰ğI<br>
-             ³‰ğ‚Íu${question.answer}v‚Å‚·B`;
+            `ä¸æ­£è§£ï¼<br>
+             æ­£è§£ã¯ã€Œ${question.answer}ã€ã§ã™ã€‚`;
 
-        // ‹Lq®‚È‚ç‰ğà‚à•\¦
+        // è¨˜è¿°å¼ãªã‚‰è§£èª¬ã‚‚è¡¨ç¤º
         if (question.explanation) {
 
             result.innerHTML +=
                 `<br><br>
-                 <strong>‰ğàF</strong><br>
+                 <strong>è§£èª¬ï¼š</strong><br>
                  ${question.explanation}`;
         }
 
@@ -3981,7 +3981,7 @@ function answerPracticeQuestion(
 
 
     // ==========================================
-    // Ÿ‚Ì–â‘èƒ{ƒ^ƒ“
+    // æ¬¡ã®å•é¡Œãƒœã‚¿ãƒ³
     // ==========================================
 
     const nextButton =
@@ -3998,25 +3998,25 @@ function answerPracticeQuestion(
     ) {
 
         nextButton.textContent =
-            "Œ‹‰Ê‚ğŒ©‚é";
+            "çµæœã‚’è¦‹ã‚‹";
 
     } else {
 
         nextButton.textContent =
-            "Ÿ‚Ì–â‘è ¨";
+            "æ¬¡ã®å•é¡Œ â†’";
     }
 }
 
 
 // ==========================================
-// Ÿ‚Ì–â‘è
+// æ¬¡ã®å•é¡Œ
 // ==========================================
 
 function nextPracticeQuestion() {
 
     currentPracticeQuestion++;
 
-    // ‘S–âI—¹
+    // å…¨å•çµ‚äº†
     if (
         currentPracticeQuestion >=
         practiceQuestionOrder.length
@@ -4037,7 +4037,7 @@ function nextPracticeQuestion() {
 
 
 // ==========================================
-// Œ‹‰Ê•\¦
+// çµæœè¡¨ç¤º
 // ==========================================
 
 function showPracticeResult() {
@@ -4051,16 +4051,16 @@ function showPracticeResult() {
     document.getElementById(
         "practice-question-number"
     ).textContent =
-        "—ûK–â‘èI—¹I";
+        "ç·´ç¿’å•é¡Œçµ‚äº†ï¼";
 
     document.getElementById(
         "practice-question"
     ).innerHTML =
-        `‚¨”æ‚ê‚³‚Ü‚Å‚µ‚½I<br>
-         ‚ ‚È‚½‚Ì³‰ğ”‚Í
-         <strong>${practiceCorrectCount} / ${practiceQuestionOrder.length}–â</strong>
-         ‚Å‚·B<br>
-         ³“š—¦F<strong>${percentage}%</strong>`;
+        `ãŠç–²ã‚Œã•ã¾ã§ã—ãŸï¼<br>
+         ã‚ãªãŸã®æ­£è§£æ•°ã¯
+         <strong>${practiceCorrectCount} / ${practiceQuestionOrder.length}å•</strong>
+         ã§ã™ã€‚<br>
+         æ­£ç­”ç‡ï¼š<strong>${percentage}%</strong>`;
 
     document.getElementById(
         "practice-choices"
@@ -4069,7 +4069,7 @@ function showPracticeResult() {
     document.getElementById(
         "practice-result"
     ).textContent =
-        "‚à‚¤ˆê“x’§í‚µ‚Ä‚İ‚æ‚¤I";
+        "ã‚‚ã†ä¸€åº¦æŒ‘æˆ¦ã—ã¦ã¿ã‚ˆã†ï¼";
 
     document.getElementById(
         "practice-result"
@@ -4078,7 +4078,7 @@ function showPracticeResult() {
 
 
     // -------------------------
-    // ‚à‚¤ˆê“x’§í‚·‚é
+    // ã‚‚ã†ä¸€åº¦æŒ‘æˆ¦ã™ã‚‹
     // -------------------------
 
     const nextButton =
@@ -4088,7 +4088,7 @@ function showPracticeResult() {
 
     nextButton.style.display = "block";
     nextButton.textContent =
-        "‚à‚¤ˆê“x’§í‚·‚é";
+        "ã‚‚ã†ä¸€åº¦æŒ‘æˆ¦ã™ã‚‹";
 
     nextButton.onclick = function() {
 
@@ -4102,7 +4102,7 @@ function showPracticeResult() {
 
 
     // -------------------------
-    // ŠÔˆá‚¦‚½–â‘è‚ğ‚à‚¤ˆê‰ñ
+    // é–“é•ãˆãŸå•é¡Œã‚’ã‚‚ã†ä¸€å›
     // -------------------------
 
     const wrongButton =
@@ -4126,12 +4126,12 @@ function retryWrongQuestions() {
     practiceQuestionOrder =
         [...practiceWrongQuestions];
 
-    // š•œK’†‚Ì•\¦
+    // â˜…å¾©ç¿’ä¸­ã®è¡¨ç¤º
     document.getElementById(
         "practice-retry-label"
     ).style.display = "block";
 
-    // Ÿ‚Ì–â‘èƒ{ƒ^ƒ“‚ğ’Êí‚Ì“®ì‚É–ß‚·
+    // æ¬¡ã®å•é¡Œãƒœã‚¿ãƒ³ã‚’é€šå¸¸ã®å‹•ä½œã«æˆ»ã™
     document.getElementById(
         "practice-next-btn"
     ).onclick = nextPracticeQuestion;
