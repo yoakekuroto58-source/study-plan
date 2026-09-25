@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="CP923">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学習計画作成メーカー</title>
+    <title>�w�K�v��쐬���[�J�[</title>
     <link rel="stylesheet" href="style.css">
     <script>
 window.MathJax = {
@@ -22,29 +22,50 @@ window.MathJax = {
     
 </head>
 <body>
-	<!-- ログイン画面 -->
-<div id="login-page" class="login-page">
+	<!-- �w�N�I����� -->
+<div id="grade-select-page" class="login-page">
     <div class="login-card">
-        <h1>学習計画作成メーカー</h1>
-        <p>ログインして学習計画を管理しよう！</p>
+        <h1>�w�K�v��쐬���[�J�[</h1>
+        <p>�w�N��I��ł�������</p>
 
         <div class="login-form">
-            <label for="login-id">ユーザーID</label>
+            <button type="button" onclick="selectGrade('1')">
+                1�N��
+            </button>
+
+            <button type="button" onclick="selectGrade('2')">
+                2�N��
+            </button>
+
+            <button type="button" onclick="selectGrade('3')">
+                3�N��
+            </button>
+        </div>
+    </div>
+</div>
+	<!-- ���O�C����� -->
+<div id="login-page" class="login-page" style="display: none;">
+    <div class="login-card">
+        <h1>�w�K�v��쐬���[�J�[</h1>
+        <p>���O�C�����Ċw�K�v����Ǘ����悤�I</p>
+
+        <div class="login-form">
+            <label for="login-id">���[�U�[ID</label>
             <input
                 type="text"
                 id="login-id"
-                placeholder="ユーザーIDを入力"
+                placeholder="���[�U�[ID�����"
             >
 
-            <label for="login-password">パスワード</label>
+            <label for="login-password">�p�X���[�h</label>
             <input
                 type="password"
                 id="login-password"
-                placeholder="パスワードを入力"
+                placeholder="�p�X���[�h�����"
             >
 
             <button type="button" onclick="login()">
-                ログイン
+                ���O�C��
             </button>
 
             <p id="login-error" class="login-error"></p>
@@ -52,46 +73,46 @@ window.MathJax = {
 
         <div class="login-links">
             <button type="button" onclick="showRegister()">
-                新規登録
+                �V�K�o�^
             </button>
 
             <button type="button" onclick="showResetPassword()">
-                パスワードを忘れた方
+                �p�X���[�h��Y�ꂽ��
             </button>
         </div>
     </div>
 </div>
 
-<!-- 新規登録画面 -->
+<!-- �V�K�o�^��� -->
 <div id="register-page" class="login-page" style="display: none;">
     <div class="login-card">
-        <h1>新規登録</h1>
-        <p>アカウントを作成しよう！</p>
+        <h1>�V�K�o�^</h1>
+        <p>�A�J�E���g���쐬���悤�I</p>
 
         <div class="login-form">
-            <label for="register-name">名前</label>
+            <label for="register-name">���O</label>
             <input
                 type="text"
                 id="register-name"
-                placeholder="名前を入力"
+                placeholder="���O�����"
             >
 
-            <label for="register-id">ユーザーID</label>
+            <label for="register-id">���[�U�[ID</label>
             <input
                 type="text"
                 id="register-id"
-                placeholder="ユーザーIDを入力"
+                placeholder="���[�U�[ID�����"
             >
 
-            <label for="register-password">パスワード</label>
+            <label for="register-password">�p�X���[�h</label>
             <input
                 type="password"
                 id="register-password"
-                placeholder="パスワードを入力"
+                placeholder="�p�X���[�h�����"
             >
 
             <button type="button" onclick="registerUser()">
-                新規登録
+                �V�K�o�^
             </button>
 
             <p id="register-error" class="login-error"></p>
@@ -99,35 +120,35 @@ window.MathJax = {
 
         <div class="login-links">
             <button type="button" onclick="showLogin()">
-                ログイン画面に戻る
+                ���O�C����ʂɖ߂�
             </button>
         </div>
     </div>
 </div>
 
-<!-- パスワード変更画面 -->
+<!-- �p�X���[�h�ύX��� -->
 <div id="reset-page" class="login-page" style="display: none;">
     <div class="login-card">
-        <h1>パスワード変更</h1>
-        <p>ユーザーIDと新しいパスワードを入力してね。</p>
+        <h1>�p�X���[�h�ύX</h1>
+        <p>���[�U�[ID�ƐV�����p�X���[�h����͂��ĂˁB</p>
 
         <div class="login-form">
-            <label for="reset-id">ユーザーID</label>
+            <label for="reset-id">���[�U�[ID</label>
             <input
                 type="text"
                 id="reset-id"
-                placeholder="ユーザーIDを入力"
+                placeholder="���[�U�[ID�����"
             >
 
-            <label for="reset-password">新しいパスワード</label>
+            <label for="reset-password">�V�����p�X���[�h</label>
             <input
                 type="password"
                 id="reset-password"
-                placeholder="新しいパスワードを入力"
+                placeholder="�V�����p�X���[�h�����"
             >
 
             <button type="button" onclick="resetPassword()">
-                パスワードを変更する
+                �p�X���[�h��ύX����
             </button>
 
             <p id="reset-error" class="login-error"></p>
@@ -135,7 +156,7 @@ window.MathJax = {
 
         <div class="login-links">
             <button type="button" onclick="showLogin()">
-                ログイン画面に戻る
+                ���O�C����ʂɖ߂�
             </button>
         </div>
     </div>
@@ -145,47 +166,47 @@ window.MathJax = {
 	<div class="account-area">
     <div id="login-status" class="login-status"></div>
     <button type="button" class="logout-btn" onclick="logout()">
-    ログアウト
+    ���O�A�E�g
 	</button>
 	</div>
 
     <div class="container">
 
-    <h1 class="main-title">学習計画作成メーカー</h1>
+    <h1 class="main-title">�w�K�v��쐬���[�J�[</h1>
 
     <header class="hero-section" id="hero">
-        <h2>最適な学習計画を作ろう</h2>
-        <p>あなた専用の学習スケジュールを自動生成し、テストまで毎日の勉強をサポートします。</p>
+        <h2>�œK�Ȋw�K�v�����낤</h2>
+        <p>���Ȃ���p�̊w�K�X�P�W���[���������������A�e�X�g�܂Ŗ����̕׋����T�|�[�g���܂��B</p>
     </header>
 
     <nav class="nav-menu">
-        <a href="#hero" class="nav-btn active">トップ</a>
-        <a href="#guide-toggle" class="nav-btn">使い方</a>
-        <a href="#form-section" class="nav-btn">設定入力</a>
-        <a href="#result-layout" class="nav-btn">学習計画・チェッカー</a>
-        <a href="#practice-page" class="nav-btn" onclick="showPracticePage(); return false;">練習問題</a>
-        <a href="#mypage" class="nav-btn" onclick="showMyPage(); return false;">マイページ</a>
+        <a href="#hero" class="nav-btn active">�g�b�v</a>
+        <a href="#guide-toggle" class="nav-btn">�g����</a>
+        <a href="#form-section" class="nav-btn">�ݒ����</a>
+        <a href="#result-layout" class="nav-btn">�w�K�v��E�`�F�b�J�[</a>
+        <a href="#practice-page" class="nav-btn" onclick="showPracticePage(); return false;">���K���</a>
+        <a href="#mypage" class="nav-btn" onclick="showMyPage(); return false;">�}�C�y�[�W</a>
       
     </nav>
 
-    <button class="guide-toggle-btn" id="guide-toggle" onclick="toggleGuide()"> 使い方・操作説明を見る</button>
+    <button class="guide-toggle-btn" id="guide-toggle" onclick="toggleGuide()"> �g�����E�������������</button>
     <div class="guide-box" id="guide-box" style="display: none;">
-        <h3> このアプリの使い方</h3>
+        <h3> ���̃A�v���̎g����</h3>
         <ul>
-            <li><strong>ステップ1：</strong>ページの最上部で「計画タイプ」を選びます。</li>
-            <li><strong>ステップ2：</strong>「テスト日」「教科」「基本の勉強時間」を入力します。</li>
-            <li><strong>ステップ3：</strong>塾や用事があって勉強が全くできない日があれば、カレンダーから選んで赤色（お休み）にします。</li>
-            <li><strong>ステップ4：</strong>「計画表を自動生成する」を押すと、お休みの日を考慮した最適な計画が組まれます。</li>
-            <li><strong>ステップ5：</strong>計画が完成すると、画面下に「ダッシュボード」「タイマー」「カレンダー・チェッカー」が表示されます。</li>
-            <li><strong>ステップ6：</strong>計画を立てた後に変更したいときはカレンダーをクリックすると時間を増やしたり減らしたりできます。</li>
+            <li><strong>�X�e�b�v1�F</strong>�y�[�W�̍ŏ㕔�Łu�v��^�C�v�v��I�т܂��B</li>
+            <li><strong>�X�e�b�v2�F</strong>�u�e�X�g���v�u���ȁv�u��{�̕׋����ԁv����͂��܂��B</li>
+            <li><strong>�X�e�b�v3�F</strong>�m��p���������ĕ׋����S���ł��Ȃ���������΁A�J�����_�[����I��ŐԐF�i���x�݁j�ɂ��܂��B</li>
+            <li><strong>�X�e�b�v4�F</strong>�u�v��\��������������v�������ƁA���x�݂̓����l�������œK�Ȍv�悪�g�܂�܂��B</li>
+            <li><strong>�X�e�b�v5�F</strong>�v�悪��������ƁA��ʉ��Ɂu�_�b�V���{�[�h�v�u�^�C�}�[�v�u�J�����_�[�E�`�F�b�J�[�v���\������܂��B</li>
+            <li><strong>�X�e�b�v6�F</strong>�v��𗧂Ă���ɕύX�������Ƃ��̓J�����_�[���N���b�N����Ǝ��Ԃ𑝂₵���茸�炵����ł��܂��B</li>
         </ul>
     </div>
 
     <section class="plan-type-section" id="plan-type-section">
         <div class="plan-type-header">
             <span class="type-badge">Step 0</span>
-            <h2>学習計画の決め方を選択してください</h2>
-            <p class="plan-type-subtext">あなたに合った勉強時間の配分スタイルを選びましょう！</p>
+            <h2>�w�K�v��̌��ߕ���I�����Ă�������</h2>
+            <p class="plan-type-subtext">���Ȃ��ɍ������׋����Ԃ̔z���X�^�C����I�т܂��傤�I</p>
         </div>
 
         <div class="plan-type-options">
@@ -193,13 +214,13 @@ window.MathJax = {
                 <input type="radio" name="planType" value="fixed" checked onchange="updatePlanTypeUI()">
                 <div class="card-content">
                     <div class="card-title">
-                        <span class="icon"></span> 1日の時間固定タイプ
+                        <span class="icon"></span> 1���̎��ԌŒ�^�C�v
                     </div>
                     <p class="card-desc">
-                        毎日「自分で決めた時間（例: 2時間）」だけ勉強するスタンダードなタイプです。<br>
-                        無理のないペースでコツコツ進めたい人におすすめです。
+                        �����u�����Ō��߂����ԁi��: 2���ԁj�v�����׋�����X�^���_�[�h�ȃ^�C�v�ł��B<br>
+                        �����̂Ȃ��y�[�X�ŃR�c�R�c�i�߂����l�ɂ������߂ł��B
                     </p>
-                    <div class="card-tag">毎日決まった時間でコツコツ</div>
+                    <div class="card-tag">�������܂������ԂŃR�c�R�c</div>
                 </div>
             </label>
 
@@ -207,86 +228,92 @@ window.MathJax = {
                 <input type="radio" name="planType" value="transfer" onchange="updatePlanTypeUI()">
                 <div class="card-content">
                     <div class="card-title">
-                        <span class="icon"></span> 総目標時間・お休み振替タイプ
+                        <span class="icon"></span> ���ڕW���ԁE���x�ݐU�փ^�C�v
                     </div>
                     <p class="card-desc">
-                        「1日n時間×期間」の全体の目標勉強時間を算出し、<strong>お休みでやれなかった分を勉強できる他の日に自動で振り替える</strong>タイプです。<br>
-                        休みが多くても全体の勉強量を落としたくない人におすすめです。
+                        �u1��n���ԁ~���ԁv�̑S�̖̂ڕW�׋����Ԃ��Z�o���A<strong>���x�݂ł��Ȃ���������׋��ł��鑼�̓��Ɏ����ŐU��ւ���</strong>�^�C�v�ł��B<br>
+                        �x�݂������Ă��S�̂̕׋��ʂ𗎂Ƃ������Ȃ��l�ɂ������߂ł��B
                     </p>
-                    <div class="card-tag">休みの日数を別の日にリカバリー</div>
+                    <div class="card-tag">�x�݂̓�����ʂ̓��Ƀ��J�o���[</div>
                 </div>
             </label>
         </div>
     </section>
 
     <div class="form-section" id="form-section">
-        <h2>学習条件の設定</h2>
-        
-        <div class="form-group">
-            <label for="test-date">テスト本番の日付：</label>
-            <input type="date" id="test-date">
-        </div>
+        <h2>�w�K�����̐ݒ�</h2>
+
+<div class="form-group">
+    <label for="test-date">�e�X�g�{�Ԃ̓��t�F</label>
+    <input type="date" id="test-date" onchange="renderMiniCalendarPicker()">
+</div>
+
+<!-- ���ȓ��� -->
+<div class="form-group">
+    <label>�e�X�g�̋��ȁi�J���}��؂�j�F</label>
+    <input
+        type="text"
+        id="subject-input"
+        value="�p��, ���w, ����, ����, �Љ�"
+        placeholder="�p��, ���w, ����"
+    >
+</div>
+
+<div class="form-group">
+    <label>���E���������肽�����ȁF</label>
+    <div id="weak-subjects-checkboxes" class="checkbox-group"></div>
+</div>
 
         <div class="form-group">
-            <label>テストの教科（カンマ区切り）：</label>
-            <input type="text" id="subject-input" value="英語, 数学, 国語, 理科, 社会" placeholder="英語, 数学, 国語..." oninput="updateWeakSubjectOptions()">
-        </div>
-
-        <div class="form-group">
-            <label>苦手・たくさんやりたい教科：</label>
-            <div id="weak-subjects-checkboxes" class="checkbox-group"></div>
-        </div>
-
-        <div class="form-group">
-            <label>苦手教科の勉強量の増やし方（倍率）：</label>
+            <label>��苳�Ȃ̕׋��ʂ̑��₵���i�{���j�F</label>
             <div class="radio-group">
-                <label class="radio-item"><input type="radio" name="weakRatio" value="1.5" onchange="if(daysArray.length>0){reallocatePlan(); renderCalendar(); renderChecker();}"> 1.5倍</label>
-                <label class="radio-item"><input type="radio" name="weakRatio" value="2.0" checked onchange="if(daysArray.length>0){reallocatePlan(); renderCalendar(); renderChecker();}"> 2倍（標準）</label>
-                <label class="radio-item"><input type="radio" name="weakRatio" value="3.0" onchange="if(daysArray.length>0){reallocatePlan(); renderCalendar(); renderChecker();}"> 3倍</label>
+                <label class="radio-item"><input type="radio" name="weakRatio" value="1.5" onchange="if(daysArray.length>0){reallocatePlan(); renderCalendar(); renderChecker();}"> 1.5�{</label>
+                <label class="radio-item"><input type="radio" name="weakRatio" value="2.0" checked onchange="if(daysArray.length>0){reallocatePlan(); renderCalendar(); renderChecker();}"> 2�{�i�W���j</label>
+                <label class="radio-item"><input type="radio" name="weakRatio" value="3.0" onchange="if(daysArray.length>0){reallocatePlan(); renderCalendar(); renderChecker();}"> 3�{</label>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="daily-hours">1日の基本勉強時間（時間 / 最大10時間）：</label>
+            <label for="daily-hours">1���̊�{�׋����ԁi���� / �ő�10���ԁj�F</label>
             <input type="number" id="daily-hours" value="2" min="1" max="10">
         </div>
 
         <div class="form-group">
-            <label>お休み（勉強できない日）をカレンダーで事前に選ぶ：</label>
-            <p class="sub-info">※日付枠をクリックすると赤色（お休み）に切り替わります。</p>
+            <label>���x�݁i�׋��ł��Ȃ����j���J�����_�[�Ŏ��O�ɑI�ԁF</label>
+            <p class="sub-info">�����t�g���N���b�N����ƐԐF�i���x�݁j�ɐ؂�ւ��܂��B</p>
             <div id="mini-calendar-picker"></div>
         </div>
 
-        <button class="generate-btn" onclick="generatePlan()">計画表を自動生成する！</button>
-        <button class="reset-plan-btn" id="reset-plan-btn" onclick="resetSavedPlan()" style="display:none;">現在の計画をクリアして最初からやり直す</button>
+        <button class="generate-btn" onclick="generatePlan()">�v��\��������������I</button>
+        <button class="reset-plan-btn" id="reset-plan-btn" onclick="resetSavedPlan()" style="display:none;">���݂̌v����N���A���čŏ������蒼��</button>
     </div>
-<!--マイページ-->
+<!--�}�C�y�[�W-->
 <div id="mypage" class="mypage" style="display: none;">
 
-    <h2>マイページ</h2>
+    <h2>�}�C�y�[�W</h2>
 
     <div class="mypage-welcome">
-        こんにちは、<span id="mypage-name"></span>さん！
+        ����ɂ��́A<span id="mypage-name"></span>����I
     </div>
 
     <div class="mypage-stats">
 
         <div class="mypage-stat-card">
-            <div class="mypage-stat-title">累計で勉強したコマ</div>
-            <div class="mypage-stat-value" id="stat-completed">0 コマ</div>
+            <div class="mypage-stat-title">�݌v�ŕ׋������R�}</div>
+            <div class="mypage-stat-value" id="stat-completed">0 �R�}</div>
         </div>
 
         <div class="mypage-stat-card">
-            <div class="mypage-stat-title">累計で追加で勉強したコマ</div>
-            <div class="mypage-stat-value" id="stat-extra">0 コマ</div>
+            <div class="mypage-stat-title">�݌v�Œǉ��ŕ׋������R�}</div>
+            <div class="mypage-stat-value" id="stat-extra">0 �R�}</div>
         </div>
         
 <div class="mypage-status">
-    <div class="mypage-stat-title">勉強やり込みステータス</div>
+    <div class="mypage-stat-title">�׋���荞�݃X�e�[�^�X</div>
 
     <div>
         <span class="level-text" id="mypage-level-disp">Lv.1</span>
-        <span class="title-badge" id="mypage-title-disp">のび太級</span>
+        <span class="title-badge" id="mypage-title-disp">�̂ё���</span>
     </div>
 
     <div class="bar-container">
@@ -294,95 +321,94 @@ window.MathJax = {
     </div>
 
     <div class="percent-num" id="mypage-percent-disp">
-        0 コマ
+        0 �R�}
     </div>
 </div>
 
 <div class="mypage-stat-card">
-    <div class="mypage-stat-title">累計勉強時間</div>
-    <div class="mypage-stat-value" id="stat-study-time">0時間</div>
+    <div class="mypage-stat-title">�݌v�׋�����</div>
+    <div class="mypage-stat-value" id="stat-study-time">0����</div>
 </div>
 
     </div>
     <div class="learning-history-section">
-        <h3>学習記録</h3>
+        <h3>�w�K�L�^</h3>
         <div id="learning-history-list"></div>
     </div>
     <button class="back-plan-btn" onclick="showStudyPage()">
-        ← 学習計画に戻る
+        �� �w�K�v��ɖ߂�
     </button>
 
 </div>
 
-<!-- 練習問題ページ -->
+<!-- ���K���y�[�W -->
 <div id="practice-page" class="practice-page" style="display: none;">
 
-    <!-- 最初に表示する設定画面 -->
+    <!-- �ŏ��ɕ\������ݒ��� -->
     <div id="practice-setting">
 
-        <h2>練習問題</h2>
+        <h2>���K���</h2>
 
-        <h3>教科を選択してください</h3>
+        <h3>���Ȃ�I�����Ă�������</h3>
 
         <div class="subject-buttons">
-            <button type="button" onclick="selectSubject('国語')">国語</button>
-            <button type="button" onclick="selectSubject('数学A')">数学A</button>
-            <button type="button" onclick="selectSubject('数学III')">数学III</button>
-            <button type="button" onclick="selectSubject('英語（文法）')">英語（文法）</button>
-            <button type="button" onclick="selectSubject('科学')">科学</button>
-            <button type="button" onclick="selectSubject('歴史')">歴史</button>
-            <button type="button" onclick="selectSubject('政治経済')">政治経済</button>
-            <button type="button" onclick="selectSubject('電力')">電力</button>
-            <button type="button" onclick="selectSubject('電子応用')">電子応用</button>
+            <button type="button" onclick="selectSubject('����')">����</button>
+            <button type="button" onclick="selectSubject('���wA')">���wA</button>
+            <button type="button" onclick="selectSubject('���wIII')">���wIII</button>
+            <button type="button" onclick="selectSubject('�p��i���@�j')">�p��i���@�j</button>
+            <button type="button" onclick="selectSubject('�Ȋw')">�Ȋw</button>
+            <button type="button" onclick="selectSubject('���j')">���j</button>
+            <button type="button" onclick="selectSubject('�����o��')">�����o��</button>
+            <button type="button" onclick="selectSubject('�d��')">�d��</button>
+            <button type="button" onclick="selectSubject('�d�q���p')">�d�q���p</button>
         </div>
 
-        <h3>問題数を選択してください</h3>
+        <h3>��萔��I�����Ă�������</h3>
 
         <div class="question-count-buttons">
-            <button type="button" onclick="selectQuestionCount(5)">5問</button>
-            <button type="button" onclick="selectQuestionCount(10)">10問</button>
-            <button type="button" onclick="selectQuestionCount(15)">15問</button>
-            <button type="button" onclick="selectQuestionCount(20)">20問</button>
-            <button type="button" onclick="selectQuestionCount(25)">25問</button>
-            <button type="button" onclick="selectQuestionCount(30)">30問</button>
-            <button type="button" onclick="selectQuestionCount(35)">35問</button>
-            <button type="button" onclick="selectQuestionCount(40)">40問</button>
-            <button type="button" onclick="selectQuestionCount(45)">45問</button>
+            <button type="button" onclick="selectQuestionCount(5)">5��</button>
+            <button type="button" onclick="selectQuestionCount(10)">10��</button>
+            <button type="button" onclick="selectQuestionCount(15)">15��</button>
+            <button type="button" onclick="selectQuestionCount(20)">20��</button>
+            <button type="button" onclick="selectQuestionCount(25)">25��</button>
+            <button type="button" onclick="selectQuestionCount(30)">30��</button>
+            <button type="button" onclick="selectQuestionCount(35)">35��</button>
+            <button type="button" onclick="selectQuestionCount(40)">40��</button>
+            <button type="button" onclick="selectQuestionCount(45)">45��</button>
         </div>
 
         <p id="practice-setting-status">
-            教科と問題数を選択してください
+            ���ȂƖ�萔��I�����Ă�������
         </p>
 
-        <button
-            type="button"
-            id="practice-start-btn"
-            onclick="startSelectedPractice()"
-            disabled>
-            練習問題を始める
-        </button>
+<button
+    type="button"
+    id="practice-start-btn"
+    onclick="startSelectedPractice()"
+    disabled>
+    ���K�����n�߂�
+</button>
+</div>
 
-    </div>
 
-
-    <!-- 問題画面 -->
-    <!-- 最初は非表示 -->
+    <!-- ����� -->
+    <!-- �ŏ��͔�\�� -->
     <div id="practice-question-area" style="display: none;">
 
-        <h2>練習問題</h2>
+        <h2>���K���</h2>
 <div id="practice-retry-label" class="practice-retry-label" style="display: none;">
-    間違えた問題を復習中
+    �ԈႦ�����𕜏K��
 </div>
         <div
             class="practice-question-number"
             id="practice-question-number">
-            第1問
+            ��1��
         </div>
 
         <div
             class="practice-question"
             id="practice-question">
-            問題文がここに表示されます。
+            ��蕶�������ɕ\������܂��B
         </div>
 
         <div
@@ -400,109 +426,112 @@ window.MathJax = {
     class="practice-next-btn"
     onclick="nextPracticeQuestion()"
     style="display: none;">
-    次の問題 →
+    ���̖�� ��
 </button>
 
-<!-- 間違えた問題をもう一回 -->
+<!-- �ԈႦ������������� -->
 <button
 	type="button"
     id="practice-wrong-btn"
     class="practice-next-btn"
     onclick="retryWrongQuestions()"
     style="display: none;">
-    間違えた問題をもう一回
+    �ԈႦ�������������
 </button>
 
-<!-- 学習計画に戻る -->
+<!-- �w�K�v��ɖ߂� -->
 <button 
     class="practice-back-mypage-btn" 
     onclick="showStudyPage()">
-    ← 学習計画に戻る
+    �� �w�K�v��ɖ߂�
 </button>
-    </div>
 
-</div>
+    </div> <!-- practice-question-area ����� -->
+
+</div> <!-- practice-setting ����� -->
+
+</div> <!-- practice-page ����� -->
 
 
     <div class="result-layout" id="result-layout" style="display: none;">
         
         <div class="top-dashboard-grid" id="dashboard" style="grid-column: 1 / -1;">
             <div class="dash-card">
-                <h3>学習ダッシュボード</h3>
+                <h3>�w�K�_�b�V���{�[�h</h3>
                 <div class="dash-stats">
                     <div class="stat-box">
-                        <span class="stat-label">テストまで</span>
-                        <span class="stat-value" id="dash-days-left">-- 日</span>
+                        <span class="stat-label">�e�X�g�܂�</span>
+                        <span class="stat-value" id="dash-days-left">-- ��</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-label">今日の予定コマ</span>
-                        <span class="stat-value" id="dash-today-tasks">-- コマ</span>
+                        <span class="stat-label">�����̗\��R�}</span>
+                        <span class="stat-value" id="dash-today-tasks">-- �R�}</span>
                     </div>
                     <div class="stat-box">
-						<span class="stat-label">連続学習</span>
-						<span class="stat-value" id="dash-streak">0日</span>
+						<span class="stat-label">�A���w�K</span>
+						<span class="stat-value" id="dash-streak">0��</span>
 					</div>
                 </div>
             </div>
 
             <div class="dash-card" id="timer-section">
-    <h3>集中ポモドーロタイマー</h3>
+    <h3>�W���|���h�[���^�C�}�[</h3>
 
-    <!-- 3・2・1のカウントダウン表示 -->
+    <!-- 3�E2�E1�̃J�E���g�_�E���\�� -->
     <div class="timer-countdown" id="timer-countdown"></div>
 
-    <!-- タイマー -->
+    <!-- �^�C�}�[ -->
     <div class="timer-display" id="timer-display">25:00</div>
 
-    <!-- 状態表示 -->
+    <!-- ��ԕ\�� -->
     <div class="timer-status" id="timer-status">
-        スタートを押して学習を始めよう！
+        �X�^�[�g�������Ċw�K���n�߂悤�I
     </div>
 
     <div class="timer-controls">
-        <button class="timer-btn start" onclick="startTimer()">スタート</button>
-        <button class="timer-btn stop" onclick="stopTimer()">一時停止</button>
-        <button class="timer-btn reset" onclick="resetTimer()">リセット</button>
+        <button class="timer-btn start" onclick="startTimer()">�X�^�[�g</button>
+        <button class="timer-btn stop" onclick="stopTimer()">�ꎞ��~</button>
+        <button class="timer-btn reset" onclick="resetTimer()">���Z�b�g</button>
     </div>
 </div>
 
         <div class="checker-panel">
-            <h2>毎日チェッカー</h2>
+            <h2>�����`�F�b�J�[</h2>
             <p style="font-size: 13px; color: #64748b; margin-bottom: 12px; line-height: 1.4;">
-                終わったらチェックを入れよう！
+                �I�������`�F�b�N�����悤�I
             </p>
 
             <div class="progress-box">
-                <div class="progress-box-title">勉強やり込みステータス</div>
+                <div class="progress-box-title">�׋���荞�݃X�e�[�^�X</div>
                 <div>
                     <span class="level-text" id="level-disp">Lv.1</span>
-                    <span class="title-badge" id="title-disp">のび太級</span>
+                    <span class="title-badge" id="title-disp">�̂ё���</span>
                 </div>
                 <div class="bar-container">
                     <div class="bar-fill" id="bar-fill-disp"></div>
                 </div>
-                <div class="percent-num" id="percent-disp">0 / 0 コマ (0%)</div>
+                <div class="percent-num" id="percent-disp">0 / 0 �R�} (0%)</div>
             </div>
 
             <div id="checker-list-container">
-                <div class="checker-section-title" style="color: #3b82f6;"> 今日の勉強タスク</div>
+                <div class="checker-section-title" style="color: #3b82f6;"> �����̕׋��^�X�N</div>
                 <div id="today-tasks-box" class="today-card"></div>
 
 			<button class="extra-study-btn" onclick="addExtraStudy()">
-				＋もう少し勉強する
+				�{���������׋�����
 			</button>
     
-                <div class="checker-section-title" style="color: #1e293b;">これからの予定</div>
+                <div class="checker-section-title" style="color: #1e293b;">���ꂩ��̗\��</div>
                 <div id="upcoming-tasks-box" class="upcoming-list"></div>
 
-                <div class="checker-section-title" style="color: #64748b;"> 過去の履歴（スクロールで閲覧）</div>
+                <div class="checker-section-title" style="color: #64748b;"> �ߋ��̗����i�X�N���[���ŉ{���j</div>
                 <div id="past-tasks-box" class="past-scroll-area"></div>
             </div>
         </div>
 
         <div class="calendar-panel">
-            <h2>全体カレンダー</h2>
-            <p class="sub-info">※カレンダーの日付枠をクリックすると勉強時間を変更できます（最大10時間枠まで設定可能）。</p>
+            <h2>�S�̃J�����_�[</h2>
+            <p class="sub-info">���J�����_�[�̓��t�g���N���b�N����ƕ׋����Ԃ�ύX�ł��܂��i�ő�10���Ԙg�܂Őݒ�\�j�B</p>
             <div id="calendar-container"></div>
         </div>
     </div>
@@ -511,11 +540,11 @@ window.MathJax = {
 </div>
 
 <script src="script.js"></script>
-<!-- お問い合わせ -->
+<!-- ���₢���킹 -->
 <div class="contact-area">
-    <p>お問い合わせ・バグ報告はこちら</p>
+    <p>���₢���킹�E�o�O�񍐂͂�����</p>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSejkHN22OnPyrdoUX5LqA77FRDLvSj128zdiJsv9yqS_l8Pcw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-        お問い合わせ・バグ報告フォーム
+        ���₢���킹�E�o�O�񍐃t�H�[��
     </a>
 </div>
 </body>

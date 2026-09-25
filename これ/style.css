@@ -1076,3 +1076,81 @@ body {
     border-radius: 8px;
     text-decoration: none;
 }
+/* ==========================================
+   記述式問題
+   ========================================== */
+
+/* 解答入力欄 */
+.practice-answer-input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+    margin-top: 10px;
+
+    border: 2px solid #d9e2f0;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    font-size: 16px;
+    color: #333;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+/* 入力欄をクリックしたとき */
+.practice-answer-input:focus {
+    border-color: #4285f4;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.12);
+}
+
+/* プレースホルダー */
+.practice-answer-input::placeholder {
+    color: #aaa;
+}
+
+
+/* 回答するボタン */
+.practice-submit-btn {
+    display: block;
+
+    width: 180px;
+
+    margin: 14px auto 0;
+    padding: 11px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #4285f4;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+/* マウスを乗せたとき */
+.practice-submit-btn:hover {
+    background: #357ae8;
+    transform: translateY(-1px);
+}
+
+/* 押したとき */
+.practice-submit-btn:active {
+    transform: translateY(0);
+}
+
+
+/* 回答後の入力欄 */
+.practice-answer-input:disabled {
+    background: #f3f3f3;
+    color: #777;
+    cursor: not-allowed;
+}
